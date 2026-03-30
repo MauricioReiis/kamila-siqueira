@@ -9,7 +9,7 @@ const PageWrapper = styled.div<{ $isDark: boolean }>`
   &::before {
     content: '';
     position: fixed;
-    inset: 0;
+    inset: -2rem;
     background-image: radial-gradient(
       rgba(196, 139, 159, 0.35) 1px,
       transparent 1px
@@ -18,22 +18,28 @@ const PageWrapper = styled.div<{ $isDark: boolean }>`
     pointer-events: none;
     z-index: 0;
     display: ${({ $isDark }) => ($isDark ? 'block' : 'none')};
+    animation: bgDrift 30s ease-in-out infinite;
+    will-change: transform;
   }
 
   &::after {
     content: '';
     position: fixed;
-    inset: 0;
+    inset: -4rem;
     background:
       conic-gradient(
         from 200deg at 100% -10%,
-        rgba(212, 165, 116, 0.12) 0deg,
-        rgba(196, 139, 159, 0.09) 30deg,
-        transparent 60deg
+        rgba(212, 165, 116, 0.10) 0deg,
+        rgba(196, 139, 159, 0.07) 25deg,
+        rgba(196, 139, 159, 0.03) 45deg,
+        transparent 70deg
       );
+    filter: blur(4rem);
     pointer-events: none;
     z-index: 0;
     display: ${({ $isDark }) => ($isDark ? 'block' : 'none')};
+    animation: bgDrift 25s ease-in-out infinite reverse;
+    will-change: transform;
   }
 
   & > * {

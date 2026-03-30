@@ -41,7 +41,9 @@ export const Form = styled(motion.form)`
   display: flex;
   flex-direction: column;
   gap: 1.75rem;
-  background: ${({ theme }) => theme.colors.backgroundCard};
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(0.75rem);
+  -webkit-backdrop-filter: blur(0.75rem);
   border: 0.0625rem solid ${({ theme }) => theme.colors.border};
   border-radius: ${({ theme }) => theme.borderRadius};
   padding: 2.5rem;
@@ -164,7 +166,7 @@ export const RequiredAsterisk = styled.span`
 
 export const FormInput = styled.input`
   padding: 0.75rem 1rem;
-  background: ${({ theme }) => theme.colors.background};
+  background: ${({ theme }) => theme.colors.backgroundCard};
   border: 0.0625rem solid ${({ theme }) => theme.colors.border};
   border-radius: 0.5rem;
   color: ${({ theme }) => theme.colors.text};
@@ -184,7 +186,7 @@ export const FormInput = styled.input`
 
 export const FormTextarea = styled.textarea`
   padding: 0.75rem 1rem;
-  background: ${({ theme }) => theme.colors.background};
+  background: ${({ theme }) => theme.colors.backgroundCard};
   border: 0.0625rem solid ${({ theme }) => theme.colors.border};
   border-radius: 0.5rem;
   color: ${({ theme }) => theme.colors.text};
@@ -206,7 +208,7 @@ export const FormTextarea = styled.textarea`
 
 export const FormSelect = styled.select`
   padding: 0.75rem 1rem;
-  background: ${({ theme }) => theme.colors.background};
+  background: ${({ theme }) => theme.colors.backgroundCard};
   border: 0.0625rem solid ${({ theme }) => theme.colors.border};
   border-radius: 0.5rem;
   color: ${({ theme }) => theme.colors.text};
@@ -337,4 +339,203 @@ export const SubmitButton = styled.button`
     box-shadow: none;
     transform: none;
   }
+`;
+
+/* ── Confirmation Modal ── */
+
+export const ModalOverlay = styled(motion.div)`
+  position: fixed;
+  inset: 0;
+  z-index: 1100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(0.5rem);
+  -webkit-backdrop-filter: blur(0.5rem);
+  padding: 1.5rem;
+`;
+
+export const ModalCard = styled(motion.div)`
+  width: 100%;
+  max-width: 32rem;
+  max-height: 85vh;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  background: ${({ theme }) =>
+    theme.colors.background === '#0A0A0A'
+      ? 'rgba(18, 18, 18, 0.82)'
+      : 'rgba(255, 255, 255, 0.82)'};
+  backdrop-filter: blur(1.25rem);
+  -webkit-backdrop-filter: blur(1.25rem);
+  border: 0.0625rem solid ${({ theme }) => theme.colors.border};
+  border-radius: 1rem;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+
+  &::-webkit-scrollbar {
+    width: 0.35rem;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: ${({ theme }) => theme.colors.border};
+    border-radius: 62.4375rem;
+  }
+
+  scrollbar-width: thin;
+  scrollbar-color: ${({ theme }) => theme.colors.border} transparent;
+`;
+
+export const ModalHeader = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  h3 {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: ${({ theme }) => theme.colors.text};
+  }
+`;
+
+export const ModalCloseButton = styled.button`
+  background: none;
+  border: none;
+  color: ${({ theme }) => theme.colors.textMuted};
+  cursor: pointer;
+  padding: 0.25rem;
+  display: flex;
+  align-items: center;
+  transition: color ${({ theme }) => theme.transition};
+
+  &:hover {
+    color: ${({ theme }) => theme.colors.text};
+  }
+`;
+
+export const ModalSection = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+`;
+
+export const ModalSectionTitle = styled.span`
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1rem;
+  color: ${({ theme }) => theme.colors.primary};
+`;
+
+export const ModalField = styled.div`
+  font-size: 0.88rem;
+  color: ${({ theme }) => theme.colors.text};
+  line-height: 1.5;
+
+  strong {
+    color: ${({ theme }) => theme.colors.textMuted};
+    font-weight: 500;
+    margin-right: 0.35rem;
+  }
+`;
+
+export const ModalChipList = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: 0.25rem;
+`;
+
+export const ModalChip = styled.span`
+  font-size: 0.78rem;
+  padding: 0.25rem 0.65rem;
+  border-radius: 62.4375rem;
+  background: rgba(196, 139, 159, 0.12);
+  color: ${({ theme }) => theme.colors.primary};
+  border: 0.0625rem solid rgba(196, 139, 159, 0.25);
+`;
+
+export const ModalDivider = styled.hr`
+  border: none;
+  border-top: 0.0625rem solid ${({ theme }) => theme.colors.border};
+  margin: 0;
+`;
+
+export const ModalActions = styled.div`
+  display: flex;
+  gap: 0.75rem;
+  justify-content: flex-end;
+`;
+
+export const ModalButtonSecondary = styled.button`
+  padding: 0.6rem 1.25rem;
+  border-radius: 0.5rem;
+  border: 0.0625rem solid ${({ theme }) => theme.colors.border};
+  background: transparent;
+  color: ${({ theme }) => theme.colors.text};
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all ${({ theme }) => theme.transition};
+
+  &:hover {
+    border-color: ${({ theme }) => theme.colors.primary};
+    color: ${({ theme }) => theme.colors.primary};
+  }
+`;
+
+export const ModalButtonPrimary = styled.button`
+  padding: 0.6rem 1.25rem;
+  border-radius: 0.5rem;
+  border: none;
+  background: ${({ theme }) => theme.colors.gradient};
+  color: #fff;
+  font-size: 0.88rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all ${({ theme }) => theme.transition};
+
+  &:hover {
+    transform: translateY(-0.0625rem);
+    box-shadow: 0 0.5rem 1.25rem rgba(196, 139, 159, 0.3);
+  }
+`;
+
+export const ThankYouContent = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 1rem;
+  padding: 1rem 0;
+`;
+
+export const ThankYouIcon = styled.div`
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 50%;
+  background: ${({ theme }) => theme.colors.gradient};
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+`;
+
+export const ThankYouTitle = styled.h3`
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: ${({ theme }) => theme.colors.text};
+`;
+
+export const ThankYouText = styled.p`
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: ${({ theme }) => theme.colors.textMuted};
+  max-width: 24rem;
 `;

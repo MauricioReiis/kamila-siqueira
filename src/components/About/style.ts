@@ -75,9 +75,17 @@ export const ExperienceBadge = styled.div`
   top: 2rem;
   right: -1rem;
   z-index: 5;
-  background: ${({ theme }) => theme.colors.backgroundCard};
-  backdrop-filter: blur(0.625rem);
-  border: 0.0625rem solid ${({ theme }) => theme.colors.border};
+  background: ${({ theme }) =>
+    theme.colors.background === '#0A0A0A'
+      ? 'rgba(10, 10, 10, 0.72)'
+      : 'rgba(250, 250, 250, 0.72)'};
+  backdrop-filter: blur(0.75rem);
+  -webkit-backdrop-filter: blur(0.75rem);
+  border: 0.0625rem solid
+    ${({ theme }) =>
+      theme.colors.background === '#0A0A0A'
+        ? 'rgba(255, 255, 255, 0.12)'
+        : theme.colors.border};
   border-radius: 1rem;
   padding: 1rem 1.25rem;
   text-align: center;

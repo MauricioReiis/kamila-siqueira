@@ -3,7 +3,11 @@ import { motion } from 'framer-motion';
 
 export const Section = styled.section`
   padding: 6rem 2rem;
-  background: ${({ theme }) => theme.colors.backgroundAlt};
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(0.75rem);
+  -webkit-backdrop-filter: blur(0.75rem);
+  border-top: 0.0625rem solid ${({ theme }) => theme.colors.border};
+  border-bottom: 0.0625rem solid ${({ theme }) => theme.colors.border};
   position: relative;
   overflow: hidden;
 

@@ -144,9 +144,9 @@ export const HeroImageWrapper = styled.div`
 export const HeroImagePlaceholder = styled.div`
   width: 23.75rem;
   height: 30rem;
-  border-radius: 12.5rem 12.5rem 2.5rem 2.5rem;
+  border-radius: 1.25rem;
   background: ${({ theme }) => theme.colors.backgroundAlt};
-  border: 0.125rem solid ${({ theme }) => theme.colors.border};
+  border: 0.0625rem solid ${({ theme }) => theme.colors.border};
   position: relative;
   overflow: hidden;
   display: flex;
@@ -205,8 +205,14 @@ export const VideoControls = styled.div`
   right: 0.75rem;
   display: flex;
   flex-direction: column;
-  gap: 0.4rem;
+  gap: 0.75rem;
   z-index: 2;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+
+  ${HeroImagePlaceholder}:hover & {
+    opacity: 1;
+  }
 `;
 
 export const VideoControlsRow = styled.div`
@@ -276,9 +282,17 @@ export const FloatingBadge = styled.div`
   position: absolute;
   bottom: 2rem;
   right: -1rem;
-  background: ${({ theme }) => theme.colors.backgroundCard};
-  backdrop-filter: blur(0.625rem);
-  border: 0.0625rem solid ${({ theme }) => theme.colors.border};
+  background: ${({ theme }) =>
+    theme.colors.background === '#0A0A0A'
+      ? 'rgba(10, 10, 10, 0.72)'
+      : 'rgba(250, 250, 250, 0.72)'};
+  backdrop-filter: blur(0.75rem);
+  -webkit-backdrop-filter: blur(0.75rem);
+  border: 0.0625rem solid
+    ${({ theme }) =>
+      theme.colors.background === '#0A0A0A'
+        ? 'rgba(255, 255, 255, 0.12)'
+        : theme.colors.border};
   border-radius: 1rem;
   padding: 1rem 1.25rem;
   display: flex;

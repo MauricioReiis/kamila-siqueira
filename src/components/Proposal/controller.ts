@@ -1,10 +1,26 @@
 import { useState } from 'react';
+import type { ChangeEvent } from 'react';
 import { useForm } from 'react-hook-form';
 import type { ProposalFormData, InterestOption } from '../../models/types';
+import { openWhatsAppProposal } from './message';
+
+const formatPhone = (raw: string): string => {
+  const d = raw.replace(/\D/g, '').slice(0, 11);
+  if (!d) return '';
+  if (d.length <= 2) return `(${d}`;
+  const ddd = `(${d.slice(0, 2)})`;
+  const rest = d.slice(2);
+  if (rest.length <= 1) return `${ddd} ${rest}`;
+  if (rest.length <= 5) return `${ddd} ${rest[0]} ${rest.slice(1)}`;
+  return `${ddd} ${rest[0]} ${rest.slice(1, 5)}-${rest.slice(5)}`;
+};
 
 export const useProposal = () => {
   const [budgetValue, setBudgetValue] = useState(25000);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [showConfirmModal, setShowConfirmModal] = useState(false);
+  const [showThankYou, setShowThankYou] = useState(false);
+  const [pendingData, setPendingData] = useState<ProposalFormData | null>(null);
 
   const {
     register,
@@ -28,6 +44,20 @@ export const useProposal = () => {
     setValue('interests', updated, { shouldValidate: true });
   };
 
+  const phoneValue = watch('phone') ?? '';
+
+  const handlePhoneChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setValue('phone', formatPhone(e.target.value), { shouldValidate: true });
+  };
+
+  register('phone', {
+    required: 'Celular é obrigatório',
+    validate: (value) => {
+      const digits = (value ?? '').replace(/\D/g, '');
+      return digits.length === 11 || 'Número inválido. Ex: (32) 9 9999-9999';
+    },
+  });
+
   // Register interests field with validation for at least 1 selection
   register('interests', {
     validate: (value) => {
@@ -36,7 +66,17 @@ export const useProposal = () => {
   });
 
   const onSubmit = handleSubmit((data: ProposalFormData) => {
-    console.log('Proposal data:', { ...data, budget: budgetValue });
+    setPendingData(data);
+    setShowConfirmModal(true);
+  });
+
+  const confirmSubmit = () => {
+    if (!pendingData) return;
+    openWhatsAppProposal(pendingData, budgetValue);
+    setShowConfirmModal(false);
+    setPendingData(null);
+    setShowThankYou(true);
+
     setIsSubmitted(true);
     reset({
       name: '',
@@ -50,7 +90,16 @@ export const useProposal = () => {
     });
     setBudgetValue(25000);
     setTimeout(() => setIsSubmitted(false), 5000);
-  });
+  };
+
+  const closeThankYou = () => {
+    setShowThankYou(false);
+  };
+
+  const cancelSubmit = () => {
+    setShowConfirmModal(false);
+    setPendingData(null);
+  };
 
   const formatCurrency = (value: number) =>
     value >= 500000
@@ -101,5 +150,13 @@ export const useProposal = () => {
     referralOptions,
     selectedInterests,
     toggleInterest,
+    phoneValue,
+    handlePhoneChange,
+    showConfirmModal,
+    pendingData,
+    confirmSubmit,
+    cancelSubmit,
+    showThankYou,
+    closeThankYou,
   };
 };

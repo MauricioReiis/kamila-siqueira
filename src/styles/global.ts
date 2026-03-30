@@ -12,6 +12,13 @@ export const GlobalStyles = createGlobalStyle`
     font-size: 100%;
   }
 
+  @keyframes bgDrift {
+    0% { transform: translate(0, 0) scale(1); }
+    33% { transform: translate(1.5%, -1%) scale(1.02); }
+    66% { transform: translate(-1%, 1.5%) scale(0.98); }
+    100% { transform: translate(0, 0) scale(1); }
+  }
+
   body {
     font-family: ${({ theme }) => theme.fonts.body};
     background: ${({ theme }) => theme.colors.background};
