@@ -1,4 +1,5 @@
 import { useAbout } from './controller';
+import profileImg from '../../assets/ks-foto-perfil.jpeg';
 import * as S from './style';
 
 export const AboutView: React.FC = () => {
@@ -22,10 +23,10 @@ export const AboutView: React.FC = () => {
           transition={{ duration: 0.7, ease: 'easeOut' }}
         >
           <S.AboutImagePlaceholder>
-            <S.AboutImageText>KS</S.AboutImageText>
+            <S.AboutImage draggable={false} src={profileImg} alt="Kamila Siqueira" loading="eager" />
           </S.AboutImagePlaceholder>
           <S.ExperienceBadge>
-            <strong>+8</strong>
+            <strong>+4</strong>
             <span>Anos de experiência</span>
           </S.ExperienceBadge>
         </S.AboutImageWrapper>

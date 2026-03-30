@@ -22,6 +22,10 @@ export const NavContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
+    padding: 0;
+  }
 `;
 
 export const Logo = styled.a`
@@ -101,6 +105,12 @@ export const MenuButton = styled.button`
   @media (max-width: ${({ theme }) => theme.breakpoints.desktop}) {
     display: flex;
   }
+`;
+
+export const NavActions = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 `;
 
 export const MenuLine = styled.span<{ $isOpen: boolean; $index: number }>`

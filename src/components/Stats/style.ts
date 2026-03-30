@@ -3,20 +3,8 @@ import { motion } from 'framer-motion';
 
 export const StatsSection = styled.section`
   padding: 5rem 2rem;
-  background: ${({ theme }) => theme.colors.background};
+  background: transparent;
   position: relative;
-
-  &::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(
-      135deg,
-      rgba(196, 139, 159, 0.03) 0%,
-      rgba(212, 165, 116, 0.03) 100%
-    );
-    pointer-events: none;
-  }
 `;
 
 export const StatsContainer = styled.div`

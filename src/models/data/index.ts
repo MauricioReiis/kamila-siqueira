@@ -70,10 +70,9 @@ export const socialLinks: SocialLink[] = [
 ];
 
 export const heroData = {
-  greeting: 'Eu crio',
-  highlight: 'marcas fortes.',
-  subtitle: 'Para profissionais que desejam ser lembrados, não apenas vistos.',
-  cta: 'Vamos criar a sua?',
+  highlight: 'Atrair, Conectar e Vender',
+  subtitle: 'Estratégia, execução e escala para marcas que querem crescer',
+  cta: 'Solicitar proposta',
 };
 
 export const aboutData = {

@@ -28,17 +28,17 @@ export const ContactCTAView: React.FC = () => {
         <S.InfoRow initial={initial} animate={animate} transition={transition(0.3)}>
           <S.InfoItem>
             <Mail size={18} />
-            <a href="mailto:contato@kamilasiqueira.com.br">
+            <a href="mailto:contato@kamilasiqueira.com">
               contato@kamilasiqueira.com.br
             </a>
           </S.InfoItem>
           <S.InfoItem>
             <Phone size={18} />
-            <a href="tel:+5500000000000">(00) 00000-0000</a>
+            <a href="tel:+553298123552">(32) 9 9812-3552</a>
           </S.InfoItem>
           <S.InfoItem>
             <MapPin size={18} />
-            <span>São Paulo, SP — Brasil</span>
+            <span>Juiz de Fora, MG - Brasil</span>
           </S.InfoItem>
         </S.InfoRow>
 
@@ -46,13 +46,6 @@ export const ContactCTAView: React.FC = () => {
           <S.CTAButton href="/proposta">
             Enviar proposta <ArrowRight size={18} />
           </S.CTAButton>
-
-          <S.DownloadButton
-            href="/curriculo-kamila-siqueira.pdf"
-            download
-          >
-            <Download size={18} /> Baixar currículo
-          </S.DownloadButton>
         </S.CTAGroup>
       </S.Container>
     </S.Section>

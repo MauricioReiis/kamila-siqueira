@@ -99,28 +99,6 @@ export const CTAButton = styled(motion.a)`
   }
 `;
 
-export const DownloadButton = styled(motion.a)`
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 1rem 2.25rem;
-  background: transparent;
-  color: ${({ theme }) => theme.colors.primary};
-  font-size: 1rem;
-  font-weight: 600;
-  border-radius: 0.5rem;
-  border: 0.125rem solid ${({ theme }) => theme.colors.primary};
-  text-decoration: none;
-  transition: all 0.2s ease;
-
-  &:hover {
-    background: ${({ theme }) => theme.colors.primary};
-    color: ${({ theme }) => theme.colors.text};
-    transform: translateY(-0.125rem);
-    box-shadow: 0 0.5rem 1.75rem rgba(196, 139, 159, 0.25);
-  }
-`;
-
 export const CTAGroup = styled(motion.div)`
   display: flex;
   flex-wrap: wrap;

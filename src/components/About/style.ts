@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 
 export const AboutSection = styled.section`
   padding: 6rem 2rem;
-  background: ${({ theme }) => theme.colors.backgroundAlt};
+  background: transparent;
   position: relative;
 `;
 
@@ -39,20 +39,6 @@ export const AboutImagePlaceholder = styled.div`
   position: relative;
   overflow: hidden;
 
-  &::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 50%;
-    background: linear-gradient(
-      to top,
-      ${({ theme }) => theme.colors.backgroundCard},
-      transparent
-    );
-  }
-
   @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
     width: 17.5rem;
     height: 21.25rem;
@@ -70,11 +56,26 @@ export const AboutImageText = styled.span`
   opacity: 0.15;
 `;
 
+export const AboutImage = styled.img`
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+  image-rendering: auto;
+  border: 0.0625rem solid ${({ theme }) => theme.colors.border};
+  box-sizing: border-box;
+  border-radius: inherit;
+  z-index: 1;
+`;
+
 export const ExperienceBadge = styled.div`
   position: absolute;
   top: 2rem;
   right: -1rem;
-  background: rgba(22, 22, 22, 0.9);
+  z-index: 5;
+  background: ${({ theme }) => theme.colors.backgroundCard};
   backdrop-filter: blur(0.625rem);
   border: 0.0625rem solid ${({ theme }) => theme.colors.border};
   border-radius: 1rem;

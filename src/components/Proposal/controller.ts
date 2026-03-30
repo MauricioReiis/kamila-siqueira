@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import type { ProposalFormData } from '../../models/types';
+import type { ProposalFormData, InterestOption } from '../../models/types';
 
 export const useProposal = () => {
   const [budgetValue, setBudgetValue] = useState(25000);
@@ -12,8 +12,9 @@ export const useProposal = () => {
     reset,
     setValue,
     watch,
-    formState: { errors },
+    formState: { errors, isValid },
   } = useForm<ProposalFormData>({
+    mode: 'onChange',
     defaultValues: { interests: [] },
   });
 
@@ -27,10 +28,26 @@ export const useProposal = () => {
     setValue('interests', updated, { shouldValidate: true });
   };
 
+  // Register interests field with validation for at least 1 selection
+  register('interests', {
+    validate: (value) => {
+      return (value && value.length > 0) || 'Selecione pelo menos 1 opção';
+    },
+  });
+
   const onSubmit = handleSubmit((data: ProposalFormData) => {
     console.log('Proposal data:', { ...data, budget: budgetValue });
     setIsSubmitted(true);
-    reset({ interests: [] });
+    reset({
+      name: '',
+      company: '',
+      phone: '',
+      email: '',
+      socialProfile: '',
+      interests: [],
+      goals: '',
+      referral: '',
+    });
     setBudgetValue(25000);
     setTimeout(() => setIsSubmitted(false), 5000);
   });
@@ -40,13 +57,26 @@ export const useProposal = () => {
       ? 'R$ 500.000+'
       : value.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL', maximumFractionDigits: 0 });
 
-  const interestOptions = [
-    'Identidade Visual',
-    'Estratégia de Marca',
-    'Marketing Digital',
-    'Gestão de Redes Sociais',
-    'Design de Conteúdo',
-    'Consultoria de Marca',
+  const interestOptions: InterestOption[] = [
+    { label: 'Branding', description: 'Desenvolvimento completo da identidade visual, logos, paleta de cores, tipografia e guidelines de marca para uma presença consistente.' },
+    { label: 'Consultoria de Marca', description: 'Análise estratégica da sua marca com recomendações personalizadas para posicionamento e crescimento.' },
+    { label: 'Contrução e Reposicionamento de Marca', description: 'Criação ou reestruturação completa da identidade e posicionamento da sua marca no mercado.' },
+    { label: 'CRM & Automação', description: 'Implementação de ferramentas de CRM e fluxos automatizados para nutrir leads e fidelizar clientes.' },
+    { label: 'Dados & Performace', description: 'Monitoramento de métricas, dashboards e análise de dados para decisões baseadas em performance.' },
+    { label: 'Configuração de Pixel de Monitoramento', description: 'Implementação de pixels (Facebook, Google, LinkedIn) e tracking para medir comportamento do usuário, conversões e otimizar campanhas.' },
+    { label: 'Criação de Landing Page', description: 'Desenvolvimento de páginas otimizadas para conversão com design responsivo, copy persuasivo e CTA estratégico.' },
+    { label: 'Criação de Website para E-commerce', description: 'Desenvolvimento completo de lojas online com integração de pagamento, gerenciamento de produtos, carrinho inteligente e otimização para vendas.' },
+    { label: 'Definição de Público-Alvo e Segmentação' },
+    { label: 'Design de Conteúdo' },
+    { label: 'Diagnóstico / Auditoria de Presença Digital', description: 'Análise detalhada dos seus canais digitais com relatório de pontos fortes, fracos e oportunidades.' },
+    { label: 'Direção Criativa de Redes Sociais', description: 'Planejamento visual e conceitual do conteúdo das suas redes, alinhado à identidade da marca.' },
+    { label: 'Estratégia de Conteúdo', description: 'Planejamento editorial com calendário, pilares de conteúdo e estratégias de engajamento.' },
+    { label: 'Gestão Completa de Marketing', description: 'Gestão integral de todas as frentes de marketing: estratégia, execução, análise e otimização.' },
+    { label: 'Mentoria de Marketing', description: 'Sessões individuais para orientar suas estratégias de marketing e acelerar resultados.' },
+    { label: 'Otimização de Perfils Sociais' },
+    { label: 'Social Midia & Conteúdo' },
+    { label: 'Trafégo Pago', description: 'Gestão de campanhas pagas em Google Ads, Meta Ads e outras plataformas para gerar leads qualificados.' },
+    { label: 'Outros...' }
   ];
 
   const referralOptions = [
@@ -66,6 +96,7 @@ export const useProposal = () => {
     register,
     onSubmit,
     errors,
+    isFormValid: isValid,
     interestOptions,
     referralOptions,
     selectedInterests,

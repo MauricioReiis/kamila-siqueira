@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 
 export const TestimonialsSection = styled.section`
   padding: 6rem 2rem;
-  background: ${({ theme }) => theme.colors.backgroundAlt};
+  background: transparent;
   position: relative;
   overflow: hidden;
 `;

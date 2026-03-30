@@ -152,6 +152,10 @@ export const HeroImagePlaceholder = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  box-shadow:
+    0.25rem -0.25rem 0.75rem rgba(0, 0, 0, 0.08),
+    0.5rem -0.5rem 1.5rem rgba(0, 0, 0, 0.04),
+    1rem -0.75rem 3rem rgba(0, 0, 0, 0.02);
 
   &::before {
     content: '';
@@ -184,11 +188,95 @@ export const PlaceholderText = styled.span`
   opacity: 0.3;
 `;
 
+export const HeroVideo = styled.video`
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+  image-rendering: auto;
+`;
+
+export const VideoControls = styled.div`
+  position: absolute;
+  bottom: 0.75rem;
+  left: 0.75rem;
+  right: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  z-index: 2;
+`;
+
+export const VideoControlsRow = styled.div`
+  display: flex;
+  gap: 0.5rem;
+`;
+
+export const VideoProgressBar = styled.input`
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 0.1875rem;
+  border-radius: 62.4375rem;
+  background: rgba(255, 255, 255, 0.25);
+  outline: none;
+  cursor: pointer;
+  margin: 0;
+
+  &::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 0.75rem;
+    height: 0.75rem;
+    border-radius: 50%;
+    background: #fff;
+    cursor: pointer;
+    box-shadow: 0 0 0.25rem rgba(0, 0, 0, 0.3);
+    margin-top: -0.28125rem;
+  }
+
+  &::-moz-range-thumb {
+    width: 0.75rem;
+    height: 0.75rem;
+    border-radius: 50%;
+    background: #fff;
+    cursor: pointer;
+    border: none;
+  }
+
+  &::-webkit-slider-runnable-track {
+    height: 0.1875rem;
+    border-radius: 62.4375rem;
+  }
+`;
+
+export const VideoControlButton = styled.button`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(0.25rem);
+  border: 0.0625rem solid rgba(255, 255, 255, 0.2);
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  &:hover {
+    background: rgba(0, 0, 0, 0.7);
+    border-color: rgba(255, 255, 255, 0.4);
+  }
+`;
+
 export const FloatingBadge = styled.div`
   position: absolute;
   bottom: 2rem;
   right: -1rem;
-  background: rgba(22, 22, 22, 0.9);
+  background: ${({ theme }) => theme.colors.backgroundCard};
   backdrop-filter: blur(0.625rem);
   border: 0.0625rem solid ${({ theme }) => theme.colors.border};
   border-radius: 1rem;

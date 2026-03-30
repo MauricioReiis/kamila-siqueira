@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 
 export const ServicesSection = styled.section`
   padding: 6rem 2rem;
-  background: ${({ theme }) => theme.colors.background};
+  background: transparent;
   position: relative;
 `;
 

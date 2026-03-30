@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 
 export const ProposalPage = styled.div`
   min-height: 100vh;
-  background: ${({ theme }) => theme.colors.background};
+  background: transparent;
   padding: 6rem 2rem 4rem;
 `;
 
@@ -76,6 +76,10 @@ export const InterestChip = styled.label<{ $selected: boolean }>`
   cursor: pointer;
   transition: all ${({ theme }) => theme.transition};
   user-select: none;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  position: relative;
 
   input {
     display: none;
@@ -85,6 +89,50 @@ export const InterestChip = styled.label<{ $selected: boolean }>`
     border-color: ${({ theme }) => theme.colors.primary};
     color: ${({ theme }) => theme.colors.primary};
   }
+`;
+
+export const InfoIconWrapper = styled.span`
+  display: inline-flex;
+  align-items: center;
+  position: relative;
+
+  svg {
+    opacity: 0.5;
+    transition: opacity 0.2s;
+  }
+
+  &:hover svg {
+    opacity: 1;
+  }
+
+  &:hover > span {
+    visibility: visible;
+    opacity: 1;
+  }
+`;
+
+export const Tooltip = styled.span`
+  visibility: hidden;
+  opacity: 0;
+  position: absolute;
+  bottom: calc(100% + 0.5rem);
+  left: 50%;
+  transform: translateX(-50%);
+  width: max-content;
+  max-width: 18rem;
+  padding: 0.5rem 0.75rem;
+  background: ${({ theme }) => theme.colors.backgroundCard};
+  border: 0.0625rem solid ${({ theme }) => theme.colors.border};
+  border-radius: 0.5rem;
+  color: ${({ theme }) => theme.colors.text};
+  font-size: 0.78rem;
+  font-weight: 400;
+  line-height: 1.4;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transition: opacity 0.2s, visibility 0.2s;
+  z-index: 10;
+  pointer-events: none;
+  white-space: normal;
 `;
 
 export const FieldRow = styled.div`
@@ -107,6 +155,11 @@ export const FormLabel = styled.label`
   font-size: 0.82rem;
   font-weight: 600;
   color: ${({ theme }) => theme.colors.text};
+`;
+
+export const RequiredAsterisk = styled.span`
+  color: #e74c3c;
+  margin-left: 0.2rem;
 `;
 
 export const FormInput = styled.input`
@@ -256,4 +309,32 @@ export const SuccessMessage = styled(motion.div)`
 export const SubmitRow = styled.div`
   display: flex;
   justify-content: flex-end;
+`;
+
+export const SubmitButton = styled.button`
+  min-width: 8rem;
+  min-height: 2.5rem;
+  padding: 0.65rem 1.5rem;
+  border-radius: 0.75rem;
+  border: 0.0625rem solid transparent;
+  background: ${({ theme }) => theme.colors.gradient};
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.02rem;
+  transition: all ${({ theme }) => theme.transition};
+
+  &:hover:not(:disabled) {
+    transform: translateY(-0.0625rem);
+    box-shadow: 0 0.5rem 1.25rem rgba(196, 139, 159, 0.35);
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.55;
+    background: ${({ theme }) => theme.colors.borderLight};
+    color: ${({ theme }) => theme.colors.textDark};
+    box-shadow: none;
+    transform: none;
+  }
 `;

@@ -46,7 +46,13 @@ export interface ProposalFormData {
   company?: string;
   phone: string;
   email: string;
+  socialProfile?: string;
   interests: string[];
   goals: string;
   referral?: string;
+}
+
+export interface InterestOption {
+  label: string;
+  description?: string;
 }

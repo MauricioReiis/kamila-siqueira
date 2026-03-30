@@ -5,6 +5,7 @@ import * as S from './style';
 
 export const NavbarView: React.FC = () => {
   const {
+    isHomePath,
     isScrolled,
     isMenuOpen,
     activeSection,
@@ -28,7 +29,7 @@ export const NavbarView: React.FC = () => {
               <li key={link.id}>
                 <S.NavLink
                   href={link.href}
-                  $active={activeSection === link.id}
+                  $active={isHomePath && activeSection === link.id}
                   onClick={(e) => {
                     e.preventDefault();
                     handleNavClick(link.href);
@@ -40,14 +41,15 @@ export const NavbarView: React.FC = () => {
             ))}
           </S.NavLinks>
 
-          <S.ThemeToggleButton
-            onClick={toggleTheme}
-            aria-label={isDark ? 'Mudar para tema claro' : 'Mudar para tema escuro'}
-          >
-            {isDark ? <Sun size={20} /> : <Moon size={20} />}
-          </S.ThemeToggleButton>
+          <S.NavActions>
+            <S.ThemeToggleButton
+              onClick={toggleTheme}
+              aria-label={isDark ? 'Mudar para tema claro' : 'Mudar para tema escuro'}
+            >
+              {isDark ? <Sun size={20} /> : <Moon size={20} />}
+            </S.ThemeToggleButton>
 
-          <S.MenuButton
+            <S.MenuButton
             onClick={toggleMenu}
             aria-label={isMenuOpen ? 'Fechar menu' : 'Abrir menu'}
             aria-expanded={isMenuOpen}
@@ -56,6 +58,7 @@ export const NavbarView: React.FC = () => {
               <S.MenuLine key={index} $isOpen={isMenuOpen} $index={index} />
             ))}
           </S.MenuButton>
+          </S.NavActions>
         </S.NavContainer>
       </S.Nav>
       <S.Overlay $isOpen={isMenuOpen} onClick={closeMenu} />

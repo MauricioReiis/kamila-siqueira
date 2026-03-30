@@ -1,3 +1,4 @@
+import { Info } from 'lucide-react';
 import { useProposal } from './controller';
 import * as S from './style';
 
@@ -10,6 +11,7 @@ export const ProposalView: React.FC = () => {
     register,
     onSubmit,
     errors,
+    isFormValid,
     interestOptions,
     referralOptions,
     selectedInterests,
@@ -21,9 +23,9 @@ export const ProposalView: React.FC = () => {
       <S.Container>
         <S.Header>
           <S.Title>
-            Vamos criar algo <span>incrível.</span>{' '}
-            Por favor, preencha o formulário abaixo. Responderemos em até 1 dia útil.
+            Vamos criar algo <span>incrível.</span>
           </S.Title>
+          <S.Subtitle>Preencha o formulário. Retornamos em até 3 dias úteis.</S.Subtitle>
         </S.Header>
 
         <S.Form
@@ -32,32 +34,41 @@ export const ProposalView: React.FC = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
-          {/* Interesse */}
           <div>
-            <S.SectionLabel>Você tem interesse em</S.SectionLabel>
-            <S.InterestGrid>
-              {interestOptions.map((option) => (
-                <S.InterestChip
-                  key={option}
-                  $selected={selectedInterests.includes(option)}
-                  onClick={(e) => { e.preventDefault(); toggleInterest(option); }}
-                >
-                  <input
-                    type="checkbox"
-                    readOnly
-                    checked={selectedInterests.includes(option)}
-                    value={option}
-                  />
-                  {option}
-                </S.InterestChip>
-              ))}
-            </S.InterestGrid>
+            <S.FormGroup>
+              <S.FormLabel>Você tem interesse em<S.RequiredAsterisk>*</S.RequiredAsterisk></S.FormLabel>
+              <S.InterestGrid>
+                {interestOptions.map((option) => (
+                  <S.InterestChip
+                    key={option.label}
+                    $selected={selectedInterests.includes(option.label)}
+                    onClick={(e) => { e.preventDefault(); toggleInterest(option.label); }}
+                  >
+                    <input
+                      type="checkbox"
+                      readOnly
+                      checked={selectedInterests.includes(option.label)}
+                      value={option.label}
+                    />
+                    {option.label}
+                    {option.description && (
+                      <S.InfoIconWrapper
+                        onClick={(e) => e.stopPropagation()}
+                      >
+                        <Info size={14} />
+                        <S.Tooltip>{option.description}</S.Tooltip>
+                      </S.InfoIconWrapper>
+                    )}
+                  </S.InterestChip>
+                ))}
+              </S.InterestGrid>
+              {errors.interests && <S.FormError>{errors.interests.message}</S.FormError>}
+            </S.FormGroup>
           </div>
 
-          {/* Nome e Empresa */}
           <S.FieldRow>
             <S.FormGroup>
-              <S.FormLabel htmlFor="name">Nome</S.FormLabel>
+              <S.FormLabel htmlFor="name">Nome<S.RequiredAsterisk>*</S.RequiredAsterisk></S.FormLabel>
               <S.FormInput
                 id="name"
                 placeholder="Digite seu nome"
@@ -70,16 +81,15 @@ export const ProposalView: React.FC = () => {
               <S.FormLabel htmlFor="company">Nome da Empresa</S.FormLabel>
               <S.FormInput
                 id="company"
-                placeholder="Digite seu nome"
+                placeholder="Digite o nome da empresa"
                 {...register('company')}
               />
             </S.FormGroup>
           </S.FieldRow>
 
-          {/* Telefone e E-mail */}
           <S.FieldRow>
             <S.FormGroup>
-              <S.FormLabel htmlFor="phone">Telefone</S.FormLabel>
+              <S.FormLabel htmlFor="phone">Telefone<S.RequiredAsterisk>*</S.RequiredAsterisk></S.FormLabel>
               <S.FormInput
                 id="phone"
                 placeholder="Digite o número"
@@ -89,7 +99,7 @@ export const ProposalView: React.FC = () => {
             </S.FormGroup>
 
             <S.FormGroup>
-              <S.FormLabel htmlFor="email">E-mail</S.FormLabel>
+              <S.FormLabel htmlFor="email">E-mail<S.RequiredAsterisk>*</S.RequiredAsterisk></S.FormLabel>
               <S.FormInput
                 id="email"
                 type="email"
@@ -106,31 +116,39 @@ export const ProposalView: React.FC = () => {
             </S.FormGroup>
           </S.FieldRow>
 
-          {/* Estimativa de Orçamento */}
+          <S.FormGroup>
+            <S.FormLabel htmlFor="socialProfile">Redes sociais (Opcional)</S.FormLabel>
+            <S.FormInput
+              id="socialProfile"
+              placeholder="Ex.: @kamilasiqueira ou linkedin.com/in/..."
+              {...register('socialProfile')}
+            />
+          </S.FormGroup>
+
           <S.FormGroup>
             <S.BudgetDisplay>
-              Estimativa de Orçamento —{' '}
+              Estimativa de Orçamento: {' '}
               <span>{formatCurrency(budgetValue)}</span>
             </S.BudgetDisplay>
             <S.BudgetWrapper>
               <S.RangeInput
                 type="range"
-                min={25000}
-                max={500000}
-                step={5000}
+                min={1000}
+                max={100000}
+                step={500}
                 value={budgetValue}
                 onChange={(e) => setBudgetValue(Number(e.target.value))}
               />
               <S.RangeLabels>
-                <span>R$ 25.000</span>
-                <span>R$ 500.000+</span>
+                <span>R$ 1.000</span>
+                <span>R$ 100.000+</span>
               </S.RangeLabels>
             </S.BudgetWrapper>
           </S.FormGroup>
 
           {/* Objetivos */}
           <S.FormGroup>
-            <S.FormLabel htmlFor="goals">Seus objetivos de parceria</S.FormLabel>
+            <S.FormLabel htmlFor="goals">Seus objetivos<S.RequiredAsterisk>*</S.RequiredAsterisk></S.FormLabel>
             <S.FormTextarea
               id="goals"
               placeholder="Digite o texto"
@@ -162,7 +180,7 @@ export const ProposalView: React.FC = () => {
           )}
 
           <S.SubmitRow>
-            <button type="submit">Enviar</button>
+            <S.SubmitButton type="submit" disabled={!isFormValid}>Enviar</S.SubmitButton>
           </S.SubmitRow>
         </S.Form>
       </S.Container>
