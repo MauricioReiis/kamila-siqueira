@@ -132,6 +132,14 @@ export const ExperienceBadge = styled(AboutBadge)`
   strong {
     font-size: 1.75rem;
   }
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
+    width: 17.5rem;
+    min-width: 0;
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+  }
 `;
 
 export const GraduationBadge = styled(AboutBadge)`
@@ -143,6 +151,14 @@ export const GraduationBadge = styled(AboutBadge)`
     font-size: 1.25rem;
     font-weight: 700;
     line-height: 1.3;
+  }
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
+    width: 17.5rem;
+    min-width: 0;
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   span {
@@ -170,6 +186,14 @@ export const PostGraduationBadge = styled(AboutBadge)`
   span {
     display: block;
     margin-top: 0.4rem;
+  }
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
+    width: 17.5rem;
+    min-width: 0;
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {

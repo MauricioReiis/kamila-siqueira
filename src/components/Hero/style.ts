@@ -447,6 +447,14 @@ export const BadgeText = styled.div`
     font-size: 0.75rem;
     color: ${({ theme }) => theme.colors.textMuted};
   }
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
+    width: 14.75rem;
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    box-sizing: border-box;
+  }
 `;
 
 export const ScrollIndicator = styled.div`

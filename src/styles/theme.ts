@@ -1,4 +1,40 @@
-export const darkTheme = {
+
+export interface ThemeType {
+  colors: {
+    background: string;
+    backgroundAlt: string;
+    backgroundCard: string;
+    backgroundNav: string;
+    backgroundNavMenu: string;
+    primary: string;
+    primaryLight: string;
+    primaryDark: string;
+    secondary: string;
+    text: string;
+    textMuted: string;
+    textDark: string;
+    border: string;
+    borderLight: string;
+    overlay: string;
+    gradient: string;
+    gradientText: string;
+  };
+  fonts: {
+    heading: string;
+    body: string;
+  };
+  breakpoints: {
+    mobile: string;
+    tablet: string;
+    desktop: string;
+    wide: string;
+  };
+  maxWidth: string;
+  transition: string;
+  borderRadius: string;
+}
+
+export const darkTheme: ThemeType = {
   colors: {
     background: '#0A0A0A',
     backgroundAlt: '#111111',
@@ -31,9 +67,9 @@ export const darkTheme = {
   maxWidth: '75rem',
   transition: '0.3s ease',
   borderRadius: '0.75rem',
-} as const;
+};
 
-export const lightTheme = {
+export const lightTheme: ThemeType = {
   colors: {
     background: '#FAFAFA',
     backgroundAlt: '#F0F0F0',
@@ -66,9 +102,7 @@ export const lightTheme = {
   maxWidth: '75rem',
   transition: '0.3s ease',
   borderRadius: '0.75rem',
-} as const;
+};
 
 // Keep backward-compat alias
 export const theme = darkTheme;
-
-export type ThemeType = typeof darkTheme;
