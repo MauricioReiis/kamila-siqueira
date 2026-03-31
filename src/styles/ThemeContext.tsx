@@ -5,6 +5,7 @@ import { darkTheme, lightTheme } from './theme';
 interface ThemeContextData {
   isDark: boolean;
   toggleTheme: () => void;
+  
 }
 
 const ThemeContext = createContext<ThemeContextData>({} as ThemeContextData);
