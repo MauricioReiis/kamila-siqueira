@@ -3,9 +3,17 @@ import { motion } from 'framer-motion';
 
 export const Section = styled.section`
   padding: 6rem 2rem;
-  background: ${({ theme }) => theme.colors.backgroundAlt};
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(0.75rem);
+  -webkit-backdrop-filter: blur(0.75rem);
+  border-top: 0.0625rem solid ${({ theme }) => theme.colors.border};
+  border-bottom: 0.0625rem solid ${({ theme }) => theme.colors.border};
   position: relative;
   overflow: hidden;
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
+    padding: 3.5rem 1.25rem;
+  }
 
   &::before {
     content: '';
@@ -79,6 +87,34 @@ export const InfoItem = styled.div`
   }
 `;
 
+export const SocialLinks = styled(motion.div)`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.75rem;
+`;
+
+export const SocialLink = styled.a`
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  background: ${({ theme }) => theme.colors.backgroundCard};
+  border: 0.0625rem solid ${({ theme }) => theme.colors.border};
+  box-shadow: 0 0 0 0.0625rem ${({ theme }) => theme.colors.borderLight} inset;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: ${({ theme }) => theme.colors.textMuted};
+  transition: all ${({ theme }) => theme.transition};
+
+  &:hover {
+    border-color: ${({ theme }) => theme.colors.primary};
+    color: ${({ theme }) => theme.colors.primary};
+    transform: translateY(-0.125rem);
+    background: rgba(196, 139, 159, 0.1);
+  }
+`;
+
 export const CTAButton = styled(motion.a)`
   display: inline-flex;
   align-items: center;
@@ -96,28 +132,6 @@ export const CTAButton = styled(motion.a)`
     opacity: 0.9;
     transform: translateY(-0.125rem);
     box-shadow: 0 0.5rem 1.75rem rgba(196, 139, 159, 0.35);
-  }
-`;
-
-export const DownloadButton = styled(motion.a)`
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 1rem 2.25rem;
-  background: transparent;
-  color: ${({ theme }) => theme.colors.primary};
-  font-size: 1rem;
-  font-weight: 600;
-  border-radius: 0.5rem;
-  border: 0.125rem solid ${({ theme }) => theme.colors.primary};
-  text-decoration: none;
-  transition: all 0.2s ease;
-
-  &:hover {
-    background: ${({ theme }) => theme.colors.primary};
-    color: ${({ theme }) => theme.colors.text};
-    transform: translateY(-0.125rem);
-    box-shadow: 0 0.5rem 1.75rem rgba(196, 139, 159, 0.25);
   }
 `;
 

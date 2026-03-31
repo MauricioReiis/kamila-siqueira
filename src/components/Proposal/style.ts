@@ -3,8 +3,12 @@ import { motion } from 'framer-motion';
 
 export const ProposalPage = styled.div`
   min-height: 100vh;
-  background: ${({ theme }) => theme.colors.background};
+  background: transparent;
   padding: 6rem 2rem 4rem;
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
+    padding: 5rem 1.25rem 2.5rem;
+  }
 `;
 
 export const Container = styled.div`
@@ -41,7 +45,9 @@ export const Form = styled(motion.form)`
   display: flex;
   flex-direction: column;
   gap: 1.75rem;
-  background: ${({ theme }) => theme.colors.backgroundCard};
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(0.75rem);
+  -webkit-backdrop-filter: blur(0.75rem);
   border: 0.0625rem solid ${({ theme }) => theme.colors.border};
   border-radius: ${({ theme }) => theme.borderRadius};
   padding: 2.5rem;
@@ -62,6 +68,87 @@ export const InterestGrid = styled.div`
   gap: 0.6rem;
 `;
 
+export const InterestDesktopOnly = styled.div`
+  display: block;
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+    display: none;
+  }
+`;
+
+export const InterestMobileOnly = styled.div`
+  display: none;
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+    display: block;
+  }
+`;
+
+export const MobileInterestList = styled.div`
+  width: 100%;
+  max-height: 16rem;
+  overflow-y: auto;
+  padding: 0.6rem;
+  background: ${({ theme }) => theme.colors.backgroundCard};
+  border: 0.0625rem solid ${({ theme }) => theme.colors.border};
+  border-radius: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+
+  &:focus {
+    outline: none;
+    border-color: ${({ theme }) => theme.colors.primary};
+    box-shadow: 0 0 0 0.1875rem rgba(196, 139, 159, 0.12);
+  }
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+    -webkit-overflow-scrolling: touch;
+  }
+`;
+
+export const MobileInterestOption = styled.label<{ $selected: boolean }>`
+  display: flex;
+  align-items: flex-start;
+  gap: 0.55rem;
+  padding: 0.55rem 0.6rem;
+  border: 0.0625rem solid ${({ theme, $selected }) =>
+    $selected ? theme.colors.primary : theme.colors.border};
+  border-radius: 0.45rem;
+  background: ${({ $selected }) =>
+    $selected ? 'rgba(196, 139, 159, 0.15)' : 'transparent'};
+`;
+
+export const MobileInterestCheckbox = styled.input`
+  margin-top: 0.2rem;
+  accent-color: ${({ theme }) => theme.colors.primary};
+  flex-shrink: 0;
+`;
+
+export const MobileInterestText = styled.div`
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+`;
+
+export const MobileInterestTitle = styled.span`
+  color: ${({ theme }) => theme.colors.text};
+  font-size: 0.9rem;
+  font-weight: 600;
+  line-height: 1.3;
+  white-space: normal;
+  overflow-wrap: anywhere;
+`;
+
+export const MobileInterestDescription = styled.span`
+  color: ${({ theme }) => theme.colors.textMuted};
+  font-size: 0.8rem;
+  line-height: 1.35;
+  white-space: normal;
+  overflow-wrap: anywhere;
+`;
+
 export const InterestChip = styled.label<{ $selected: boolean }>`
   padding: 0.45rem 1rem;
   border-radius: 62.4375rem;
@@ -76,6 +163,10 @@ export const InterestChip = styled.label<{ $selected: boolean }>`
   cursor: pointer;
   transition: all ${({ theme }) => theme.transition};
   user-select: none;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  position: relative;
 
   input {
     display: none;
@@ -85,6 +176,50 @@ export const InterestChip = styled.label<{ $selected: boolean }>`
     border-color: ${({ theme }) => theme.colors.primary};
     color: ${({ theme }) => theme.colors.primary};
   }
+`;
+
+export const InfoIconWrapper = styled.span`
+  display: inline-flex;
+  align-items: center;
+  position: relative;
+
+  svg {
+    opacity: 0.5;
+    transition: opacity 0.2s;
+  }
+
+  &:hover svg {
+    opacity: 1;
+  }
+
+  &:hover > span {
+    visibility: visible;
+    opacity: 1;
+  }
+`;
+
+export const Tooltip = styled.span`
+  visibility: hidden;
+  opacity: 0;
+  position: absolute;
+  bottom: calc(100% + 0.5rem);
+  left: 50%;
+  transform: translateX(-50%);
+  width: max-content;
+  max-width: 18rem;
+  padding: 0.5rem 0.75rem;
+  background: ${({ theme }) => theme.colors.backgroundCard};
+  border: 0.0625rem solid ${({ theme }) => theme.colors.border};
+  border-radius: 0.5rem;
+  color: ${({ theme }) => theme.colors.text};
+  font-size: 0.78rem;
+  font-weight: 400;
+  line-height: 1.4;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transition: opacity 0.2s, visibility 0.2s;
+  z-index: 10;
+  pointer-events: none;
+  white-space: normal;
 `;
 
 export const FieldRow = styled.div`
@@ -106,12 +241,18 @@ export const FormGroup = styled.div`
 export const FormLabel = styled.label`
   font-size: 0.82rem;
   font-weight: 600;
+  padding: 0.4375rem 0;
   color: ${({ theme }) => theme.colors.text};
+`;
+
+export const RequiredAsterisk = styled.span`
+  color: #e74c3c;
+  margin-left: 0.2rem;
 `;
 
 export const FormInput = styled.input`
   padding: 0.75rem 1rem;
-  background: ${({ theme }) => theme.colors.background};
+  background: ${({ theme }) => theme.colors.backgroundCard};
   border: 0.0625rem solid ${({ theme }) => theme.colors.border};
   border-radius: 0.5rem;
   color: ${({ theme }) => theme.colors.text};
@@ -131,7 +272,7 @@ export const FormInput = styled.input`
 
 export const FormTextarea = styled.textarea`
   padding: 0.75rem 1rem;
-  background: ${({ theme }) => theme.colors.background};
+  background: ${({ theme }) => theme.colors.backgroundCard};
   border: 0.0625rem solid ${({ theme }) => theme.colors.border};
   border-radius: 0.5rem;
   color: ${({ theme }) => theme.colors.text};
@@ -153,10 +294,11 @@ export const FormTextarea = styled.textarea`
 
 export const FormSelect = styled.select`
   padding: 0.75rem 1rem;
-  background: ${({ theme }) => theme.colors.background};
+  background: ${({ theme }) => theme.colors.backgroundCard};
   border: 0.0625rem solid ${({ theme }) => theme.colors.border};
   border-radius: 0.5rem;
   color: ${({ theme }) => theme.colors.text};
+  color-scheme: dark;
   font-size: 0.95rem;
   cursor: pointer;
   appearance: none;
@@ -173,6 +315,18 @@ export const FormSelect = styled.select`
 
   option {
     background: ${({ theme }) => theme.colors.backgroundCard};
+    color: ${({ theme }) => theme.colors.text};
+  }
+
+  option:checked {
+    background: ${({ theme }) => theme.colors.primary};
+    color: #ffffff;
+  }
+
+  option:hover,
+  option:focus {
+    background: rgba(196, 139, 159, 0.2);
+    color: ${({ theme }) => theme.colors.text};
   }
 `;
 
@@ -191,6 +345,7 @@ export const BudgetDisplay = styled.div`
   font-size: 1rem;
   font-weight: 600;
   color: ${({ theme }) => theme.colors.text};
+  margin-bottom: 0.5rem;
 
   span {
     background: ${({ theme }) => theme.colors.gradientText};
@@ -243,17 +398,234 @@ export const RangeLabels = styled.div`
   color: ${({ theme }) => theme.colors.textDark};
 `;
 
-export const SuccessMessage = styled(motion.div)`
-  padding: 1rem;
-  background: rgba(39, 174, 96, 0.1);
-  border: 0.0625rem solid rgba(39, 174, 96, 0.3);
-  border-radius: 0.5rem;
-  color: #27ae60;
-  text-align: center;
-  font-weight: 500;
-`;
-
 export const SubmitRow = styled.div`
   display: flex;
   justify-content: flex-end;
+`;
+
+export const SubmitButton = styled.button`
+  min-width: 8rem;
+  min-height: 2.5rem;
+  padding: 0.65rem 1.5rem;
+  border-radius: 0.75rem;
+  border: 0.0625rem solid transparent;
+  background: ${({ theme }) => theme.colors.gradient};
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.02rem;
+  transition: all ${({ theme }) => theme.transition};
+
+  &:hover:not(:disabled) {
+    transform: translateY(-0.0625rem);
+    box-shadow: 0 0.5rem 1.25rem rgba(196, 139, 159, 0.35);
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.55;
+    background: ${({ theme }) => theme.colors.borderLight};
+    color: ${({ theme }) => theme.colors.textDark};
+    box-shadow: none;
+    transform: none;
+  }
+`;
+
+/* ── Confirmation Modal ── */
+
+export const ModalOverlay = styled(motion.div)`
+  position: fixed;
+  inset: 0;
+  z-index: 1100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(0.5rem);
+  -webkit-backdrop-filter: blur(0.5rem);
+  padding: 1.5rem;
+`;
+
+export const ModalCard = styled(motion.div)`
+  width: 100%;
+  max-width: 32rem;
+  max-height: 85vh;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  background: ${({ theme }) =>
+    theme.colors.background === '#0A0A0A'
+      ? 'rgba(18, 18, 18, 0.82)'
+      : 'rgba(255, 255, 255, 0.82)'};
+  backdrop-filter: blur(1.25rem);
+  -webkit-backdrop-filter: blur(1.25rem);
+  border: 0.0625rem solid ${({ theme }) => theme.colors.border};
+  border-radius: 1rem;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+
+  &::-webkit-scrollbar {
+    width: 0.35rem;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: ${({ theme }) => theme.colors.border};
+    border-radius: 62.4375rem;
+  }
+
+  scrollbar-width: thin;
+  scrollbar-color: ${({ theme }) => theme.colors.border} transparent;
+`;
+
+export const ModalHeader = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  h3 {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: ${({ theme }) => theme.colors.text};
+  }
+`;
+
+export const ModalCloseButton = styled.button`
+  background: none;
+  border: none;
+  color: ${({ theme }) => theme.colors.textMuted};
+  cursor: pointer;
+  padding: 0.25rem;
+  display: flex;
+  align-items: center;
+  transition: color ${({ theme }) => theme.transition};
+
+  &:hover {
+    color: ${({ theme }) => theme.colors.text};
+  }
+`;
+
+export const ModalSection = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+`;
+
+export const ModalSectionTitle = styled.span`
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1rem;
+  color: ${({ theme }) => theme.colors.primary};
+`;
+
+export const ModalField = styled.div`
+  font-size: 0.88rem;
+  color: ${({ theme }) => theme.colors.text};
+  line-height: 1.5;
+
+  strong {
+    color: ${({ theme }) => theme.colors.textMuted};
+    font-weight: 500;
+    margin-right: 0.35rem;
+  }
+`;
+
+export const ModalChipList = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: 0.25rem;
+`;
+
+export const ModalChip = styled.span`
+  font-size: 0.78rem;
+  padding: 0.25rem 0.65rem;
+  border-radius: 62.4375rem;
+  background: rgba(196, 139, 159, 0.12);
+  color: ${({ theme }) => theme.colors.primary};
+  border: 0.0625rem solid rgba(196, 139, 159, 0.25);
+`;
+
+export const ModalDivider = styled.hr`
+  border: none;
+  border-top: 0.0625rem solid ${({ theme }) => theme.colors.border};
+  margin: 0;
+`;
+
+export const ModalActions = styled.div`
+  display: flex;
+  gap: 0.75rem;
+  justify-content: flex-end;
+`;
+
+export const ModalButtonSecondary = styled.button`
+  padding: 0.6rem 1.25rem;
+  border-radius: 0.5rem;
+  border: 0.0625rem solid ${({ theme }) => theme.colors.border};
+  background: transparent;
+  color: ${({ theme }) => theme.colors.text};
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all ${({ theme }) => theme.transition};
+
+  &:hover {
+    border-color: ${({ theme }) => theme.colors.primary};
+    color: ${({ theme }) => theme.colors.primary};
+  }
+`;
+
+export const ModalButtonPrimary = styled.button`
+  padding: 0.6rem 1.25rem;
+  border-radius: 0.5rem;
+  border: none;
+  background: ${({ theme }) => theme.colors.gradient};
+  color: #fff;
+  font-size: 0.88rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all ${({ theme }) => theme.transition};
+
+  &:hover {
+    transform: translateY(-0.0625rem);
+    box-shadow: 0 0.5rem 1.25rem rgba(196, 139, 159, 0.3);
+  }
+`;
+
+export const ThankYouContent = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 1rem;
+  padding: 1rem 0;
+`;
+
+export const ThankYouIcon = styled.div`
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 50%;
+  background: ${({ theme }) => theme.colors.gradient};
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+`;
+
+export const ThankYouTitle = styled.h3`
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: ${({ theme }) => theme.colors.text};
+`;
+
+export const ThankYouText = styled.p`
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: ${({ theme }) => theme.colors.textMuted};
+  max-width: 24rem;
 `;

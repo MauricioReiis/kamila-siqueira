@@ -5,6 +5,10 @@ export const ContactSection = styled.section`
   padding: 6rem 2rem;
   background: ${({ theme }) => theme.colors.backgroundAlt};
   position: relative;
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
+    padding: 3.5rem 1.25rem;
+  }
 `;
 
 export const ContactContainer = styled.div`
@@ -87,8 +91,10 @@ export const ContactItem = styled.div`
 
 export const SocialLinks = styled.div`
   display: flex;
+  flex-wrap: wrap;
   gap: 1rem;
   margin-top: 1rem;
+  min-height: 2.75rem;
 
   @media (max-width: ${({ theme }) => theme.breakpoints.desktop}) {
     justify-content: center;
@@ -106,6 +112,7 @@ export const SocialLink = styled.a`
   justify-content: center;
   color: ${({ theme }) => theme.colors.textMuted};
   transition: all ${({ theme }) => theme.transition};
+  box-shadow: 0 0 0 0.0625rem ${({ theme }) => theme.colors.borderLight} inset;
 
   &:hover {
     border-color: ${({ theme }) => theme.colors.primary};

@@ -33,6 +33,7 @@ export const FooterTagline = styled.p`
   font-size: 0.95rem;
   color: ${({ theme }) => theme.colors.textMuted};
   font-style: italic;
+  margin-top: -1.9rem;
 `;
 
 export const FooterLinks = styled.div`

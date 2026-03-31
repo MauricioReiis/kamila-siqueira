@@ -3,8 +3,12 @@ import { motion } from 'framer-motion';
 
 export const AboutSection = styled.section`
   padding: 6rem 2rem;
-  background: ${({ theme }) => theme.colors.backgroundAlt};
+  background: transparent;
   position: relative;
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
+    padding: 3.5rem 1.25rem;
+  }
 `;
 
 export const AboutContainer = styled.div`
@@ -25,6 +29,12 @@ export const AboutImageWrapper = styled(motion.div)`
   position: relative;
   display: flex;
   justify-content: center;
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+  }
 `;
 
 export const AboutImagePlaceholder = styled.div`
@@ -38,20 +48,6 @@ export const AboutImagePlaceholder = styled.div`
   justify-content: center;
   position: relative;
   overflow: hidden;
-
-  &::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 50%;
-    background: linear-gradient(
-      to top,
-      ${({ theme }) => theme.colors.backgroundCard},
-      transparent
-    );
-  }
 
   @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
     width: 17.5rem;
@@ -70,20 +66,40 @@ export const AboutImageText = styled.span`
   opacity: 0.15;
 `;
 
-export const ExperienceBadge = styled.div`
+export const AboutImage = styled.img`
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
   position: absolute;
-  top: 2rem;
-  right: -1rem;
-  background: rgba(22, 22, 22, 0.9);
-  backdrop-filter: blur(0.625rem);
+  top: 0;
+  left: 0;
+  image-rendering: auto;
   border: 0.0625rem solid ${({ theme }) => theme.colors.border};
+  box-sizing: border-box;
+  border-radius: inherit;
+  z-index: 1;
+`;
+
+export const AboutBadge = styled.div`
+  position: absolute;
+  z-index: 5;
+  background: ${({ theme }) =>
+    theme.colors.background === '#0A0A0A'
+      ? 'rgba(10, 10, 10, 0.72)'
+      : 'rgba(250, 250, 250, 0.72)'};
+  backdrop-filter: blur(0.75rem);
+  -webkit-backdrop-filter: blur(0.75rem);
+  border: 0.0625rem solid
+    ${({ theme }) =>
+      theme.colors.background === '#0A0A0A'
+        ? 'rgba(255, 255, 255, 0.12)'
+        : theme.colors.border};
   border-radius: 1rem;
   padding: 1rem 1.25rem;
   text-align: center;
 
   strong {
     display: block;
-    font-size: 1.75rem;
     font-family: ${({ theme }) => theme.fonts.heading};
     background: ${({ theme }) => theme.colors.gradient};
     -webkit-background-clip: text;
@@ -99,7 +115,66 @@ export const ExperienceBadge = styled.div`
   }
 
   @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
-    right: 0;
+    position: static;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    background: ${({ theme }) =>
+      theme.colors.background === '#0A0A0A'
+        ? 'rgba(10, 10, 10, 0.92)'
+        : 'rgba(250, 250, 250, 0.92)'};
+  }
+`;
+
+export const ExperienceBadge = styled(AboutBadge)`
+  top: 2rem;
+  right: -1rem;
+
+  strong {
+    font-size: 1.75rem;
+  }
+`;
+
+export const GraduationBadge = styled(AboutBadge)`
+  top: 10rem;
+  left: -1rem;
+  right: auto;
+
+  strong {
+    font-size: 1.25rem;
+    font-weight: 700;
+    line-height: 1.3;
+  }
+
+  span {
+    display: block;
+    margin-top: 0.4rem;
+  }
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
+    top: auto;
+    left: auto;
+    right: auto;
+  }
+`;
+
+export const PostGraduationBadge = styled(AboutBadge)`
+  top: 17rem;
+  right: -1rem;
+
+  strong {
+    font-size: 1.25rem;
+    font-weight: 700;
+    line-height: 1.3;
+  }
+
+  span {
+    display: block;
+    margin-top: 0.4rem;
+  }
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
+    top: auto;
+    right: auto;
   }
 `;
 
@@ -148,6 +223,10 @@ export const ValuesGrid = styled.div`
   flex-wrap: wrap;
   gap: 0.75rem;
   margin-top: 0.5rem;
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+    justify-content: center;
+  }
 `;
 
 export const ValueTag = styled(motion.span)`

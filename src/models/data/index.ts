@@ -1,10 +1,10 @@
-import type { NavLink, Service, Testimonial, Stat, SocialLink } from '../types';
+import type { NavLink, Service, Testimonial, Stat, SocialLink, DashboardCompany } from '../types';
 
 export const navLinks: NavLink[] = [
   { id: 'home', label: 'Início', href: '#home' },
   { id: 'about', label: 'Sobre', href: '#about' },
-  { id: 'services', label: 'Serviços', href: '#services' },
-  { id: 'testimonials', label: 'Depoimentos', href: '#testimonials' },
+  { id: 'services', label: 'Entregas', href: '#services' },
+  { id: 'testimonials', label: 'Comentários', href: '#testimonials' },
   { id: 'contact', label: 'Contato', href: '#contact' },
 ];
 
@@ -35,53 +35,103 @@ export const services: Service[] = [
 export const testimonials: Testimonial[] = [
   {
     id: 1,
-    name: 'Ana Clara Mendes',
-    role: 'CEO',
-    company: 'Studio Belle',
-    text: 'A Kamila transformou completamente a identidade da minha marca. Seu olhar estratégico e criativo fez toda a diferença. Profissional excepcional que entrega muito além do esperado!',
+    name: 'Lucilene',
+    role: 'Terapeuta',
+    company: 'Microempreendedora',
+    text: 'Kamila, eu nem sei como te agradecer! 🥹 Minha bio ficou perfeita, profissional direta e do jeito que eu queria. Agora sinto que meu perfil realmente transmite o que eu faço. Você tem um dom, viu? Muito obrigada de coração!',
   },
   {
     id: 2,
-    name: 'Rafael Costa',
-    role: 'Fundador',
-    company: 'Costa & Associados',
-    text: 'Trabalhar com a Kamila foi uma experiência incrível. Ela entende profundamente o que a marca precisa e traduz isso em resultados visuais impressionantes. Recomendo de olhos fechados!',
+    name: 'Numiá',
+    role: 'Proprietária',
+    company: 'Microempreendedora',
+    text: 'Kamila, eu nem sei como te explicar, mas tá funcionando MUITO bem! Eu nem entendia direito esse negócio de tráfego pago, mas agora vejo a diferença... Tem gente chegando no meu WhatsApp todo dia, perguntando sobre meus serviços! Tô muito feliz e impressionada com o seu trabalho! Obrigada mesmo!',
   },
   {
     id: 3,
-    name: 'Beatriz Lima',
-    role: 'Diretora Criativa',
-    company: 'Agência Florescer',
-    text: 'A Kamila tem um dom único de transformar ideias em realidade. Sua dedicação, profissionalismo e talento são incomparáveis. Minha marca nunca esteve tão forte!',
+    name: 'Gabriela',
+    role: 'Proprietária',
+    company: 'Eu Curto Açai',
+    text: 'Kamila do céu!!! Eu tô simplesmente APAIXONADA pelo seu trabalho! Sério, nunca vi meu Instagram desse jeito! O engajamento tá lá em cima, os seguidores novos chegando. Você é incrível, mulher, tô muito feliz!!! Obrigada demaisss! 💜🫶',
+  },
+  {
+    id: 4,
+    name: 'Meire',
+    role: 'Estilista',
+    company: 'A\'Confecção Sob Medida',
+    text: 'Que portifolio lindo!! Posso mandar pras minhas amigas tbm?',
+  },
+  {
+    id: 5,
+    name: 'Amanda Alves',
+    role: 'Empresária',
+    company: 'Amanda Alves',
+    text: 'Caraca Kamila, é a primeira vez que meus stories bate 2 mil visualizações em uma segunda-feira!',
   },
 ];
 
 export const stats: Stat[] = [
-  { id: 1, value: 500, prefix: '+', suffix: '', label: 'projetos concluídos' },
-  { id: 2, value: 50, prefix: '+', suffix: '', label: 'marcas fortalecidas' },
-  { id: 3, value: 100, prefix: '', suffix: '%', label: 'projetos sob medida' },
-  { id: 4, value: 8, prefix: '+', suffix: ' anos', label: 'fortalecendo marcas' },
+  { id: 1, value: 230, prefix: '+', suffix: '', label: 'projetos concluídos' },
+  { id: 2, value: 100, prefix: '', suffix: '%', label: 'projetos sob medida' },
+  { id: 3, value: 4, prefix: '+', suffix: ' anos', label: 'fortalecendo marcas' },
 ];
 
 export const socialLinks: SocialLink[] = [
-  { id: 1, name: 'Instagram', url: 'https://instagram.com/kamilasiqueira', icon: 'Instagram' },
-  { id: 2, name: 'LinkedIn', url: 'https://linkedin.com/in/kamilasiqueira', icon: 'Linkedin' },
-  { id: 3, name: 'WhatsApp', url: 'https://wa.me/5500000000000', icon: 'MessageCircle' },
+  { id: 1, name: 'Instagram', url: 'https://www.instagram.com/kamila_ahdigital/', icon: 'Instagram' },
+  { id: 2, name: 'LinkedIn', url: 'https://www.linkedin.com/in/kamila-siqueira-41596b30a/', icon: 'Linkedin' },
 ];
 
 export const heroData = {
-  greeting: 'Eu crio',
-  highlight: 'marcas fortes.',
-  subtitle: 'Para profissionais que desejam ser lembrados, não apenas vistos.',
-  cta: 'Vamos criar a sua?',
+  highlight: 'Atrair, Conectar e Vender',
+  subtitle: 'Estratégia, execução e escala para marcas que querem crescer',
+  cta: 'Enviar proposta',
 };
 
 export const aboutData = {
   title: 'Quem é Kamila Siqueira',
   paragraphs: [
-    'Sou estrategista de marca e designer com mais de 8 anos de experiência transformando negócios através do poder do branding.',
-    'Acredito que uma marca forte é a base de qualquer negócio de sucesso. Meu trabalho é criar identidades visuais que não apenas impressionam, mas que conectam, comunicam e convertem.',
-    'Cada projeto é tratado como único, com dedicação e atenção aos detalhes que fazem a diferença entre uma marca comum e uma marca memorável.',
+    'Estrategista Digital, Mãe e Defensora do Marketing com Intenção.',
+    'Acredito que o marketing é, acima de tudo, uma troca entre pessoas. Por isso, meu trabalho foge das fórmulas prontas. Unindo um perfil analítico à criatividade, construo estratégias personalizadas onde a tecnologia é o suporte, mas a inteligência humana é o motor.',
+    'Com responsabilidade e foco em processos, transformo confusão em clareza para negócios que buscam evolução contínua e resultados que não dependem apenas de automação, mas de direção.',
   ],
-  values: ['Criatividade', 'Estratégia', 'Dedicação', 'Excelência', 'Inovação'],
+  values: ['Estratégia ', 'Performance', 'Tráfego Pago', 'Funis', 'Conversão'],
 };
+
+export const dashboardCompanies: DashboardCompany[] = [
+  {
+    id: 1,
+    segment: 'E-commerce de literatura',
+    implementationTime: '90 dias',
+    metrics: [
+      { key: 'revenue', label: 'Receita mensal', format: 'currency', before: 58000, after: 124000 },
+      { key: 'leads', label: 'Leads qualificados', format: 'number', before: 92, after: 268 },
+      { key: 'conversion', label: 'Taxa de conversão', format: 'percent', before: 1.8, after: 3.9 },
+      { key: 'cac', label: 'CAC', format: 'currency', before: 420, after: 210, betterWhen: 'lower' },
+      { key: 'roas', label: 'ROAS', format: 'multiplier', before: 1.7, after: 4.2 },
+    ],
+  },
+  {
+    id: 2,
+    segment: 'Movéis planejados',
+    implementationTime: '120 dias',
+    metrics: [
+      { key: 'revenue', label: 'Receita mensal', format: 'currency', before: 89000, after: 173000 },
+      { key: 'leads', label: 'Leads qualificados', format: 'number', before: 140, after: 355 },
+      { key: 'conversion', label: 'Taxa de conversão', format: 'percent', before: 2.4, after: 4.6 },
+      { key: 'cac', label: 'CAC', format: 'currency', before: 510, after: 280, betterWhen: 'lower' },
+      { key: 'roas', label: 'ROAS', format: 'multiplier', before: 2.1, after: 5.1 },
+    ],
+  },
+  {
+    id: 3,
+    segment: 'Educacao e infoprodutos',
+    implementationTime: '6 meses',
+    metrics: [
+      { key: 'revenue', label: 'Receita mensal', format: 'currency', before: 46000, after: 118000 },
+      { key: 'leads', label: 'Leads qualificados', format: 'number', before: 210, after: 540 },
+      { key: 'conversion', label: 'Taxa de conversão', format: 'percent', before: 1.3, after: 2.8 },
+      { key: 'cac', label: 'CAC', format: 'currency', before: 240, after: 135, betterWhen: 'lower' },
+      { key: 'roas', label: 'ROAS', format: 'multiplier', before: 1.9, after: 4.8 },
+    ],
+  },
+];

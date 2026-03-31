@@ -21,12 +21,7 @@ export const ServicesView: React.FC = () => {
     <S.ServicesSection id="services">
       <S.ServicesContainer>
         <S.ServicesHeader>
-          <S.SectionLabel>Serviços</S.SectionLabel>
-          <S.SectionTitle>Meus serviços</S.SectionTitle>
-          <S.SectionSubtitle>
-            Soluções completas para fortalecer sua marca e impulsionar seus
-            resultados no mercado.
-          </S.SectionSubtitle>
+          <S.SectionTitle>Minhas Entregas</S.SectionTitle>
         </S.ServicesHeader>
 
         <S.ServicesGrid ref={ref}>

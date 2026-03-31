@@ -3,8 +3,12 @@ import { motion } from 'framer-motion';
 
 export const ServicesSection = styled.section`
   padding: 6rem 2rem;
-  background: ${({ theme }) => theme.colors.background};
+  background: transparent;
   position: relative;
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
+    padding: 3.5rem 1.25rem;
+  }
 `;
 
 export const ServicesContainer = styled.div`
@@ -32,14 +36,6 @@ export const SectionTitle = styled.h2`
   font-weight: 700;
   color: ${({ theme }) => theme.colors.text};
   margin-bottom: 1rem;
-`;
-
-export const SectionSubtitle = styled.p`
-  font-size: 1.05rem;
-  color: ${({ theme }) => theme.colors.textMuted};
-  max-width: 34.375rem;
-  margin: 0 auto;
-  line-height: 1.7;
 `;
 
 export const ServicesGrid = styled.div`

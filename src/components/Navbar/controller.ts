@@ -1,8 +1,12 @@
 import { useState, useEffect, useCallback } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { useThemeContext } from '../../styles/ThemeContext';
 
 export const useNavbar = () => {
   const { isDark, toggleTheme } = useThemeContext();
+  const navigate = useNavigate();
+  const location = useLocation();
+  const isHomePath = location.pathname === '/';
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
@@ -36,11 +40,21 @@ export const useNavbar = () => {
 
   const handleNavClick = useCallback((href: string) => {
     setIsMenuOpen(false);
-    const element = document.querySelector(href);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+    if (location.pathname !== '/') {
+      navigate('/');
+      setTimeout(() => {
+        const element = document.querySelector(href);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 100);
+    } else {
+      const element = document.querySelector(href);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
     }
-  }, []);
+  }, [location.pathname, navigate]);
 
   const toggleMenu = useCallback(() => {
     setIsMenuOpen((prev) => !prev);
@@ -51,6 +65,7 @@ export const useNavbar = () => {
   }, []);
 
   return {
+    isHomePath,
     isScrolled,
     isMenuOpen,
     activeSection,

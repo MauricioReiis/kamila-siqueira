@@ -11,7 +11,7 @@ export const FooterView: React.FC = () => {
           Kamila <span>Siqueira</span>
         </S.FooterLogo>
 
-        <S.FooterTagline>Eu crio marcas fortes.</S.FooterTagline>
+        <S.FooterTagline>Estrategista de Marketing</S.FooterTagline>
 
         <S.FooterLinks>
           {navLinks.map((link) => (

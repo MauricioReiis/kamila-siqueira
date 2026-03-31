@@ -3,19 +3,11 @@ import { motion } from 'framer-motion';
 
 export const StatsSection = styled.section`
   padding: 5rem 2rem;
-  background: ${({ theme }) => theme.colors.background};
+  background: transparent;
   position: relative;
 
-  &::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(
-      135deg,
-      rgba(196, 139, 159, 0.03) 0%,
-      rgba(212, 165, 116, 0.03) 100%
-    );
-    pointer-events: none;
+  @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
+    padding: 3.25rem 1.25rem;
   }
 `;
 
@@ -47,7 +39,7 @@ export const SectionTitle = styled.h2`
 
 export const StatsGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 2rem;
 
   @media (max-width: ${({ theme }) => theme.breakpoints.desktop}) {

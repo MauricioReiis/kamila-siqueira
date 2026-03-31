@@ -1,19 +1,90 @@
+import { lazy, Suspense } from 'react';
+import styled from 'styled-components';
 import { Hero } from '../../components/Hero';
-import { About } from '../../components/About';
-import { Services } from '../../components/Services';
-import { Stats } from '../../components/Stats';
-import { Testimonials } from '../../components/Testimonials';
-import { ContactCTA } from '../../components/ContactCTA';
+import { useThemeContext } from '../../styles/ThemeContext';
+
+const About = lazy(() => import('../../components/About').then((m) => ({ default: m.About })));
+const Services = lazy(() => import('../../components/Services').then((m) => ({ default: m.Services })));
+const Stats = lazy(() => import('../../components/Stats').then((m) => ({ default: m.Stats })));
+const Dashboard = lazy(() => import('../../components/Dashboard').then((m) => ({ default: m.Dashboard })));
+const Testimonials = lazy(() => import('../../components/Testimonials').then((m) => ({ default: m.Testimonials })));
+const ContactCTA = lazy(() => import('../../components/ContactCTA').then((m) => ({ default: m.ContactCTA })));
+
+const PageWrapper = styled.main<{ $isDark: boolean }>`
+  position: relative;
+  overflow: hidden;
+
+  /* Dot grid — only visible in dark theme */
+  &::before {
+    content: '';
+    position: fixed;
+    inset: -2rem;
+    background-image: radial-gradient(
+      rgba(196, 139, 159, 0.35) 1px,
+      transparent 1px
+    );
+    background-size: 3rem 3rem;
+    pointer-events: none;
+    z-index: 0;
+    display: ${({ $isDark }) => ($isDark ? 'block' : 'none')};
+    animation: bgDrift 30s ease-in-out infinite;
+
+    @media (max-width: 768px) {
+      display: none;
+    }
+  }
+
+  /* Window light — only visible in dark theme */
+  &::after {
+    content: '';
+    position: fixed;
+    inset: -4rem;
+    background:
+      conic-gradient(
+        from 200deg at 100% -10%,
+        rgba(212, 165, 116, 0.10) 0deg,
+        rgba(196, 139, 159, 0.07) 25deg,
+        rgba(196, 139, 159, 0.03) 45deg,
+        transparent 70deg
+      );
+    filter: blur(4rem);
+    pointer-events: none;
+    z-index: 0;
+    display: ${({ $isDark }) => ($isDark ? 'block' : 'none')};
+    animation: bgDrift 25s ease-in-out infinite reverse;
+
+    @media (max-width: 768px) {
+      display: none;
+    }
+  }
+
+  & > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    &::before,
+    &::after {
+      animation: none;
+    }
+  }
+`;
 
 export const HomePage: React.FC = () => {
+  const { isDark } = useThemeContext();
+
   return (
-    <main>
+    <PageWrapper $isDark={isDark}>
       <Hero />
-      <About />
-      <Services />
-      <Stats />
-      <Testimonials />
-      <ContactCTA />
-    </main>
+      <Suspense fallback={null}>
+        <About />
+        <Services />
+        <Stats />
+        <Dashboard />
+        <Testimonials />
+        <ContactCTA />
+      </Suspense>
+    </PageWrapper>
   );
 };

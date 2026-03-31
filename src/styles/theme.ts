@@ -19,8 +19,8 @@ export const darkTheme = {
     gradientText: 'linear-gradient(135deg, #C48B9F 0%, #D4A574 100%)',
   },
   fonts: {
-    heading: "'Playfair Display', Georgia, serif",
-    body: "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
+    heading: "'Sora', 'Segoe UI', sans-serif",
+    body: "'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
   },
   breakpoints: {
     mobile: '30rem',
@@ -54,8 +54,8 @@ export const lightTheme = {
     gradientText: 'linear-gradient(135deg, #C48B9F 0%, #D4A574 100%)',
   },
   fonts: {
-    heading: "'Playfair Display', Georgia, serif",
-    body: "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
+    heading: "'Sora', 'Segoe UI', sans-serif",
+    body: "'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
   },
   breakpoints: {
     mobile: '30rem',

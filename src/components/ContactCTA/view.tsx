@@ -1,6 +1,15 @@
-import { Mail, Phone, MapPin, ArrowRight, Download } from 'lucide-react';
+import { Mail, MessageCircle, MapPin, ArrowRight, Camera, Briefcase } from 'lucide-react';
 import { useInView } from 'react-intersection-observer';
+import { socialLinks } from '../../models/data';
 import * as S from './style';
+
+const socialIconMap: Record<string, React.FC<{ size?: number }>> = {
+  Instagram: Camera,
+  Linkedin: Briefcase,
+  LinkedIn: Briefcase,
+  WhatsApp: MessageCircle,
+  MessageCircle,
+};
 
 export const ContactCTAView: React.FC = () => {
   const { ref, inView } = useInView({ threshold: 0.15, triggerOnce: true });
@@ -17,42 +26,52 @@ export const ContactCTAView: React.FC = () => {
         </S.SectionLabel>
 
         <S.Title initial={initial} animate={animate} transition={transition(0.1)}>
-          Pronta para transformar sua marca?
+          Vamos estruturar o proximo passo do seu crescimento?
         </S.Title>
 
         <S.Description initial={initial} animate={animate} transition={transition(0.2)}>
-          Vamos conversar sobre como posso ajudar o seu negócio a se destacar e conquistar
-          resultados reais. Preencha uma proposta e retorno em até 1 dia útil.
+          Envie sua proposta e retornaremos com os próximos passos <br />
+          em até 1 dia útil.
         </S.Description>
 
         <S.InfoRow initial={initial} animate={animate} transition={transition(0.3)}>
           <S.InfoItem>
             <Mail size={18} />
-            <a href="mailto:contato@kamilasiqueira.com.br">
-              contato@kamilasiqueira.com.br
+            <a href="mailto:contato@kamilasiqueira.com">
+              contatokamilasiqueira@gmail.com
             </a>
           </S.InfoItem>
           <S.InfoItem>
-            <Phone size={18} />
-            <a href="tel:+5500000000000">(00) 00000-0000</a>
+            <MessageCircle size={18} />
+            <a href="https://wa.me/5532998123552" target="_blank" rel="noopener noreferrer">(32) 9 9812-3552</a>
           </S.InfoItem>
           <S.InfoItem>
             <MapPin size={18} />
-            <span>São Paulo, SP — Brasil</span>
+            <span>Juiz de Fora, MG - Brasil</span>
           </S.InfoItem>
         </S.InfoRow>
+
+        <S.SocialLinks initial={initial} animate={animate} transition={transition(0.35)}>
+          {socialLinks.map((link) => {
+            const Icon = socialIconMap[link.icon] ?? MessageCircle;
+            return (
+              <S.SocialLink
+                key={link.id}
+                href={link.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={link.name}
+              >
+                <Icon size={18} />
+              </S.SocialLink>
+            );
+          })}
+        </S.SocialLinks>
 
         <S.CTAGroup initial={initial} animate={animate} transition={transition(0.4)}>
           <S.CTAButton href="/proposta">
             Enviar proposta <ArrowRight size={18} />
           </S.CTAButton>
-
-          <S.DownloadButton
-            href="/curriculo-kamila-siqueira.pdf"
-            download
-          >
-            <Download size={18} /> Baixar currículo
-          </S.DownloadButton>
         </S.CTAGroup>
       </S.Container>
     </S.Section>
