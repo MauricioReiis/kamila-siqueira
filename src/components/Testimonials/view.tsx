@@ -8,8 +8,7 @@ export const TestimonialsView: React.FC = () => {
     <S.TestimonialsSection id="testimonials">
       <S.TestimonialsContainer>
         <S.TestimonialsHeader>
-          <S.SectionLabel>Depoimentos</S.SectionLabel>
-          <S.SectionTitle>O que estão dizendo sobre mim</S.SectionTitle>
+          <S.SectionTitle>Comentários</S.SectionTitle>
         </S.TestimonialsHeader>
 
         <S.TestimonialsGrid ref={ref}>

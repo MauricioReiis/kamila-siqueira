@@ -13,6 +13,13 @@ export const Nav = styled.nav<{ $scrolled: boolean }>`
   border-bottom: ${({ $scrolled, theme }) =>
     $scrolled ? `0.0625rem solid ${theme.colors.border}` : '0.0625rem solid transparent'};
   transition: all ${({ theme }) => theme.transition};
+
+  @media (max-width: 768px) {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    background: ${({ $scrolled, theme }) =>
+      $scrolled ? theme.colors.background : 'transparent'};
+  }
 `;
 
 export const NavContainer = styled.div`

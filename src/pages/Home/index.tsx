@@ -1,11 +1,14 @@
+import { lazy, Suspense } from 'react';
 import styled from 'styled-components';
 import { Hero } from '../../components/Hero';
-import { About } from '../../components/About';
-import { Services } from '../../components/Services';
-import { Stats } from '../../components/Stats';
-import { Testimonials } from '../../components/Testimonials';
-import { ContactCTA } from '../../components/ContactCTA';
 import { useThemeContext } from '../../styles/ThemeContext';
+
+const About = lazy(() => import('../../components/About').then((m) => ({ default: m.About })));
+const Services = lazy(() => import('../../components/Services').then((m) => ({ default: m.Services })));
+const Stats = lazy(() => import('../../components/Stats').then((m) => ({ default: m.Stats })));
+const Dashboard = lazy(() => import('../../components/Dashboard').then((m) => ({ default: m.Dashboard })));
+const Testimonials = lazy(() => import('../../components/Testimonials').then((m) => ({ default: m.Testimonials })));
+const ContactCTA = lazy(() => import('../../components/ContactCTA').then((m) => ({ default: m.ContactCTA })));
 
 const PageWrapper = styled.main<{ $isDark: boolean }>`
   position: relative;
@@ -25,7 +28,10 @@ const PageWrapper = styled.main<{ $isDark: boolean }>`
     z-index: 0;
     display: ${({ $isDark }) => ($isDark ? 'block' : 'none')};
     animation: bgDrift 30s ease-in-out infinite;
-    will-change: transform;
+
+    @media (max-width: 768px) {
+      display: none;
+    }
   }
 
   /* Window light — only visible in dark theme */
@@ -46,12 +52,22 @@ const PageWrapper = styled.main<{ $isDark: boolean }>`
     z-index: 0;
     display: ${({ $isDark }) => ($isDark ? 'block' : 'none')};
     animation: bgDrift 25s ease-in-out infinite reverse;
-    will-change: transform;
+
+    @media (max-width: 768px) {
+      display: none;
+    }
   }
 
   & > * {
     position: relative;
     z-index: 1;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    &::before,
+    &::after {
+      animation: none;
+    }
   }
 `;
 
@@ -61,11 +77,14 @@ export const HomePage: React.FC = () => {
   return (
     <PageWrapper $isDark={isDark}>
       <Hero />
-      <About />
-      <Services />
-      <Stats />
-      <Testimonials />
-      <ContactCTA />
+      <Suspense fallback={null}>
+        <About />
+        <Services />
+        <Stats />
+        <Dashboard />
+        <Testimonials />
+        <ContactCTA />
+      </Suspense>
     </PageWrapper>
   );
 };

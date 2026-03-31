@@ -11,6 +11,10 @@ export const Section = styled.section`
   position: relative;
   overflow: hidden;
 
+  @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
+    padding: 3.5rem 1.25rem;
+  }
+
   &::before {
     content: '';
     position: absolute;
@@ -80,6 +84,34 @@ export const InfoItem = styled.div`
     &:hover {
       color: ${({ theme }) => theme.colors.primary};
     }
+  }
+`;
+
+export const SocialLinks = styled(motion.div)`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.75rem;
+`;
+
+export const SocialLink = styled.a`
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  background: ${({ theme }) => theme.colors.backgroundCard};
+  border: 0.0625rem solid ${({ theme }) => theme.colors.border};
+  box-shadow: 0 0 0 0.0625rem ${({ theme }) => theme.colors.borderLight} inset;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: ${({ theme }) => theme.colors.textMuted};
+  transition: all ${({ theme }) => theme.transition};
+
+  &:hover {
+    border-color: ${({ theme }) => theme.colors.primary};
+    color: ${({ theme }) => theme.colors.primary};
+    transform: translateY(-0.125rem);
+    background: rgba(196, 139, 159, 0.1);
   }
 `;
 

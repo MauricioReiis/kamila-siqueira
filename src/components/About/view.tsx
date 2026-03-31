@@ -23,7 +23,7 @@ export const AboutView: React.FC = () => {
           transition={{ duration: 0.7, ease: 'easeOut' }}
         >
           <S.AboutImagePlaceholder>
-            <S.AboutImage draggable={false} src={profileImg} alt="Kamila Siqueira" loading="eager" />
+            <S.AboutImage draggable={false} src={profileImg} alt="Kamila Siqueira — Estrategista de Marketing" loading="lazy" width={350} height={420} />
           </S.AboutImagePlaceholder>
           <S.ExperienceBadge>
             <strong>+4</strong>

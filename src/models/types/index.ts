@@ -56,3 +56,21 @@ export interface InterestOption {
   label: string;
   description?: string;
 }
+
+export type DashboardMetricFormat = 'number' | 'currency' | 'percent' | 'multiplier';
+
+export interface DashboardMetric {
+  key: string;
+  label: string;
+  format: DashboardMetricFormat;
+  before: number;
+  after: number;
+  betterWhen?: 'higher' | 'lower';
+}
+
+export interface DashboardCompany {
+  id: number;
+  segment: string;
+  implementationTime: string;
+  metrics: DashboardMetric[];
+}

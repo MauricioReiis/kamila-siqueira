@@ -5,6 +5,10 @@ export const StatsSection = styled.section`
   padding: 5rem 2rem;
   background: transparent;
   position: relative;
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
+    padding: 3.25rem 1.25rem;
+  }
 `;
 
 export const StatsContainer = styled.div`
@@ -35,7 +39,7 @@ export const SectionTitle = styled.h2`
 
 export const StatsGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 2rem;
 
   @media (max-width: ${({ theme }) => theme.breakpoints.desktop}) {

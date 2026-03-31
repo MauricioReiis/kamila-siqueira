@@ -6,6 +6,10 @@ export const TestimonialsSection = styled.section`
   background: transparent;
   position: relative;
   overflow: hidden;
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
+    padding: 3.5rem 1.25rem;
+  }
 `;
 
 export const TestimonialsContainer = styled.div`
@@ -16,16 +20,6 @@ export const TestimonialsContainer = styled.div`
 export const TestimonialsHeader = styled.div`
   text-align: center;
   margin-bottom: 4rem;
-`;
-
-export const SectionLabel = styled.span`
-  font-size: 0.875rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.1875rem;
-  color: ${({ theme }) => theme.colors.primary};
-  display: block;
-  margin-bottom: 1rem;
 `;
 
 export const SectionTitle = styled.h2`

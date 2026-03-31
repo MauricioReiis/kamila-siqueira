@@ -5,6 +5,10 @@ export const ProposalPage = styled.div`
   min-height: 100vh;
   background: transparent;
   padding: 6rem 2rem 4rem;
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
+    padding: 5rem 1.25rem 2.5rem;
+  }
 `;
 
 export const Container = styled.div`

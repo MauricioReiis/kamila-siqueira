@@ -5,6 +5,10 @@ export const AboutSection = styled.section`
   padding: 6rem 2rem;
   background: transparent;
   position: relative;
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
+    padding: 3.5rem 1.25rem;
+  }
 `;
 
 export const AboutContainer = styled.div`
@@ -25,6 +29,12 @@ export const AboutImageWrapper = styled(motion.div)`
   position: relative;
   display: flex;
   justify-content: center;
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+  }
 `;
 
 export const AboutImagePlaceholder = styled.div`
@@ -108,7 +118,15 @@ export const ExperienceBadge = styled.div`
   }
 
   @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
-    right: 0;
+    position: static;
+    right: auto;
+    top: auto;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    background: ${({ theme }) =>
+      theme.colors.background === '#0A0A0A'
+        ? 'rgba(10, 10, 10, 0.92)'
+        : 'rgba(250, 250, 250, 0.92)'};
   }
 `;
 

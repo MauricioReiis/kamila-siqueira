@@ -8,9 +8,10 @@ export const useHero = () => {
 
   const videoRef = useRef<HTMLVideoElement>(null);
   const [isMuted, setIsMuted] = useState(true);
-  const [isPlaying, setIsPlaying] = useState(true);
+  const [isPlaying, setIsPlaying] = useState(false);
   const [progress, setProgress] = useState(0);
   const [duration, setDuration] = useState(0);
+  const [videoReady, setVideoReady] = useState(false);
   const shouldResumeOnVisibleRef = useRef(false);
 
   useEffect(() => {
@@ -32,21 +33,40 @@ export const useHero = () => {
     const video = videoRef.current;
     if (!video) return;
 
-    const handleTimeUpdate = () => {
-      setProgress(video.currentTime);
+    const placeholder = video.closest('div');
+    if (!placeholder) return;
+
+    const isMobile = window.innerWidth < 768;
+    const src = isMobile ? '/ks-apresentacao.mp4' : '/ks-apresentacao.MOV';
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry?.isIntersecting && !video.src) {
+          video.src = src;
+          video.load();
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.1 },
+    );
+
+    observer.observe(placeholder);
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    const onReady = () => {
+      setVideoReady(true);
+      void video.play()
+        .then(() => setIsPlaying(true))
+        .catch(() => setIsPlaying(false));
     };
 
-    const handleLoadedMetadata = () => {
-      setDuration(video.duration);
-    };
-
-    video.addEventListener('timeupdate', handleTimeUpdate);
-    video.addEventListener('loadedmetadata', handleLoadedMetadata);
-
-    return () => {
-      video.removeEventListener('timeupdate', handleTimeUpdate);
-      video.removeEventListener('loadedmetadata', handleLoadedMetadata);
-    };
+    video.addEventListener('canplaythrough', onReady, { once: true });
+    return () => video.removeEventListener('canplaythrough', onReady);
   }, []);
 
   useEffect(() => {
@@ -55,10 +75,9 @@ export const useHero = () => {
 
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (!entry) return;
+        if (!entry || !video.src) return;
 
         if (!entry.isIntersecting) {
-          // Pause only when the video was actually playing.
           if (!video.paused) {
             shouldResumeOnVisibleRef.current = true;
             video.pause();
@@ -67,26 +86,35 @@ export const useHero = () => {
           return;
         }
 
-        // Resume only if we paused it automatically when it left viewport.
         if (shouldResumeOnVisibleRef.current) {
           void video.play()
             .then(() => {
               setIsPlaying(true);
               shouldResumeOnVisibleRef.current = false;
             })
-            .catch(() => {
-              setIsPlaying(false);
-            });
+            .catch(() => setIsPlaying(false));
         }
       },
-      {
-        threshold: 0.35,
-      },
+      { threshold: 0.35 },
     );
 
     observer.observe(video);
-
     return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    const onTime = () => setProgress(video.currentTime);
+    const onMeta = () => setDuration(video.duration);
+
+    video.addEventListener('timeupdate', onTime);
+    video.addEventListener('loadedmetadata', onMeta);
+    return () => {
+      video.removeEventListener('timeupdate', onTime);
+      video.removeEventListener('loadedmetadata', onMeta);
+    };
   }, []);
 
   const handleSeek = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
@@ -127,6 +155,7 @@ export const useHero = () => {
     isPlaying,
     progress,
     duration,
+    videoReady,
     toggleMute,
     togglePlay,
     handleSeek,

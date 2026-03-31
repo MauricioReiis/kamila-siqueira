@@ -63,6 +63,23 @@ export const GlobalStyles = createGlobalStyle`
     outline: none;
   }
 
+  .skip-link {
+    position: absolute;
+    top: -100%;
+    left: 1rem;
+    z-index: 9999;
+    padding: 0.75rem 1.5rem;
+    background: ${({ theme }) => theme.colors.primary};
+    color: #fff;
+    border-radius: 0.5rem;
+    font-weight: 700;
+    text-decoration: none;
+
+    &:focus {
+      top: 1rem;
+    }
+  }
+
   ::selection {
     background: ${({ theme }) => theme.colors.primary};
     color: ${({ theme }) => theme.colors.text};
@@ -83,5 +100,14 @@ export const GlobalStyles = createGlobalStyle`
 
   ::-webkit-scrollbar-thumb:hover {
     background: ${({ theme }) => theme.colors.primary};
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
   }
 `;

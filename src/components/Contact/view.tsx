@@ -6,6 +6,8 @@ import * as S from './style';
 const socialIconMap: Record<string, React.FC<{ size?: number }>> = {
   Instagram: Camera,
   Linkedin: Briefcase,
+  LinkedIn: Briefcase,
+  WhatsApp: MessageCircle,
   MessageCircle,
 };
 
@@ -31,8 +33,8 @@ export const ContactView: React.FC = () => {
           <S.ContactDetails>
             <S.ContactItem>
               <Mail size={20} />
-              <a href="mailto:contato@kamilasiqueira.com.br">
-                contato@kamilasiqueira.com.br
+              <a href="mailto:contatokamilasiqueira@gmail.com">
+                contatokamilasiqueira@gmail.com
               </a>
             </S.ContactItem>
             <S.ContactItem>
@@ -47,7 +49,7 @@ export const ContactView: React.FC = () => {
 
           <S.SocialLinks>
             {socialLinks.map((link) => {
-              const Icon = socialIconMap[link.icon];
+              const Icon = socialIconMap[link.icon] ?? MessageCircle;
               return (
                 <S.SocialLink
                   key={link.id}
@@ -56,7 +58,7 @@ export const ContactView: React.FC = () => {
                   rel="noopener noreferrer"
                   aria-label={link.name}
                 >
-                  {Icon && <Icon size={20} />}
+                  <Icon size={20} />
                 </S.SocialLink>
               );
             })}
