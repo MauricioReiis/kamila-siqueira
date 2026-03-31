@@ -17,7 +17,6 @@ const formatPhone = (raw: string): string => {
 
 export const useProposal = () => {
   const [budgetValue, setBudgetValue] = useState(25000);
-  const [isSubmitted, setIsSubmitted] = useState(false);
   const [showConfirmModal, setShowConfirmModal] = useState(false);
   const [showThankYou, setShowThankYou] = useState(false);
   const [pendingData, setPendingData] = useState<ProposalFormData | null>(null);
@@ -77,7 +76,6 @@ export const useProposal = () => {
     setPendingData(null);
     setShowThankYou(true);
 
-    setIsSubmitted(true);
     reset({
       name: '',
       company: '',
@@ -89,7 +87,6 @@ export const useProposal = () => {
       referral: '',
     });
     setBudgetValue(25000);
-    setTimeout(() => setIsSubmitted(false), 5000);
   };
 
   const closeThankYou = () => {
@@ -141,7 +138,6 @@ export const useProposal = () => {
     budgetValue,
     setBudgetValue,
     formatCurrency,
-    isSubmitted,
     register,
     onSubmit,
     errors,

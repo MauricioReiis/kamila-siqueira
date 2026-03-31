@@ -68,6 +68,87 @@ export const InterestGrid = styled.div`
   gap: 0.6rem;
 `;
 
+export const InterestDesktopOnly = styled.div`
+  display: block;
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+    display: none;
+  }
+`;
+
+export const InterestMobileOnly = styled.div`
+  display: none;
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+    display: block;
+  }
+`;
+
+export const MobileInterestList = styled.div`
+  width: 100%;
+  max-height: 16rem;
+  overflow-y: auto;
+  padding: 0.6rem;
+  background: ${({ theme }) => theme.colors.backgroundCard};
+  border: 0.0625rem solid ${({ theme }) => theme.colors.border};
+  border-radius: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+
+  &:focus {
+    outline: none;
+    border-color: ${({ theme }) => theme.colors.primary};
+    box-shadow: 0 0 0 0.1875rem rgba(196, 139, 159, 0.12);
+  }
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+    -webkit-overflow-scrolling: touch;
+  }
+`;
+
+export const MobileInterestOption = styled.label<{ $selected: boolean }>`
+  display: flex;
+  align-items: flex-start;
+  gap: 0.55rem;
+  padding: 0.55rem 0.6rem;
+  border: 0.0625rem solid ${({ theme, $selected }) =>
+    $selected ? theme.colors.primary : theme.colors.border};
+  border-radius: 0.45rem;
+  background: ${({ $selected }) =>
+    $selected ? 'rgba(196, 139, 159, 0.15)' : 'transparent'};
+`;
+
+export const MobileInterestCheckbox = styled.input`
+  margin-top: 0.2rem;
+  accent-color: ${({ theme }) => theme.colors.primary};
+  flex-shrink: 0;
+`;
+
+export const MobileInterestText = styled.div`
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+`;
+
+export const MobileInterestTitle = styled.span`
+  color: ${({ theme }) => theme.colors.text};
+  font-size: 0.9rem;
+  font-weight: 600;
+  line-height: 1.3;
+  white-space: normal;
+  overflow-wrap: anywhere;
+`;
+
+export const MobileInterestDescription = styled.span`
+  color: ${({ theme }) => theme.colors.textMuted};
+  font-size: 0.8rem;
+  line-height: 1.35;
+  white-space: normal;
+  overflow-wrap: anywhere;
+`;
+
 export const InterestChip = styled.label<{ $selected: boolean }>`
   padding: 0.45rem 1rem;
   border-radius: 62.4375rem;
@@ -160,6 +241,7 @@ export const FormGroup = styled.div`
 export const FormLabel = styled.label`
   font-size: 0.82rem;
   font-weight: 600;
+  padding: 0.4375rem 0;
   color: ${({ theme }) => theme.colors.text};
 `;
 
@@ -216,6 +298,7 @@ export const FormSelect = styled.select`
   border: 0.0625rem solid ${({ theme }) => theme.colors.border};
   border-radius: 0.5rem;
   color: ${({ theme }) => theme.colors.text};
+  color-scheme: dark;
   font-size: 0.95rem;
   cursor: pointer;
   appearance: none;
@@ -232,6 +315,18 @@ export const FormSelect = styled.select`
 
   option {
     background: ${({ theme }) => theme.colors.backgroundCard};
+    color: ${({ theme }) => theme.colors.text};
+  }
+
+  option:checked {
+    background: ${({ theme }) => theme.colors.primary};
+    color: #ffffff;
+  }
+
+  option:hover,
+  option:focus {
+    background: rgba(196, 139, 159, 0.2);
+    color: ${({ theme }) => theme.colors.text};
   }
 `;
 
@@ -250,6 +345,7 @@ export const BudgetDisplay = styled.div`
   font-size: 1rem;
   font-weight: 600;
   color: ${({ theme }) => theme.colors.text};
+  margin-bottom: 0.5rem;
 
   span {
     background: ${({ theme }) => theme.colors.gradientText};
@@ -300,16 +396,6 @@ export const RangeLabels = styled.div`
   justify-content: space-between;
   font-size: 0.78rem;
   color: ${({ theme }) => theme.colors.textDark};
-`;
-
-export const SuccessMessage = styled(motion.div)`
-  padding: 1rem;
-  background: rgba(39, 174, 96, 0.1);
-  border: 0.0625rem solid rgba(39, 174, 96, 0.3);
-  border-radius: 0.5rem;
-  color: #27ae60;
-  text-align: center;
-  font-weight: 500;
 `;
 
 export const SubmitRow = styled.div`

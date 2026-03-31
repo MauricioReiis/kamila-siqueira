@@ -80,10 +80,8 @@ export const AboutImage = styled.img`
   z-index: 1;
 `;
 
-export const ExperienceBadge = styled.div`
+export const AboutBadge = styled.div`
   position: absolute;
-  top: 2rem;
-  right: -1rem;
   z-index: 5;
   background: ${({ theme }) =>
     theme.colors.background === '#0A0A0A'
@@ -102,7 +100,6 @@ export const ExperienceBadge = styled.div`
 
   strong {
     display: block;
-    font-size: 1.75rem;
     font-family: ${({ theme }) => theme.fonts.heading};
     background: ${({ theme }) => theme.colors.gradient};
     -webkit-background-clip: text;
@@ -119,14 +116,65 @@ export const ExperienceBadge = styled.div`
 
   @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
     position: static;
-    right: auto;
-    top: auto;
     backdrop-filter: none;
     -webkit-backdrop-filter: none;
     background: ${({ theme }) =>
       theme.colors.background === '#0A0A0A'
         ? 'rgba(10, 10, 10, 0.92)'
         : 'rgba(250, 250, 250, 0.92)'};
+  }
+`;
+
+export const ExperienceBadge = styled(AboutBadge)`
+  top: 2rem;
+  right: -1rem;
+
+  strong {
+    font-size: 1.75rem;
+  }
+`;
+
+export const GraduationBadge = styled(AboutBadge)`
+  top: 10rem;
+  left: -1rem;
+  right: auto;
+
+  strong {
+    font-size: 1.25rem;
+    font-weight: 700;
+    line-height: 1.3;
+  }
+
+  span {
+    display: block;
+    margin-top: 0.4rem;
+  }
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
+    top: auto;
+    left: auto;
+    right: auto;
+  }
+`;
+
+export const PostGraduationBadge = styled(AboutBadge)`
+  top: 17rem;
+  right: -1rem;
+
+  strong {
+    font-size: 1.25rem;
+    font-weight: 700;
+    line-height: 1.3;
+  }
+
+  span {
+    display: block;
+    margin-top: 0.4rem;
+  }
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
+    top: auto;
+    right: auto;
   }
 `;
 
@@ -175,6 +223,10 @@ export const ValuesGrid = styled.div`
   flex-wrap: wrap;
   gap: 0.75rem;
   margin-top: 0.5rem;
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+    justify-content: center;
+  }
 `;
 
 export const ValueTag = styled(motion.span)`

@@ -54,6 +54,20 @@ export const testimonials: Testimonial[] = [
     company: 'Agência Florescer',
     text: 'A Kamila tem um dom único de transformar ideias em realidade. Sua dedicação, profissionalismo e talento são incomparáveis. Minha marca nunca esteve tão forte!',
   },
+  {
+    id: 4,
+    name: 'Marcos Andrade',
+    role: 'Sócio Diretor',
+    company: 'Andrade Imóveis',
+    text: 'Em poucos meses conseguimos organizar funil, comunicação e aquisição. O processo ficou claro para o time e os resultados vieram com previsibilidade.',
+  },
+  {
+    id: 5,
+    name: 'Letícia Nogueira',
+    role: 'Head de Marketing',
+    company: 'Nexa Saúde Integrada',
+    text: 'Gostei muito da combinação entre estratégia e execução. A Kamila trouxe visão analítica sem perder a sensibilidade da marca, e isso elevou nossa conversão.',
+  },
 ];
 
 export const stats: Stat[] = [
@@ -63,8 +77,8 @@ export const stats: Stat[] = [
 ];
 
 export const socialLinks: SocialLink[] = [
-  { id: 1, name: 'Instagram', url: 'https://instagram.com/kamilasiqueira', icon: 'Instagram' },
-  { id: 2, name: 'LinkedIn', url: 'https://linkedin.com/in/kamilasiqueira', icon: 'Linkedin' },
+  { id: 1, name: 'Instagram', url: 'https://www.instagram.com/kamila_ahdigital/', icon: 'Instagram' },
+  { id: 2, name: 'LinkedIn', url: 'https://www.linkedin.com/in/kamila-siqueira-41596b30a/', icon: 'Linkedin' },
 ];
 
 export const heroData = {
@@ -80,7 +94,7 @@ export const aboutData = {
     'Acredito que o marketing é, acima de tudo, uma troca entre pessoas. Por isso, meu trabalho foge das fórmulas prontas. Unindo um perfil analítico à criatividade, construo estratégias personalizadas onde a tecnologia é o suporte, mas a inteligência humana é o motor.',
     'Com responsabilidade e foco em processos, transformo confusão em clareza para negócios que buscam evolução contínua e resultados que não dependem apenas de automação, mas de direção.',
   ],
-  values: ['Estratégia ', 'Performance', 'Tráfego Pago', 'Funis', 'Conteúdo que converte'],
+  values: ['Estratégia ', 'Performance', 'Tráfego Pago', 'Funis', 'Conversão'],
 };
 
 export const dashboardCompanies: DashboardCompany[] = [
@@ -99,7 +113,7 @@ export const dashboardCompanies: DashboardCompany[] = [
   {
     id: 2,
     segment: 'Movéis planejados',
-    implementationTime: '6 meses',
+    implementationTime: '120 dias',
     metrics: [
       { key: 'revenue', label: 'Receita mensal', format: 'currency', before: 89000, after: 173000 },
       { key: 'leads', label: 'Leads qualificados', format: 'number', before: 140, after: 355 },
@@ -111,7 +125,7 @@ export const dashboardCompanies: DashboardCompany[] = [
   {
     id: 3,
     segment: 'Educacao e infoprodutos',
-    implementationTime: '120 dias',
+    implementationTime: '6 meses',
     metrics: [
       { key: 'revenue', label: 'Receita mensal', format: 'currency', before: 46000, after: 118000 },
       { key: 'leads', label: 'Leads qualificados', format: 'number', before: 210, after: 540 },

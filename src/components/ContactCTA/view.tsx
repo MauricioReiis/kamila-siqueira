@@ -30,7 +30,8 @@ export const ContactCTAView: React.FC = () => {
         </S.Title>
 
         <S.Description initial={initial} animate={animate} transition={transition(0.2)}>
-          Envie sua proposta e retornaremos com os próximos passos em até 1 dia útil.
+          Envie sua proposta e retornaremos com os próximos passos <br />
+          em até 1 dia útil.
         </S.Description>
 
         <S.InfoRow initial={initial} animate={animate} transition={transition(0.3)}>

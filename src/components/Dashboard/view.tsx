@@ -15,9 +15,7 @@ export const DashboardView: React.FC = () => {
           <S.SectionLabel>Impacto em números</S.SectionLabel>
           <S.Title>Antes e depois da estratégia aplicada</S.Title>
           <S.Subtitle>
-            Alguns exemplos de clientes que foram impactados após a aplicação da nossa
-            estratégia, para visualizar rapidamente ganhos em receita, eficiência e geração
-            de oportunidades.
+            Alguns exemplos reais de clientes após a aplicação da nossa estratégia, mostrando de forma clara o antes e depois em receita, eficiência e geração de oportunidades.
           </S.Subtitle>
         </S.Header>
 
@@ -42,7 +40,6 @@ export const DashboardView: React.FC = () => {
         >
           <S.ChartHeader>
             <h3>Comparativo de Receita</h3>
-            <p>Exemplo visual</p>
           </S.ChartHeader>
 
           <S.ChartLegend>

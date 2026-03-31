@@ -9,7 +9,6 @@ export const ProposalView: React.FC = () => {
     budgetValue,
     setBudgetValue,
     formatCurrency,
-    isSubmitted,
     register,
     onSubmit,
     errors,
@@ -47,31 +46,56 @@ export const ProposalView: React.FC = () => {
           <div>
             <S.FormGroup>
               <S.FormLabel>Você tem interesse em<S.RequiredAsterisk>*</S.RequiredAsterisk></S.FormLabel>
-              <S.InterestGrid>
-                {interestOptions.map((option) => (
-                  <S.InterestChip
-                    key={option.label}
-                    $selected={selectedInterests.includes(option.label)}
-                    onClick={(e) => { e.preventDefault(); toggleInterest(option.label); }}
-                  >
-                    <input
-                      type="checkbox"
-                      readOnly
-                      checked={selectedInterests.includes(option.label)}
-                      value={option.label}
-                    />
-                    {option.label}
-                    {option.description && (
-                      <S.InfoIconWrapper
-                        onClick={(e) => e.stopPropagation()}
-                      >
-                        <Info size={14} />
-                        <S.Tooltip>{option.description}</S.Tooltip>
-                      </S.InfoIconWrapper>
-                    )}
-                  </S.InterestChip>
-                ))}
-              </S.InterestGrid>
+              <S.InterestDesktopOnly>
+                <S.InterestGrid>
+                  {interestOptions.map((option) => (
+                    <S.InterestChip
+                      key={option.label}
+                      $selected={selectedInterests.includes(option.label)}
+                      onClick={(e) => { e.preventDefault(); toggleInterest(option.label); }}
+                    >
+                      <input
+                        type="checkbox"
+                        readOnly
+                        checked={selectedInterests.includes(option.label)}
+                        value={option.label}
+                      />
+                      {option.label}
+                      {option.description && (
+                        <S.InfoIconWrapper
+                          onClick={(e) => e.stopPropagation()}
+                        >
+                          <Info size={14} />
+                          <S.Tooltip>{option.description}</S.Tooltip>
+                        </S.InfoIconWrapper>
+                      )}
+                    </S.InterestChip>
+                  ))}
+                </S.InterestGrid>
+              </S.InterestDesktopOnly>
+
+              <S.InterestMobileOnly>
+                <S.MobileInterestList role="group" aria-label="Selecione os serviços de interesse">
+                  {interestOptions.map((option) => (
+                    <S.MobileInterestOption
+                      key={option.label}
+                      $selected={selectedInterests.includes(option.label)}
+                    >
+                      <S.MobileInterestCheckbox
+                        type="checkbox"
+                        checked={selectedInterests.includes(option.label)}
+                        onChange={() => toggleInterest(option.label)}
+                      />
+                      <S.MobileInterestText>
+                        <S.MobileInterestTitle>{option.label}</S.MobileInterestTitle>
+                        {option.description && (
+                          <S.MobileInterestDescription>{option.description}</S.MobileInterestDescription>
+                        )}
+                      </S.MobileInterestText>
+                    </S.MobileInterestOption>
+                  ))}
+                </S.MobileInterestList>
+              </S.InterestMobileOnly>
               {errors.interests && <S.FormError>{errors.interests.message}</S.FormError>}
             </S.FormGroup>
           </div>
@@ -181,15 +205,6 @@ export const ProposalView: React.FC = () => {
               ))}
             </S.FormSelect>
           </S.FormGroup>
-
-          {isSubmitted && (
-            <S.SuccessMessage
-              initial={{ opacity: 0, y: -10 }}
-              animate={{ opacity: 1, y: 0 }}
-            >
-              Proposta enviada com sucesso! Entraremos em contato em breve.
-            </S.SuccessMessage>
-          )}
 
           <S.SubmitRow>
             <S.SubmitButton type="submit" disabled={!isFormValid}>Enviar</S.SubmitButton>

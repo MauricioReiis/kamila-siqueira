@@ -29,6 +29,14 @@ export const AboutView: React.FC = () => {
             <strong>+4</strong>
             <span>Anos de experiência</span>
           </S.ExperienceBadge>
+          <S.GraduationBadge>
+            <strong>Graduação <br/>Marketing</strong>
+            <span>2024 - 2026</span>
+          </S.GraduationBadge>
+          <S.PostGraduationBadge>
+            <strong>Pós-Graduação <br/>Inteligência Artificial</strong>
+            <span>2026 - 2027</span>
+          </S.PostGraduationBadge>
         </S.AboutImageWrapper>
 
         <S.AboutContent
