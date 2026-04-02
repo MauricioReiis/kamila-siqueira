@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 import { useInView } from 'react-intersection-observer';
-import { stats } from '../../models/data';
+import { stats } from '../../lib/data';
 
 export const useStats = () => {
   const { ref, inView } = useInView({

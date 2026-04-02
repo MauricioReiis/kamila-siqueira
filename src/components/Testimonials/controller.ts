@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
-import { testimonials } from '../../models/data';
+import { testimonials } from '../../lib/data';
 
 export const useTestimonials = () => {
   const { ref, inView } = useInView({

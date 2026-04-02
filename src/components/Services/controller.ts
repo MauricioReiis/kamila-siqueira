@@ -1,5 +1,5 @@
 import { useInView } from 'react-intersection-observer';
-import { services } from '../../models/data';
+import { services } from '../../lib/data';
 
 export const useServices = () => {
   const { ref, inView } = useInView({

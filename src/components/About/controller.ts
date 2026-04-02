@@ -1,5 +1,5 @@
 import { useInView } from 'react-intersection-observer';
-import { aboutData } from '../../models/data';
+import { aboutData } from '../../lib/data';
 
 export const useAbout = () => {
   const { ref: imageRef, inView: imageInView } = useInView({

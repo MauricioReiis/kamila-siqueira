@@ -116,3 +116,37 @@ export const ServiceDescription = styled.p`
   line-height: 1.7;
   color: ${({ theme }) => theme.colors.textMuted};
 `;
+
+export const ServiceDetails = styled.ul`
+  list-style: none;
+  padding: 0;
+  margin-top: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+`;
+
+export const ServiceDetailItem = styled.li`
+  font-size: 0.875rem;
+  line-height: 1.6;
+  color: ${({ theme }) => theme.colors.textMuted};
+  padding-left: 1rem;
+  position: relative;
+
+  &::before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    color: ${({ theme }) => theme.colors.primary};
+    font-weight: 700;
+  }
+`;
+
+export const ServiceDetailLabel = styled.strong`
+  color: ${({ theme }) => theme.colors.text};
+  font-weight: 600;
+`;
+
+export const ServiceDetailText = styled.span`
+  color: ${({ theme }) => theme.colors.textMuted};
+`;

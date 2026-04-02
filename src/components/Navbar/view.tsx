@@ -1,5 +1,5 @@
 import { Sun, Moon } from 'lucide-react';
-import { navLinks } from '../../models/data';
+import { navLinks } from '../../lib/data';
 import { useNavbar } from './controller';
 import * as S from './style';
 

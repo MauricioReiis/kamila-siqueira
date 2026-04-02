@@ -14,7 +14,7 @@ export const Nav = styled.nav<{ $scrolled: boolean }>`
     $scrolled ? `0.0625rem solid ${theme.colors.border}` : '0.0625rem solid transparent'};
   transition: all ${({ theme }) => theme.transition};
 
-  @media (max-width: 768px) {
+  @media (max-width: 48rem) {
     backdrop-filter: none;
     -webkit-backdrop-filter: none;
     background: ${({ $scrolled, theme }) =>

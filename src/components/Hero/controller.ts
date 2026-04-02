@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
-import { heroData } from '../../models/data';
+import { heroData } from '../../lib/data';
 
 declare global {
   interface Window {

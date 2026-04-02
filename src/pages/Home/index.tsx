@@ -20,8 +20,8 @@ const PageWrapper = styled.main<{ $isDark: boolean }>`
     position: fixed;
     inset: -2rem;
     background-image: radial-gradient(
-      rgba(196, 139, 159, 0.35) 1px,
-      transparent 1px
+      rgba(196, 139, 159, 0.35) 0.0625rem,
+      transparent 0.0625rem
     );
     background-size: 3rem 3rem;
     pointer-events: none;
@@ -30,7 +30,7 @@ const PageWrapper = styled.main<{ $isDark: boolean }>`
     animation: bgDrift 30s ease-in-out infinite;
     will-change: transform;
 
-    @media (max-width: 768px) {
+    @media (max-width: 48rem) {
       display: none;
     }
   }
@@ -55,7 +55,7 @@ const PageWrapper = styled.main<{ $isDark: boolean }>`
     animation: bgDrift 25s ease-in-out infinite reverse;
     will-change: transform;
 
-    @media (max-width: 768px) {
+    @media (max-width: 48rem) {
       display: none;
     }
   }

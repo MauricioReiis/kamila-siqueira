@@ -1,7 +1,7 @@
 import { Mail, MessageCircle, MapPin, ArrowRight, Camera, Briefcase } from 'lucide-react';
 import { useInView } from 'react-intersection-observer';
 import { useNavigate } from 'react-router-dom';
-import { socialLinks } from '../../models/data';
+import { socialLinks } from '../../lib/data';
 import * as S from './style';
 
 const socialIconMap: Record<string, React.FC<{ size?: number }>> = {
