@@ -28,6 +28,13 @@ export const useTestimonials = () => {
 
     virtualScrollRef.current = carousel.scrollLeft;
 
+    // Cache scrollWidth to avoid forced reflow every frame
+    let cachedHalfWidth = carousel.scrollWidth / 2;
+    const resizeObserver = new ResizeObserver(() => {
+      cachedHalfWidth = carousel.scrollWidth / 2;
+    });
+    resizeObserver.observe(carousel);
+
     const step = (time: number) => {
       if (!lastTime) {
         lastTime = time;
@@ -40,9 +47,8 @@ export const useTestimonials = () => {
         virtualScrollRef.current += (autoScrollSpeed * deltaTime) / 1000;
 
         // The list is duplicated in the view; when reaching halfway, loop seamlessly.
-        const halfWidth = carousel.scrollWidth / 2;
-        if (virtualScrollRef.current >= halfWidth) {
-          virtualScrollRef.current -= halfWidth;
+        if (virtualScrollRef.current >= cachedHalfWidth) {
+          virtualScrollRef.current -= cachedHalfWidth;
         }
 
         carousel.scrollLeft = virtualScrollRef.current;
@@ -55,6 +61,7 @@ export const useTestimonials = () => {
 
     return () => {
       window.cancelAnimationFrame(animationFrameId);
+      resizeObserver.disconnect();
     };
   }, [isPaused]);
 

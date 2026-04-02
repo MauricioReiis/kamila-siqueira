@@ -28,6 +28,7 @@ const PageWrapper = styled.main<{ $isDark: boolean }>`
     z-index: 0;
     display: ${({ $isDark }) => ($isDark ? 'block' : 'none')};
     animation: bgDrift 30s ease-in-out infinite;
+    will-change: transform;
 
     @media (max-width: 768px) {
       display: none;
@@ -52,6 +53,7 @@ const PageWrapper = styled.main<{ $isDark: boolean }>`
     z-index: 0;
     display: ${({ $isDark }) => ($isDark ? 'block' : 'none')};
     animation: bgDrift 25s ease-in-out infinite reverse;
+    will-change: transform;
 
     @media (max-width: 768px) {
       display: none;

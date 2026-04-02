@@ -1,24 +1,12 @@
 import styled, { keyframes } from 'styled-components';
 
-const blink = keyframes`
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0; }
-`;
-
-const fadeInUp = keyframes`
+const slideUp = keyframes`
   from {
-    opacity: 0;
     transform: translateY(1.875rem);
   }
   to {
-    opacity: 1;
     transform: translateY(0);
   }
-`;
-
-const shimmer = keyframes`
-  0% { background-position: -200% 0; }
-  100% { background-position: 200% 0; }
 `;
 
 export const HeroSection = styled.section`
@@ -85,17 +73,8 @@ export const HeroContainer = styled.div`
 `;
 
 export const HeroContent = styled.div`
-  animation: ${fadeInUp} 0.8s ease forwards;
-`;
-
-export const HeroGreeting = styled.p`
-  font-family: ${({ theme }) => theme.fonts.body};
-  font-size: 1.125rem;
-  font-weight: 500;
-  color: ${({ theme }) => theme.colors.primary};
-  text-transform: uppercase;
-  letter-spacing: 0.1875rem;
-  margin-bottom: 1rem;
+  animation: ${slideUp} 0.6s ease forwards;
+  will-change: transform;
 `;
 
 export const HeroTitle = styled.h1`
@@ -111,16 +90,6 @@ export const HeroTitle = styled.h1`
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
-`;
-
-export const Cursor = styled.span`
-  display: inline-block;
-  width: 0.1875rem;
-  height: 1em;
-  background: ${({ theme }) => theme.colors.primary};
-  margin-left: 0.25rem;
-  vertical-align: text-bottom;
-  animation: ${blink} 1s infinite;
 `;
 
 export const HeroSubtitle = styled.p`
@@ -142,8 +111,8 @@ export const HeroImageWrapper = styled.div`
   justify-content: center;
   align-items: center;
   position: relative;
-  animation: ${fadeInUp} 0.8s ease 0.3s forwards;
-  opacity: 0;
+  animation: ${slideUp} 0.6s ease 0.2s both;
+  will-change: transform;
 
   @media (max-width: ${({ theme }) => theme.breakpoints.desktop}) {
     order: -1;
@@ -188,209 +157,332 @@ export const HeroImagePlaceholder = styled.div`
   }
 `;
 
-export const PlaceholderText = styled.span`
-  font-family: ${({ theme }) => theme.fonts.heading};
-  font-size: 4rem;
+export const YouTubeContainer = styled.div`
+  position: absolute;
+  inset: 0;
+  display: none;
+  overflow: hidden;
+
+  /*
+   * Container: 23.75rem × 30rem.
+   * YouTube player is always 16:9; the 9:16 Short is pillarboxed inside it.
+   * To crop the black bars we scale the iframe so the video content (9:16
+   * portion = iframe_height × 9/16) equals the container width:
+   *   required iframe_height = W × (16/9) = 23.75 × 16/9 ≈ 42.2rem
+   *   as % of H (30rem): 42.2 / 30 ≈ 141%
+   * Then center it — browser handles horizontal overflow via overflow:hidden.
+   */
+  iframe {
+    position: absolute !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    width: auto !important;
+    height: 141% !important;
+    min-width: unset !important;
+    aspect-ratio: 16 / 9 !important;
+    border: none !important;
+    pointer-events: none !important;
+  }
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
+    display: block;
+  }
+`;
+
+export const KsThumbnailBg = styled.div`
+  position: absolute;
+  inset: 0;
+  background: ${({ theme }) => theme.colors.backgroundAlt};
+`;
+
+export const KsMonogramRow = styled.div`
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: baseline;
+  gap: 0.25rem;
+`;
+
+export const KsMonogramK = styled.span`
+  position: relative;
+  z-index: 1;
+  font-size: 7rem;
   font-weight: 700;
+  line-height: 1;
+  color: #fff;
+`;
+
+export const KsMonogramS = styled.span`
+  position: relative;
+  z-index: 1;
+  font-size: 7rem;
+  font-weight: 700;
+  line-height: 1;
   background: ${({ theme }) => theme.colors.gradient};
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  opacity: 0.3;
 `;
 
-export const HeroVideo = styled.video<{ $ready?: boolean }>`
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+export const KsDivider = styled.div`
+  position: relative;
+  z-index: 1;
+  width: 2.75rem;
+  height: 0.0625rem;
+  background: ${({ theme }) => theme.colors.gradient};
+  margin-bottom: 0.875rem;
+  opacity: 0.6;
+`;
+
+export const KsName = styled.p`
+  position: relative;
+  z-index: 1;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: ${({ theme }) => theme.colors.textMuted};
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-bottom: 2rem;
+`;
+
+export const KsTagline = styled.p`
+  position: relative;
+  z-index: 1;
+  font-size: 0.6875rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.4);
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  margin-top: 1rem;
+`;
+
+export const YtPlayOverlay = styled.div`
+  position: relative;
+  z-index: 1;
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(6px);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+  will-change: transform;
+`;
+
+export const YtThumbnail = styled.div<{ $visible: boolean }>`
+  display: none;
   position: absolute;
-  top: 0;
+  inset: 0;
+  z-index: 2;
+  overflow: hidden;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  opacity: ${({ $visible }) => ($visible ? 1 : 0)};
+  pointer-events: ${({ $visible }) => ($visible ? 'auto' : 'none')};
+  transition: opacity 0.5s ease;
+
+  &:hover ${YtPlayOverlay} {
+    transform: scale(1.12);
+    background: rgba(0, 0, 0, 0.6);
+    border-color: rgba(255, 255, 255, 0.6);
+  }
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
+    display: flex;
+  }
+`;
+
+export const DesktopControls = styled.div`
+  display: none;
+  position: absolute;
+  bottom: 0;
   left: 0;
-  image-rendering: auto;
-  background: ${({ theme }) => theme.colors.backgroundCard};
-  opacity: ${({ $ready }) => ($ready ? 1 : 0)};
-  transition: opacity 0.6s ease;
+  right: 0;
+  z-index: 3;
+  flex-direction: column;
+  gap: 0.25rem;
+  padding: 0.75rem 0.75rem 0.5rem;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.65));
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
+    display: flex;
+  }
+`;
+
+export const DesktopControlButton = styled.button`
+  background: none;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  padding: 0.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.85;
+  transition: opacity 0.2s;
+
+  &:hover {
+    opacity: 1;
+  }
+`;
+
+const shimmer = keyframes`
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+`;
+
+export const MobileVideoContainer = styled.div`
+  position: absolute;
+  inset: 0;
+  display: block;
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
+    display: none;
+  }
 `;
 
 export const VideoSkeleton = styled.div`
   position: absolute;
   inset: 0;
-  background: ${({ theme }) => theme.colors.backgroundAlt};
-  overflow: hidden;
-
-  &::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(
-      90deg,
-      transparent 0%,
-      ${({ theme }) =>
-        theme.colors.background === '#0A0A0A'
-          ? 'rgba(255, 255, 255, 0.04)'
-          : 'rgba(0, 0, 0, 0.04)'} 50%,
-      transparent 100%
-    );
-    background-size: 200% 100%;
-    animation: ${shimmer} 1.8s ease-in-out infinite;
-    z-index: 1;
-  }
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.04) 25%,
+    rgba(255, 255, 255, 0.08) 50%,
+    rgba(255, 255, 255, 0.04) 75%
+  );
+  background-size: 200% 100%;
+  animation: ${shimmer} 1.5s ease infinite;
+  border-radius: inherit;
+  z-index: 1;
 `;
 
-export const SkeletonPlayCenter = styled.div`
+export const HeroMobileVideo = styled.video<{ $loaded: boolean }>`
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 3.5rem;
-  height: 3.5rem;
-  border-radius: 50%;
-  background: ${({ theme }) =>
-    theme.colors.background === '#0A0A0A'
-      ? 'rgba(255, 255, 255, 0.10)'
-      : 'rgba(0, 0, 0, 0.08)'};
-  z-index: 2;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  /* Triangle play icon */
-  &::after {
-    content: '';
-    display: block;
-    width: 0;
-    height: 0;
-    margin-left: 0.2rem;
-    border-style: solid;
-    border-width: 0.6rem 0 0.6rem 1rem;
-    border-color: transparent transparent transparent
-      ${({ theme }) =>
-        theme.colors.background === '#0A0A0A'
-          ? 'rgba(255, 255, 255, 0.25)'
-          : 'rgba(0, 0, 0, 0.18)'};
-  }
-`;
-
-export const SkeletonControls = styled.div`
-  position: absolute;
-  bottom: 0.75rem;
-  left: 0.75rem;
-  right: 0.75rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  z-index: 2;
-`;
-
-export const SkeletonControlsRow = styled.div`
-  display: flex;
-  gap: 0.5rem;
-`;
-
-export const SkeletonButton = styled.div`
-  width: 2rem;
-  height: 2rem;
-  border-radius: 50%;
-  background: ${({ theme }) =>
-    theme.colors.background === '#0A0A0A'
-      ? 'rgba(255, 255, 255, 0.08)'
-      : 'rgba(0, 0, 0, 0.07)'};
-`;
-
-export const SkeletonProgressBar = styled.div`
   width: 100%;
-  height: 0.1875rem;
-  border-radius: 62.4375rem;
-  background: ${({ theme }) =>
-    theme.colors.background === '#0A0A0A'
-      ? 'rgba(255, 255, 255, 0.08)'
-      : 'rgba(0, 0, 0, 0.07)'};
+  min-height: 100%;
+  object-fit: cover;
+  border: none;
+  opacity: ${({ $loaded }) => ($loaded ? 1 : 0)};
+  transition: opacity 0.4s ease;
+`;
+
+export const MobileFallbackIframe = styled.iframe`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  aspect-ratio: 9 / 16;
+  min-height: 100%;
+  border: none;
+  pointer-events: auto;
 `;
 
 export const VideoControls = styled.div`
   position: absolute;
-  bottom: 0.75rem;
-  left: 0.75rem;
-  right: 0.75rem;
+  bottom: 0;
+  left: 0;
+  right: 0;
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
+  gap: 0.25rem;
+  padding: 0.75rem 0.75rem 0.5rem;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.6));
   z-index: 2;
-  opacity: 0;
-  transition: opacity 0.3s ease;
+`;
 
-  ${HeroImagePlaceholder}:hover & {
+export const ButtonsRow = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+`;
+
+export const ControlButton = styled.button`
+  background: none;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  padding: 0.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.85;
+  transition: opacity 0.2s;
+
+  &:hover {
     opacity: 1;
   }
 `;
 
-export const VideoControlsRow = styled.div`
-  display: flex;
-  gap: 0.5rem;
-`;
-
-export const VideoProgressBar = styled.input`
-  -webkit-appearance: none;
-  appearance: none;
-  width: 100%;
-  height: 0.1875rem;
-  border-radius: 62.4375rem;
-  background: rgba(255, 255, 255, 0.25);
-  outline: none;
-  cursor: pointer;
-  margin: 0;
-
-  &::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    appearance: none;
-    width: 0.75rem;
-    height: 0.75rem;
-    border-radius: 50%;
-    background: #fff;
-    cursor: pointer;
-    box-shadow: 0 0 0.25rem rgba(0, 0, 0, 0.3);
-    margin-top: -0.28125rem;
-  }
-
-  &::-moz-range-thumb {
-    width: 0.75rem;
-    height: 0.75rem;
-    border-radius: 50%;
-    background: #fff;
-    cursor: pointer;
-    border: none;
-  }
-
-  &::-webkit-slider-runnable-track {
-    height: 0.1875rem;
-    border-radius: 62.4375rem;
-  }
-`;
-
-export const VideoControlButton = styled.button`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 2rem;
-  height: 2rem;
-  border-radius: 50%;
-  background: rgba(0, 0, 0, 0.5);
-  backdrop-filter: blur(0.25rem);
-  border: 0.0625rem solid rgba(255, 255, 255, 0.2);
+export const SpeedButton = styled.button`
+  background: none;
+  border: none;
   color: #fff;
   cursor: pointer;
-  transition: all 0.2s ease;
+  padding: 0.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.2rem;
+  font-size: 0.7rem;
+  font-weight: 600;
+  opacity: 0.85;
+  transition: opacity 0.2s;
+  white-space: nowrap;
 
   &:hover {
-    background: rgba(0, 0, 0, 0.7);
-    border-color: rgba(255, 255, 255, 0.4);
+    opacity: 1;
   }
+`;
+
+export const ProgressBar = styled.div`
+  width: 100%;
+  cursor: pointer;
+  padding: 0.25rem 0 0;
+  touch-action: none;
+`;
+
+export const ProgressTrack = styled.div`
+  width: 100%;
+  height: 0.25rem;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 0.125rem;
+  position: relative;
+  overflow: visible;
+`;
+
+export const ProgressFill = styled.div`
+  height: 100%;
+  background: ${({ theme }) => theme.colors.gradient};
+  border-radius: 0.125rem;
+`;
+
+export const ProgressThumb = styled.div`
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 0.75rem;
+  height: 0.75rem;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.3);
+  pointer-events: none;
 `;
 
 export const FloatingBadge = styled.div`
   position: absolute;
   top: 2rem;
   right: -3rem;
+  z-index: 4;
   background: ${({ theme }) =>
     theme.colors.background === '#0A0A0A'
       ? 'rgba(10, 10, 10, 0.72)'

@@ -7,7 +7,7 @@ export const FooterView: React.FC = () => {
   return (
     <S.FooterWrapper>
       <S.FooterContainer>
-        <S.FooterLogo href="#home" onClick={() => handleNavClick('#home')}>
+        <S.FooterLogo href="/" onClick={(e: React.MouseEvent) => { e.preventDefault(); handleNavClick('#home'); }}>
           Kamila <span>Siqueira</span>
         </S.FooterLogo>
 

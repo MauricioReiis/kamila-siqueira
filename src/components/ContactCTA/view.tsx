@@ -1,5 +1,6 @@
 import { Mail, MessageCircle, MapPin, ArrowRight, Camera, Briefcase } from 'lucide-react';
 import { useInView } from 'react-intersection-observer';
+import { useNavigate } from 'react-router-dom';
 import { socialLinks } from '../../models/data';
 import * as S from './style';
 
@@ -13,6 +14,7 @@ const socialIconMap: Record<string, React.FC<{ size?: number }>> = {
 
 export const ContactCTAView: React.FC = () => {
   const { ref, inView } = useInView({ threshold: 0.15, triggerOnce: true });
+  const navigate = useNavigate();
 
   const animate = inView ? { opacity: 1, y: 0 } : {};
   const initial = { opacity: 0, y: 30 };
@@ -69,7 +71,13 @@ export const ContactCTAView: React.FC = () => {
         </S.SocialLinks>
 
         <S.CTAGroup initial={initial} animate={animate} transition={transition(0.4)}>
-          <S.CTAButton href="/proposta">
+          <S.CTAButton
+            onClick={(e: React.MouseEvent) => {
+              e.preventDefault();
+              navigate('/proposta');
+            }}
+            href="/proposta"
+          >
             Enviar proposta <ArrowRight size={18} />
           </S.CTAButton>
         </S.CTAGroup>

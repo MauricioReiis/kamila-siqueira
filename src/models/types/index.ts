@@ -34,13 +34,6 @@ export interface SocialLink {
   icon: string;
 }
 
-export interface ContactFormData {
-  name: string;
-  email: string;
-  phone: string;
-  message: string;
-}
-
 export interface ProposalFormData {
   name: string;
   company?: string;
