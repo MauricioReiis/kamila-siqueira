@@ -2,6 +2,7 @@ import { Mail, MessageCircle, MapPin, ArrowRight, Camera, Briefcase } from 'luci
 import { useInView } from 'react-intersection-observer';
 import { useNavigate } from 'react-router-dom';
 import { socialLinks } from '../../lib/data';
+import { trackButtonClick, trackContactClick } from '../../lib/analytics';
 import * as S from './style';
 
 const socialIconMap: Record<string, React.FC<{ size?: number }>> = {
@@ -39,13 +40,33 @@ export const ContactCTAView: React.FC = () => {
         <S.InfoRow initial={initial} animate={animate} transition={transition(0.3)}>
           <S.InfoItem>
             <Mail size={18} />
-            <a href="mailto:contato@kamilasiqueira.com">
+            <a
+              href="mailto:contato@kamilasiqueira.com"
+              onClick={() => trackContactClick({
+                channel: 'email',
+                label: 'contact_email',
+                href: 'mailto:contato@kamilasiqueira.com',
+                location: 'contact',
+              })}
+            >
               contatokamilasiqueira@gmail.com
             </a>
           </S.InfoItem>
           <S.InfoItem>
             <MessageCircle size={18} />
-            <a href="https://wa.me/5532998123552" target="_blank" rel="noopener noreferrer">(32) 9 9812-3552</a>
+            <a
+              href="https://wa.me/5532998123552"
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => trackContactClick({
+                channel: 'whatsapp',
+                label: 'contact_whatsapp',
+                href: 'https://wa.me/5532998123552',
+                location: 'contact',
+              })}
+            >
+              (32) 9 9812-3552
+            </a>
           </S.InfoItem>
           <S.InfoItem>
             <MapPin size={18} />
@@ -63,6 +84,19 @@ export const ContactCTAView: React.FC = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={link.name}
+                onClick={() => trackContactClick({
+                  channel:
+                    link.name.toLowerCase() === 'instagram'
+                      ? 'instagram'
+                      : link.name.toLowerCase() === 'linkedin'
+                        ? 'linkedin'
+                        : link.name.toLowerCase() === 'whatsapp'
+                          ? 'whatsapp'
+                          : 'other',
+                  label: `contact_social_${link.name.toLowerCase()}`,
+                  href: link.url,
+                  location: 'contact',
+                })}
               >
                 <Icon size={18} />
               </S.SocialLink>
@@ -74,6 +108,12 @@ export const ContactCTAView: React.FC = () => {
           <S.CTAButton
             onClick={(e: React.MouseEvent) => {
               e.preventDefault();
+              trackButtonClick({
+                label: 'contact_cta_proposal',
+                location: 'contact',
+                text: 'Enviar proposta',
+                href: '/proposta',
+              });
               navigate('/proposta');
             }}
             href="/proposta"
