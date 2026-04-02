@@ -1,6 +1,7 @@
 import { Sun, Moon } from 'lucide-react';
 import { navLinks } from '../../lib/data';
 import { useNavbar } from './controller';
+import { trackButtonClick } from '../../lib/analytics';
 import * as S from './style';
 
 export const NavbarView: React.FC = () => {
@@ -20,7 +21,11 @@ export const NavbarView: React.FC = () => {
     <>
       <S.Nav $scrolled={isScrolled} role="navigation" aria-label="Navegação principal">
         <S.NavContainer>
-          <S.Logo href="/" onClick={(e: React.MouseEvent) => { e.preventDefault(); handleNavClick('#home'); }}>
+          <S.Logo href="/" onClick={(e: React.MouseEvent) => {
+            e.preventDefault();
+            trackButtonClick({ label: 'navbar_cta_logo', location: 'navbar', text: 'Kamila Siqueira', href: '#home' });
+            handleNavClick('#home');
+          }}>
             Kamila <span>Siqueira</span>
           </S.Logo>
 
@@ -32,6 +37,12 @@ export const NavbarView: React.FC = () => {
                   $active={isHomePath && activeSection === link.id}
                   onClick={(e) => {
                     e.preventDefault();
+                    trackButtonClick({
+                      label: `navbar_cta_${link.id}`,
+                      location: 'navbar',
+                      text: link.label,
+                      href: link.href,
+                    });
                     handleNavClick(link.href);
                   }}
                 >

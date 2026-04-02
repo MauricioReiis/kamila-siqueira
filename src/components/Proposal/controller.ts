@@ -1,8 +1,14 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import type { ChangeEvent } from 'react';
 import { useForm } from 'react-hook-form';
 import type { ProposalFormData, InterestOption } from '../../lib/types';
 import { openWhatsAppProposal } from './message';
+import {
+  trackEvent,
+  trackFormAbandon,
+  trackFormProgress,
+  trackProposalFormSubmit,
+} from '../../lib/analytics';
 
 const formatPhone = (raw: string): string => {
   const d = raw.replace(/\D/g, '').slice(0, 11);
@@ -20,6 +26,20 @@ export const useProposal = () => {
   const [showConfirmModal, setShowConfirmModal] = useState(false);
   const [showThankYou, setShowThankYou] = useState(false);
   const [pendingData, setPendingData] = useState<ProposalFormData | null>(null);
+  const hasSubmittedRef = useRef(false);
+  const hasAbandonTrackedRef = useRef(false);
+  const lastAbandonAtRef = useRef(0);
+  const progressTrackedRef = useRef({
+    interests: false,
+    contact: false,
+    goals: false,
+    budget: false,
+  });
+  const lastSnapshotRef = useRef({
+    step: 'start',
+    fieldsFilled: 0,
+    hasInteraction: false,
+  });
 
   const {
     register,
@@ -34,6 +54,12 @@ export const useProposal = () => {
   });
 
   const selectedInterests = watch('interests') ?? [];
+  const nameValue = watch('name') ?? '';
+  const companyValue = watch('company') ?? '';
+  const emailValue = watch('email') ?? '';
+  const socialProfileValue = watch('socialProfile') ?? '';
+  const goalsValue = watch('goals') ?? '';
+  const referralValue = watch('referral') ?? '';
 
   const toggleInterest = (option: string) => {
     const current = watch('interests') ?? [];
@@ -65,12 +91,28 @@ export const useProposal = () => {
   });
 
   const onSubmit = handleSubmit((data: ProposalFormData) => {
+    trackEvent('proposal_form_valid', {
+      interests_count: data.interests?.length ?? 0,
+      has_company: Boolean(data.company),
+      has_referral: Boolean(data.referral),
+    });
+
     setPendingData(data);
     setShowConfirmModal(true);
   });
 
   const confirmSubmit = () => {
     if (!pendingData) return;
+    hasSubmittedRef.current = true;
+
+    trackProposalFormSubmit({
+      interestsCount: pendingData.interests?.length ?? 0,
+      hasCompany: Boolean(pendingData.company),
+      hasSocialProfile: Boolean(pendingData.socialProfile),
+      hasReferral: Boolean(pendingData.referral),
+      budget: budgetValue,
+    });
+
     openWhatsAppProposal(pendingData, budgetValue);
     setShowConfirmModal(false);
     setPendingData(null);
@@ -97,6 +139,88 @@ export const useProposal = () => {
     setShowConfirmModal(false);
     setPendingData(null);
   };
+
+  const trackAbandonIfNeeded = () => {
+    const snapshot = lastSnapshotRef.current;
+    if (!snapshot.hasInteraction || hasSubmittedRef.current) return;
+
+    const now = Date.now();
+    if (hasAbandonTrackedRef.current || now - lastAbandonAtRef.current < 1500) return;
+
+    hasAbandonTrackedRef.current = true;
+    lastAbandonAtRef.current = now;
+    trackFormAbandon(snapshot.step, snapshot.fieldsFilled);
+  };
+
+  useEffect(() => {
+    const contactComplete = Boolean(nameValue && phoneValue && emailValue);
+    const goalsComplete = Boolean(goalsValue.trim());
+    const interestsComplete = selectedInterests.length > 0;
+    const budgetTouched = budgetValue !== 25000;
+
+    if (interestsComplete && !progressTrackedRef.current.interests) {
+      progressTrackedRef.current.interests = true;
+      trackFormProgress('interests', 1);
+    }
+
+    if (contactComplete && !progressTrackedRef.current.contact) {
+      progressTrackedRef.current.contact = true;
+      trackFormProgress('contact', 3);
+    }
+
+    if (goalsComplete && !progressTrackedRef.current.goals) {
+      progressTrackedRef.current.goals = true;
+      trackFormProgress('goals', 4);
+    }
+
+    if (budgetTouched && !progressTrackedRef.current.budget) {
+      progressTrackedRef.current.budget = true;
+      trackFormProgress('budget', 5);
+    }
+
+    const optionalFilled = [companyValue, socialProfileValue, referralValue].filter((v) => Boolean(v?.trim())).length;
+    const requiredFilled = [Boolean(nameValue), Boolean(phoneValue), Boolean(emailValue), interestsComplete, goalsComplete]
+      .filter(Boolean)
+      .length;
+    const fieldsFilled = requiredFilled + optionalFilled;
+
+    const hasInteraction = fieldsFilled > 0 || budgetTouched;
+    const step = showConfirmModal
+      ? 'confirm_modal'
+      : goalsComplete
+        ? 'goals'
+        : contactComplete
+          ? 'contact'
+          : interestsComplete
+            ? 'interests'
+            : 'start';
+
+    lastSnapshotRef.current = { step, fieldsFilled, hasInteraction };
+  }, [
+    budgetValue,
+    companyValue,
+    emailValue,
+    goalsValue,
+    nameValue,
+    phoneValue,
+    referralValue,
+    selectedInterests.length,
+    showConfirmModal,
+    socialProfileValue,
+  ]);
+
+  useEffect(() => {
+    const handleBeforeUnload = () => {
+      trackAbandonIfNeeded();
+    };
+
+    window.addEventListener('beforeunload', handleBeforeUnload);
+
+    return () => {
+      window.removeEventListener('beforeunload', handleBeforeUnload);
+      trackAbandonIfNeeded();
+    };
+  }, []);
 
   const formatCurrency = (value: number) =>
     value >= 500000

@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { heroData } from '../../lib/data';
+import { trackVideoInteraction } from '../../lib/analytics';
 
 declare global {
   interface Window {
@@ -82,9 +83,11 @@ export const useHero = () => {
     if (video.paused) {
       video.play();
       setIsPlaying(true);
+      trackVideoInteraction({ provider: 'html5', action: 'play', location: 'hero_mobile' });
     } else {
       video.pause();
       setIsPlaying(false);
+      trackVideoInteraction({ provider: 'html5', action: 'pause', location: 'hero_mobile' });
     }
   }, []);
 
@@ -93,6 +96,11 @@ export const useHero = () => {
     if (!video) return;
     video.muted = !video.muted;
     setIsMuted(video.muted);
+    trackVideoInteraction({
+      provider: 'html5',
+      action: video.muted ? 'mute' : 'unmute',
+      location: 'hero_mobile',
+    });
   }, []);
 
   const seekToPosition = useCallback((clientX: number) => {
@@ -140,6 +148,7 @@ export const useHero = () => {
       const nextIndex = (speeds.indexOf(prev) + 1) % speeds.length;
       const next = speeds[nextIndex];
       if (videoRef.current) videoRef.current.playbackRate = next;
+      trackVideoInteraction({ provider: 'html5', action: 'speed_change', location: 'hero_mobile', extra: next });
       return next;
     });
   }, []);
@@ -164,9 +173,11 @@ export const useHero = () => {
       player.unMute();
       player.setVolume(100);
       setIsYtMuted(false);
+      trackVideoInteraction({ provider: 'youtube', action: 'unmute', location: 'hero_desktop' });
     } else {
       player.mute();
       setIsYtMuted(true);
+      trackVideoInteraction({ provider: 'youtube', action: 'mute', location: 'hero_desktop' });
     }
   }, []);
 
@@ -177,10 +188,12 @@ export const useHero = () => {
     if (state === window.YT.PlayerState.PLAYING) {
       player.pauseVideo();
       setIsYtPlaying(false);
+      trackVideoInteraction({ provider: 'youtube', action: 'pause', location: 'hero_desktop' });
     } else {
       player.playVideo();
       setIsYtPlaying(true);
       setShowThumbnail(false);
+      trackVideoInteraction({ provider: 'youtube', action: 'play', location: 'hero_desktop' });
     }
   }, []);
 

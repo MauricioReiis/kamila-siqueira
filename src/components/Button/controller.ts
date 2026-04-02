@@ -1,15 +1,26 @@
 import { useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { trackButtonClick } from '../../lib/analytics';
 
 interface UseButtonProps {
   onClick?: () => void;
   href?: string;
+  trackingLabel?: string;
+  trackingLocation?: string;
+  trackingText?: string;
 }
 
-export const useButton = ({ onClick, href }: UseButtonProps) => {
+export const useButton = ({ onClick, href, trackingLabel, trackingLocation, trackingText }: UseButtonProps) => {
   const navigate = useNavigate();
 
   const handleClick = useCallback(() => {
+    trackButtonClick({
+      label: trackingLabel ?? 'button',
+      location: trackingLocation,
+      text: trackingText,
+      href,
+    });
+
     if (href) {
       if (href.startsWith('#')) {
         const element = document.querySelector(href);
@@ -28,7 +39,7 @@ export const useButton = ({ onClick, href }: UseButtonProps) => {
       return;
     }
     onClick?.();
-  }, [onClick, href, navigate]);
+  }, [onClick, href, navigate, trackingLabel, trackingLocation, trackingText]);
 
   return { handleClick };
 };

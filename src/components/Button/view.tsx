@@ -11,6 +11,9 @@ interface ButtonProps {
   href?: string;
   type?: 'button' | 'submit';
   disabled?: boolean;
+  trackingLabel?: string;
+  trackingLocation?: string;
+  trackingText?: string;
   'aria-label'?: string;
 }
 
@@ -23,9 +26,12 @@ export const ButtonView: React.FC<ButtonProps> = ({
   href,
   type = 'button',
   disabled = false,
+  trackingLabel,
+  trackingLocation,
+  trackingText,
   ...rest
 }) => {
-  const { handleClick } = useButton({ onClick, href });
+  const { handleClick } = useButton({ onClick, href, trackingLabel, trackingLocation, trackingText });
 
   return (
     <S.StyledButton

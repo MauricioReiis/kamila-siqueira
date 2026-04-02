@@ -46,7 +46,13 @@ export const HeroView: React.FC = () => {
             <span>{highlight}</span>
           </S.HeroTitle>
           <S.HeroSubtitle>{subtitle}</S.HeroSubtitle>
-          <Button href="/proposta" size="lg">
+          <Button
+            href="/proposta"
+            size="lg"
+            trackingLabel="hero_cta"
+            trackingLocation="hero"
+            trackingText={cta}
+          >
             {cta}
           </Button>
         </S.HeroContent>
