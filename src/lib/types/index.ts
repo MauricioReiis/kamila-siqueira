@@ -4,11 +4,17 @@ export interface NavLink {
   href: string;
 }
 
+export interface ServiceDetail {
+  label: string;
+  text: string;
+}
+
 export interface Service {
   id: number;
   icon: string;
   title: string;
   description: string;
+  details: ServiceDetail[];
 }
 
 export interface Testimonial {

@@ -1,12 +1,12 @@
-import { Palette, Target, TrendingUp } from 'lucide-react';
+import { Target, Megaphone, BarChart3 } from 'lucide-react';
 import { useServices } from './controller';
-import type { Service } from '../../models/types';
+import type { Service } from '../../lib/types';
 import * as S from './style';
 
 const iconMap: Record<string, React.FC<{ size?: number }>> = {
-  Palette,
   Target,
-  TrendingUp,
+  Megaphone,
+  BarChart3,
 };
 
 const renderIcon = (iconName: string) => {
@@ -37,6 +37,16 @@ export const ServicesView: React.FC = () => {
               </S.ServiceIconWrapper>
               <S.ServiceTitle>{service.title}</S.ServiceTitle>
               <S.ServiceDescription>{service.description}</S.ServiceDescription>
+              {service.details && (
+                <S.ServiceDetails>
+                  {service.details.map((detail, i) => (
+                    <S.ServiceDetailItem key={i}>
+                      <S.ServiceDetailLabel>{detail.label}:</S.ServiceDetailLabel>{' '}
+                      <S.ServiceDetailText>{detail.text}</S.ServiceDetailText>
+                    </S.ServiceDetailItem>
+                  ))}
+                </S.ServiceDetails>
+              )}
             </S.ServiceCard>
           ))}
         </S.ServicesGrid>

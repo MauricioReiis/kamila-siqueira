@@ -11,8 +11,8 @@ const PageWrapper = styled.div<{ $isDark: boolean }>`
     position: fixed;
     inset: -2rem;
     background-image: radial-gradient(
-      rgba(196, 139, 159, 0.35) 1px,
-      transparent 1px
+      rgba(196, 139, 159, 0.35) 0.0625rem,
+      transparent 0.0625rem
     );
     background-size: 3rem 3rem;
     pointer-events: none;

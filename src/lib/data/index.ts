@@ -11,24 +11,66 @@ export const navLinks: NavLink[] = [
 export const services: Service[] = [
   {
     id: 1,
-    icon: 'Palette',
-    title: 'Identidade Visual',
+    icon: 'Target',
+    title: 'Estratégia de Negócio & Funis de Venda',
     description:
-      'Crio identidades visuais únicas que refletem a essência da sua marca, garantindo reconhecimento e diferenciação em todos os pontos de contato.',
+      'Foco em planejamento de crescimento (growth) e estruturação de processos comerciais que convertem audiência em faturamento.',
+    details: [
+      {
+        label: 'Diagnóstico & Posicionamento',
+        text: 'Análise de mercado e definição de público-alvo para diferenciação da marca.',
+      },
+      {
+        label: 'Funis de Alta Conversão',
+        text: 'Estruturação de funis de vendas (topo, meio e fundo) para escala de resultados.',
+      },
+      {
+        label: 'Gestão de Processos',
+        text: 'Organização de fluxos de trabalho e onboarding de clientes com visão orientada a ROI.',
+      },
+    ],
   },
   {
     id: 2,
-    icon: 'Target',
-    title: 'Estratégia de Marca',
+    icon: 'Megaphone',
+    title: 'Social Media, Posicionamento & Conteúdo',
     description:
-      'Desenvolvimento de posicionamento estratégico para fortalecer sua presença no mercado e conectar com o público certo.',
+      'Construção de autoridade digital através de narrativas estratégicas e presença constante nos canais de comunicação.',
+    details: [
+      {
+        label: 'Branding & Identidade',
+        text: 'Construção e reposicionamento de marcas com foco em autoridade digital.',
+      },
+      {
+        label: 'Direção Criativa & Copywriting',
+        text: 'Roteirização de vídeos (Reels/Stories) e escrita persuasiva para vendas.',
+      },
+      {
+        label: 'Gestão de Redes Sociais',
+        text: 'Planejamento de calendário editorial e fortalecimento de comunidades no Instagram e LinkedIn.',
+      },
+    ],
   },
   {
     id: 3,
-    icon: 'TrendingUp',
-    title: 'Marketing Digital',
+    icon: 'BarChart3',
+    title: 'Tráfego Pago, Landing Pages & Dados',
     description:
-      'Estratégias de marketing digital personalizadas para ampliar seu alcance, engajar sua audiência e gerar resultados consistentes.',
+      'O braço técnico da operação, unindo anúncios, estrutura de destino (sites) e rastreamento avançado.',
+    details: [
+      {
+        label: 'Gestão de Tráfego (Meta/Google Ads)',
+        text: 'Criação, otimização e escala de campanhas focadas em performance.',
+      },
+      {
+        label: 'Landing Pages de Conversão',
+        text: 'Desenvolvimento de páginas de vendas focadas em experiência do usuário e conversão.',
+      },
+      {
+        label: 'Inteligência de Dados (Pixel & API)',
+        text: 'Configuração de rastreamento (GTM, GA4) e Dashboards no Looker Studio para análise de CAC, LTV e ROI.',
+      },
+    ],
   },
 ];
 
@@ -73,7 +115,7 @@ export const testimonials: Testimonial[] = [
 export const stats: Stat[] = [
   { id: 1, value: 230, prefix: '+', suffix: '', label: 'projetos concluídos' },
   { id: 2, value: 100, prefix: '', suffix: '%', label: 'projetos sob medida' },
-  { id: 3, value: 4, prefix: '+', suffix: ' anos', label: 'fortalecendo marcas' },
+  { id: 3, value: 4, prefix: '+', suffix: ' anos', label: 'aumentando faturamentos' },
 ];
 
 export const socialLinks: SocialLink[] = [
@@ -94,7 +136,7 @@ export const aboutData = {
     'Acredito que o marketing é, acima de tudo, uma troca entre pessoas. Por isso, meu trabalho foge das fórmulas prontas. Unindo um perfil analítico à criatividade, construo estratégias personalizadas onde a tecnologia é o suporte, mas a inteligência humana é o motor.',
     'Com responsabilidade e foco em processos, transformo confusão em clareza para negócios que buscam evolução contínua e resultados que não dependem apenas de automação, mas de direção.',
   ],
-  values: ['Estratégia ', 'Performance', 'Tráfego Pago', 'Funis', 'Conversão'],
+  values: ['Estratégia ', 'Performance', 'Tráfego pago', 'Funis', 'Conversão', 'Criação de conteúdo', 'Criação de sites'],
 };
 
 export const dashboardCompanies: DashboardCompany[] = [
@@ -124,7 +166,7 @@ export const dashboardCompanies: DashboardCompany[] = [
   },
   {
     id: 3,
-    segment: 'Educacao e infoprodutos',
+    segment: 'Educação e infoprodutos',
     implementationTime: '6 meses',
     metrics: [
       { key: 'revenue', label: 'Receita mensal', format: 'currency', before: 46000, after: 118000 },

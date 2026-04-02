@@ -1,4 +1,4 @@
-import type { ProposalFormData } from '../../models/types';
+import type { ProposalFormData } from '../../lib/types';
 
 const WHATSAPP_NUMBER = '5532998123552';
 

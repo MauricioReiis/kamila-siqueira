@@ -215,7 +215,7 @@ export const Tooltip = styled.span`
   font-size: 0.78rem;
   font-weight: 400;
   line-height: 1.4;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.15);
   transition: opacity 0.2s, visibility 0.2s;
   z-index: 10;
   pointer-events: none;

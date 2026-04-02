@@ -1,7 +1,7 @@
 import { useMemo } from 'react';
 import { useInView } from 'react-intersection-observer';
-import { dashboardCompanies } from '../../models/data';
-import type { DashboardMetric } from '../../models/types';
+import { dashboardCompanies } from '../../lib/data';
+import type { DashboardMetric } from '../../lib/types';
 
 const getVariation = (metric: DashboardMetric) => {
   if (metric.before === 0) return 0;

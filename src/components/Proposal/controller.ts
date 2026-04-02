@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import type { ChangeEvent } from 'react';
 import { useForm } from 'react-hook-form';
-import type { ProposalFormData, InterestOption } from '../../models/types';
+import type { ProposalFormData, InterestOption } from '../../lib/types';
 import { openWhatsAppProposal } from './message';
 
 const formatPhone = (raw: string): string => {

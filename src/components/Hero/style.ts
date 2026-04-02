@@ -264,8 +264,8 @@ export const YtPlayOverlay = styled.div`
   height: 3.5rem;
   border-radius: 50%;
   background: rgba(0, 0, 0, 0.45);
-  backdrop-filter: blur(6px);
-  border: 2px solid rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(0.375rem);
+  border: 0.125rem solid rgba(255, 255, 255, 0.3);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -474,7 +474,7 @@ export const ProgressThumb = styled.div`
   height: 0.75rem;
   border-radius: 50%;
   background: #fff;
-  box-shadow: 0 0 4px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 0 0.25rem rgba(0, 0, 0, 0.3);
   pointer-events: none;
 `;
 

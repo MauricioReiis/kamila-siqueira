@@ -1,5 +1,5 @@
 import { useCallback } from 'react';
-import { navLinks } from '../../models/data';
+import { navLinks } from '../../lib/data';
 
 export const useFooter = () => {
   const currentYear = new Date().getFullYear();
