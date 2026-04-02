@@ -7,6 +7,7 @@ export default defineConfig({
   cacheDir: '.vite',
   build: {
     target: 'es2020',
+    cssMinify: 'lightningcss',
     rollupOptions: {
       output: {
         manualChunks(id) {

@@ -13,10 +13,10 @@ export const GlobalStyles = createGlobalStyle`
   }
 
   @keyframes bgDrift {
-    0% { transform: translate(0, 0) scale(1); }
-    33% { transform: translate(1.5%, -1%) scale(1.02); }
-    66% { transform: translate(-1%, 1.5%) scale(0.98); }
-    100% { transform: translate(0, 0) scale(1); }
+    0% { transform: translate3d(0, 0, 0) scale(1); }
+    33% { transform: translate3d(1.5%, -1%, 0) scale(1.02); }
+    66% { transform: translate3d(-1%, 1.5%, 0) scale(0.98); }
+    100% { transform: translate3d(0, 0, 0) scale(1); }
   }
 
   body {

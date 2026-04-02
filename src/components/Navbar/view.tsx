@@ -20,7 +20,7 @@ export const NavbarView: React.FC = () => {
     <>
       <S.Nav $scrolled={isScrolled} role="navigation" aria-label="Navegação principal">
         <S.NavContainer>
-          <S.Logo href="#home" onClick={() => handleNavClick('#home')}>
+          <S.Logo href="/" onClick={(e: React.MouseEvent) => { e.preventDefault(); handleNavClick('#home'); }}>
             Kamila <span>Siqueira</span>
           </S.Logo>
 

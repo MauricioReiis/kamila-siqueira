@@ -46,12 +46,14 @@ export const useNavbar = () => {
         const element = document.querySelector(href);
         if (element) {
           element.scrollIntoView({ behavior: 'smooth' });
+          window.history.replaceState(null, '', '/');
         }
       }, 100);
     } else {
       const element = document.querySelector(href);
       if (element) {
         element.scrollIntoView({ behavior: 'smooth' });
+        window.history.replaceState(null, '', '/');
       }
     }
   }, [location.pathname, navigate]);
