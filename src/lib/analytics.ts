@@ -28,6 +28,7 @@ declare global {
     dataLayer?: unknown[];
     gtag?: GtagFn;
     fbq?: FbqFn;
+    _fbq?: FbqFn;
     clarity?: (...args: unknown[]) => void;
   }
 }
@@ -69,10 +70,11 @@ const setupMetaPixel = (pixelId: string) => {
   }
 
   const fbqProxy = ((...args: unknown[]) => {
-    fbqProxy.queue.push(args);
+    fbqProxy.callMethod ? fbqProxy.callMethod(...args) : fbqProxy.queue.push(args);
   }) as FbqFn & {
     push: FbqFn;
     queue: unknown[][];
+    callMethod?: (...args: unknown[]) => void;
     loaded: boolean;
     version: string;
   };
@@ -83,6 +85,9 @@ const setupMetaPixel = (pixelId: string) => {
   fbqProxy.push = fbqProxy;
 
   window.fbq = fbqProxy;
+  if (!window._fbq) {
+    window._fbq = fbqProxy;
+  }
   loadScript('meta-pixel-script', 'https://connect.facebook.net/en_US/fbevents.js');
   emitFbq('init', pixelId);
 };

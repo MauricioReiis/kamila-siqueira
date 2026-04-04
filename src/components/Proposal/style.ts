@@ -431,8 +431,6 @@ export const SubmitButton = styled.button`
   }
 `;
 
-/* ── Confirmation Modal ── */
-
 export const ModalOverlay = styled(motion.div)`
   position: fixed;
   inset: 0;
@@ -440,10 +438,18 @@ export const ModalOverlay = styled(motion.div)`
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
   background: rgba(0, 0, 0, 0.45);
   backdrop-filter: blur(0.5rem);
   -webkit-backdrop-filter: blur(0.5rem);
   padding: 1.5rem;
+
+  @media (max-width: 48rem) {
+    align-items: flex-start;
+    padding: 0.75rem;
+  }
 `;
 
 export const ModalCard = styled(motion.div)`
@@ -452,6 +458,8 @@ export const ModalCard = styled(motion.div)`
   max-height: 85vh;
   overflow-y: auto;
   overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+  touch-action: pan-y;
   background: ${({ theme }) =>
     theme.colors.background === '#0A0A0A'
       ? 'rgba(18, 18, 18, 0.82)'
@@ -480,6 +488,13 @@ export const ModalCard = styled(motion.div)`
 
   scrollbar-width: thin;
   scrollbar-color: ${({ theme }) => theme.colors.border} transparent;
+
+  @media (max-width: 48rem) {
+    max-height: calc(100dvh - 1.5rem);
+    margin: 0 auto;
+    padding: 1.25rem;
+    border-radius: 0.875rem;
+  }
 `;
 
 export const ModalHeader = styled.div`
@@ -561,6 +576,10 @@ export const ModalActions = styled.div`
   display: flex;
   gap: 0.75rem;
   justify-content: flex-end;
+
+  @media (max-width: 30rem) {
+    flex-direction: column;
+  }
 `;
 
 export const ModalButtonSecondary = styled.button`
