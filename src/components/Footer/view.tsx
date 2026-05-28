@@ -1,6 +1,6 @@
-import { useFooter } from './controller';
-import { trackButtonClick } from '../../lib/analytics';
-import * as S from './style';
+import { useFooter } from "./controller";
+import { trackButtonClick } from "../../lib/analytics";
+import * as S from "./style";
 
 export const FooterView: React.FC = () => {
   const { currentYear, scrollToTop, handleNavClick, navLinks } = useFooter();
@@ -8,15 +8,26 @@ export const FooterView: React.FC = () => {
   return (
     <S.FooterWrapper>
       <S.FooterContainer>
-        <S.FooterLogo href="/" onClick={(e: React.MouseEvent) => {
-          e.preventDefault();
-          trackButtonClick({ label: 'footer_cta_logo', location: 'footer', text: 'Kamila Siqueira', href: '#home' });
-          handleNavClick('#home');
-        }}>
+        <S.FooterLogo
+          href="/"
+          onClick={(e: React.MouseEvent) => {
+            e.preventDefault();
+            trackButtonClick({
+              label: "footer_cta_logo",
+              location: "footer",
+              text: "Kamila Siqueira",
+              href: "#home",
+            });
+            handleNavClick("#home");
+          }}
+        >
           Kamila <span>Siqueira</span>
         </S.FooterLogo>
 
-        <S.FooterTagline>Estrategista de Marketing</S.FooterTagline>
+        <S.FooterTagline>
+          Estratégia que posiciona. Comunicação que vende. Estrutura que faz
+          crescer.
+        </S.FooterTagline>
 
         <S.FooterLinks>
           {navLinks.map((link) => (
@@ -27,7 +38,7 @@ export const FooterView: React.FC = () => {
                 e.preventDefault();
                 trackButtonClick({
                   label: `footer_cta_${link.id}`,
-                  location: 'footer',
+                  location: "footer",
                   text: link.label,
                   href: link.href,
                 });
@@ -47,7 +58,12 @@ export const FooterView: React.FC = () => {
           </S.Copyright>
           <S.BackToTop
             onClick={() => {
-              trackButtonClick({ label: 'footer_cta_back_to_top', location: 'footer', text: 'Voltar ao topo', href: '#home' });
+              trackButtonClick({
+                label: "footer_cta_back_to_top",
+                location: "footer",
+                text: "Voltar ao topo",
+                href: "#home",
+              });
               scrollToTop();
             }}
             aria-label="Voltar ao topo"

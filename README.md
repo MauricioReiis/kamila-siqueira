@@ -7,7 +7,8 @@ Landing page moderna e responsiva da **Kamila Siqueira**, Estrategista Digital e
 Kamila é uma **estrategista digital** que acredita que o marketing é, acima de tudo, uma troca entre pessoas. Seu trabalho une análise técnica com criatividade, construindo estratégias personalizadas onde a tecnologia é o suporte, mas a inteligência humana é o motor.
 
 ### Especialidades
-- **Estratégia de Negócio & Funis de Venda** — Growth, posicionamento e processos comerciais que convertem
+
+- **Marketing Completo 360 Estrutura de Crescimento** — Growth, posicionamento e processos comerciais que convertem
 - **Social Media, Posicionamento & Conteúdo** — Construção de autoridade digital e narrativas estratégicas
 - **Tráfego Pago, Landing Pages & Dados** — Campanhas de performance, páginas de conversão e inteligência de dados
 
@@ -23,15 +24,15 @@ Kamila é uma **estrategista digital** que acredita que o marketing é, acima de
 
 ## 🛠️ Tech Stack
 
-| Aspecto | Tecnologia |
-|--------|-----------|
-| **Framework** | React 19.2 + TypeScript |
-| **Build & Dev** | Vite (HMR rápido) |
-| **Estilos** | Styled Components + Tema personalizado |
-| **Animações** | Framer Motion |
-| **Formulários** | React Hook Form |
-| **Ícones** | Lucide React |
-| **Routing** | React Router v7 |
+| Aspecto             | Tecnologia                                    |
+| ------------------- | --------------------------------------------- |
+| **Framework**       | React 19.2 + TypeScript                       |
+| **Build & Dev**     | Vite (HMR rápido)                             |
+| **Estilos**         | Styled Components + Tema personalizado        |
+| **Animações**       | Framer Motion                                 |
+| **Formulários**     | React Hook Form                               |
+| **Ícones**          | Lucide React                                  |
+| **Routing**         | React Router v7                               |
 | **Observabilidade** | React Intersection Observer (lazy animations) |
 
 ## 📁 Estrutura do Projeto
@@ -74,7 +75,8 @@ src/
 ## 🚀 Quick Start
 
 ### Pré-requisitos
-- Node.js 18+ 
+
+- Node.js 18+
 - npm ou pnpm
 
 ### Instalação
@@ -102,17 +104,20 @@ O site estará disponível em `http://localhost:5173`
 ## 📊 Componentes Principais
 
 ### Dashboard
+
 - **Gráfico de barras** — Comparativo de receita antes/depois
 - **Gráfico de linhas** — Análise por indicador com abas interativas
 - **Tabelas por cliente** — Detalhamento de métricas (receita, leads, conversão, CAC, ROAS)
 
 ### Formulário de Proposta
+
 - Validação em tempo real
 - Integração com reCAPTCHA v3
 - Envio para WhatsApp ou email
 - Múltiplas opções de interesse
 
 ### Seções
+
 1. **Hero** — Headline, subtítulo, CTA principal + vídeo YouTube
 2. **About** — Bio de Kamila + valores
 3. **Services** — 3 principais entregas com detalhes expandidos

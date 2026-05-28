@@ -4,6 +4,7 @@ export const navLinks: NavLink[] = [
   { id: 'home', label: 'Início', href: '#home' },
   { id: 'about', label: 'Sobre', href: '#about' },
   { id: 'services', label: 'Entregas', href: '#services' },
+  { id: 'para-quem-e', label: 'Para Quem É', href: '#para-quem-e' },
   { id: 'testimonials', label: 'Comentários', href: '#testimonials' },
   { id: 'contact', label: 'Contato', href: '#contact' },
 ];
@@ -12,63 +13,67 @@ export const services: Service[] = [
   {
     id: 1,
     icon: 'Target',
-    title: 'Estratégia de Negócio & Funis de Venda',
+    title: 'Marketing Completo 360 Estrutura de Crescimento',
     description:
-      'Foco em planejamento de crescimento (growth) e estruturação de processos comerciais que convertem audiência em faturamento.',
+      'Mais do que "fazer tudo" aqui eu integro tudo com estratégia, com um único objetivo: fazer você vender mais.',
     details: [
       {
-        label: 'Diagnóstico & Posicionamento',
-        text: 'Análise de mercado e definição de público-alvo para diferenciação da marca.',
+        label: 'Posicionamento & Proposta de Valor',
+        text: 'Definição clara do que diferencia sua marca no mercado.',
       },
       {
-        label: 'Funis de Alta Conversão',
-        text: 'Estruturação de funis de vendas (topo, meio e fundo) para escala de resultados.',
+        label: 'Conteúdo Estratégico',
+        text: 'Planejamento e gestão de redes sociais com foco em conversão, não só presença.',
       },
       {
-        label: 'Gestão de Processos',
-        text: 'Organização de fluxos de trabalho e onboarding de clientes com visão orientada a ROI.',
+        label: 'Tráfego Pago (Meta Ads)',
+        text: 'Campanhas orientadas a performance e escala de resultado.',
+      },
+      {
+        label: 'Análise de Dados',
+        text: 'Otimizações constantes baseadas em comportamento real, não achismo.',
       },
     ],
   },
   {
     id: 2,
     icon: 'Megaphone',
-    title: 'Social Media, Posicionamento & Conteúdo',
+    title: 'Landing Pages & Sites de Conversão',
     description:
-      'Construção de autoridade digital através de narrativas estratégicas e presença constante nos canais de comunicação.',
+      'Não é sobre ter um site bonito. É sobre ter uma estrutura que converte interesse em ação e ação em receita.',
     details: [
       {
-        label: 'Branding & Identidade',
-        text: 'Construção e reposicionamento de marcas com foco em autoridade digital.',
+        label: 'Landing Pages Estratégicas',
+        text: 'Criação com foco em decisão de compra e geração de leads qualificados.',
       },
       {
-        label: 'Direção Criativa & Copywriting',
-        text: 'Roteirização de vídeos (Reels/Stories) e escrita persuasiva para vendas.',
+        label: 'Sites para E-commerce e Serviços',
+        text: 'Desenvolvimento orientado a experiência do usuário e venda.',
       },
       {
-        label: 'Gestão de Redes Sociais',
-        text: 'Planejamento de calendário editorial e fortalecimento de comunidades no Instagram e LinkedIn.',
+        label: 'Copywriting de Conversão',
+        text: 'Comunicação pensada para gerar valor percebido e reduzir objeções.',
       },
     ],
   },
   {
     id: 3,
     icon: 'BarChart3',
-    title: 'Tráfego Pago, Landing Pages & Dados',
+    title: 'Consultoria Estratégica',
     description:
-      'O braço técnico da operação, unindo anúncios, estrutura de destino (sites) e rastreamento avançado.',
+      'Para negócios que precisam ajustar direção antes de escalar. Porque escalar o errado só aumenta o prejuízo.',
     details: [
       {
-        label: 'Gestão de Tráfego (Meta/Google Ads)',
-        text: 'Criação, otimização e escala de campanhas focadas em performance.',
+        label: 'Diagnóstico Completo',
+        text: 'Análise do marketing atual e identificação de gargalos de crescimento.',
       },
       {
-        label: 'Landing Pages de Conversão',
-        text: 'Desenvolvimento de páginas de vendas focadas em experiência do usuário e conversão.',
+        label: 'Reposicionamento Estratégico',
+        text: 'Clareza de proposta de valor e diferenciação de mercado.',
       },
       {
-        label: 'Inteligência de Dados (Pixel & API)',
-        text: 'Configuração de rastreamento (GTM, GA4) e Dashboards no Looker Studio para análise de CAC, LTV e ROI.',
+        label: 'Plano de Ação',
+        text: 'Entregável com foco em resultado mensurável e próximos passos claros.',
       },
     ],
   },
@@ -124,19 +129,20 @@ export const socialLinks: SocialLink[] = [
 ];
 
 export const heroData = {
-  highlight: 'Atrair, Conectar e Vender',
-  subtitle: 'Estratégia, execução e escala para marcas que querem crescer',
-  cta: 'Enviar proposta',
+  highlight: 'Sem estratégia, você não vende.',
+  subtitle: 'Com a estrutura certa, você escala.',
+  cta: 'Quero vender mais',
 };
 
 export const aboutData = {
   title: 'Quem é Kamila Siqueira',
+  subtitle: 'Estrategista de Marketing e Crescimento',
   paragraphs: [
-    'Estrategista Digital, Mãe e Defensora do Marketing com Intenção.',
-    'Acredito que o marketing é, acima de tudo, uma troca entre pessoas. Por isso, meu trabalho foge das fórmulas prontas. Unindo um perfil analítico à criatividade, construo estratégias personalizadas onde a tecnologia é o suporte, mas a inteligência humana é o motor.',
-    'Com responsabilidade e foco em processos, transformo confusão em clareza para negócios que buscam evolução contínua e resultados que não dependem apenas de automação, mas de direção.',
+    'Meu trabalho não é apenas executar marketing é estruturar negócios para vender mais, com consistência e direção.',
+    'Atuo conectando posicionamento, comunicação, tecnologia e performance para transformar presença digital em um sistema real de aquisição e conversão.',
+    'Porque no cenário atual, não falta visibilidade. Falta estratégia que transforme atenção em receita.',
   ],
-  values: ['Estratégia ', 'Performance', 'Tráfego pago', 'Funis', 'Conversão', 'Criação de conteúdo', 'Criação de sites'],
+  values: ['Estratégia', 'Performance', 'Tráfego Pago', 'Funis de Conversão', 'Copywriting', 'Landing Pages', 'Consultoria', 'Crescimento', 'CRM & Automações'],
 };
 
 export const dashboardCompanies: DashboardCompany[] = [
@@ -177,3 +183,16 @@ export const dashboardCompanies: DashboardCompany[] = [
     ],
   },
 ];
+
+export const targetAudienceData = {
+  scenarios: [
+    'Já fatura, mas não consegue escalar com consistência',
+    'Tem presença digital, mas não converte proporcionalmente',
+    'Está cansado de investir em marketing sem clareza de retorno',
+    'Quer estruturar o marketing como um canal real de crescimento',
+  ],
+  disclaimer: {
+    notFor: 'Não é para quem busca apenas execução.',
+    forWho: 'É para quem quer resultado mensurável e evolução de receita.',
+  },
+};

@@ -1,5 +1,5 @@
-import { useStats } from './controller';
-import * as S from './style';
+import { useStats } from "./controller";
+import * as S from "./style";
 
 export const StatsView: React.FC = () => {
   const { ref, inView, stats, formatValue } = useStats();
@@ -10,6 +10,10 @@ export const StatsView: React.FC = () => {
         <S.StatsHeader>
           <S.SectionLabel>Resultados</S.SectionLabel>
           <S.SectionTitle>Mais que números. Resultados reais.</S.SectionTitle>
+          <S.SectionSubtitle>
+            Alguns exemplos reais de clientes após a aplicação da estratégia —
+            antes e depois em receita, eficiência e geração de oportunidades.
+          </S.SectionSubtitle>
         </S.StatsHeader>
 
         <S.StatsGrid ref={ref}>

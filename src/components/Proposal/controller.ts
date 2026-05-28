@@ -254,6 +254,9 @@ export const useProposal = () => {
       : value.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL', maximumFractionDigits: 0 });
 
   const interestOptions: InterestOption[] = [
+    { label: 'Marketing Completo 360', description: 'Integração estratégica de posicionamento, conteúdo, tráfego pago e análise de dados para escalar vendas com consistência.' },
+    { label: 'Landing Pages & Sites de Conversão', description: 'Desenvolvimento de estruturas que convertem interesse em ação e ação em receita através de copywriting e design estratégico.' },
+    { label: 'Consultoria Estratégica', description: 'Diagnóstico completo do marketing atual, reposicionamento e plano de ação focado em resultado mensurável.' },
     { label: 'Branding', description: 'Desenvolvimento completo da identidade visual, logos, paleta de cores, tipografia e guidelines de marca para uma presença consistente.' },
     { label: 'Consultoria de Marca', description: 'Análise estratégica da sua marca com recomendações personalizadas para posicionamento e crescimento.' },
     { label: 'Contrução e Reposicionamento de Marca', description: 'Criação ou reestruturação completa da identidade e posicionamento da sua marca no mercado.' },

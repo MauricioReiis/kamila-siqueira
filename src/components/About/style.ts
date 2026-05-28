@@ -235,6 +235,12 @@ export const SectionTitle = styled.h2`
   }
 `;
 
+export const SectionSubtitle = styled.h3`
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: ${({ theme }) => theme.colors.textMuted};
+`;
+
 export const AboutText = styled.p`
   font-size: 1rem;
   line-height: 1.8;

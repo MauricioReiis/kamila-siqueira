@@ -1,8 +1,8 @@
-import { Info, X, Heart } from 'lucide-react';
-import { AnimatePresence } from 'framer-motion';
-import { useProposal } from './controller';
-import { formatCurrency as fmtBudget } from './message';
-import * as S from './style';
+import { Info, X, Heart } from "lucide-react";
+import { AnimatePresence } from "framer-motion";
+import { useProposal } from "./controller";
+import { formatCurrency as fmtBudget } from "./message";
+import * as S from "./style";
 
 export const ProposalView: React.FC = () => {
   const {
@@ -32,9 +32,11 @@ export const ProposalView: React.FC = () => {
       <S.Container>
         <S.Header>
           <S.Title>
-            Vamos criar algo <span>incrível.</span>
+            Pronto para vender <span>mais?</span>
           </S.Title>
-          <S.Subtitle>Preencha o formulário. Retornamos em até 1 dia útil.</S.Subtitle>
+          <S.Subtitle>
+            Preencha o formulário e retorno em até 1 dia útil.
+          </S.Subtitle>
         </S.Header>
 
         <S.Form
@@ -45,14 +47,19 @@ export const ProposalView: React.FC = () => {
         >
           <div>
             <S.FormGroup>
-              <S.FormLabel>Você tem interesse em<S.RequiredAsterisk>*</S.RequiredAsterisk></S.FormLabel>
+              <S.FormLabel>
+                Você tem interesse em<S.RequiredAsterisk>*</S.RequiredAsterisk>
+              </S.FormLabel>
               <S.InterestDesktopOnly>
                 <S.InterestGrid>
                   {interestOptions.map((option) => (
                     <S.InterestChip
                       key={option.label}
                       $selected={selectedInterests.includes(option.label)}
-                      onClick={(e) => { e.preventDefault(); toggleInterest(option.label); }}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        toggleInterest(option.label);
+                      }}
                     >
                       <input
                         type="checkbox"
@@ -62,9 +69,7 @@ export const ProposalView: React.FC = () => {
                       />
                       {option.label}
                       {option.description && (
-                        <S.InfoIconWrapper
-                          onClick={(e) => e.stopPropagation()}
-                        >
+                        <S.InfoIconWrapper onClick={(e) => e.stopPropagation()}>
                           <Info size={14} />
                           <S.Tooltip>{option.description}</S.Tooltip>
                         </S.InfoIconWrapper>
@@ -75,7 +80,10 @@ export const ProposalView: React.FC = () => {
               </S.InterestDesktopOnly>
 
               <S.InterestMobileOnly>
-                <S.MobileInterestList role="group" aria-label="Selecione os serviços de interesse">
+                <S.MobileInterestList
+                  role="group"
+                  aria-label="Selecione os serviços de interesse"
+                >
                   {interestOptions.map((option) => (
                     <S.MobileInterestOption
                       key={option.label}
@@ -87,26 +95,34 @@ export const ProposalView: React.FC = () => {
                         onChange={() => toggleInterest(option.label)}
                       />
                       <S.MobileInterestText>
-                        <S.MobileInterestTitle>{option.label}</S.MobileInterestTitle>
+                        <S.MobileInterestTitle>
+                          {option.label}
+                        </S.MobileInterestTitle>
                         {option.description && (
-                          <S.MobileInterestDescription>{option.description}</S.MobileInterestDescription>
+                          <S.MobileInterestDescription>
+                            {option.description}
+                          </S.MobileInterestDescription>
                         )}
                       </S.MobileInterestText>
                     </S.MobileInterestOption>
                   ))}
                 </S.MobileInterestList>
               </S.InterestMobileOnly>
-              {errors.interests && <S.FormError>{errors.interests.message}</S.FormError>}
+              {errors.interests && (
+                <S.FormError>{errors.interests.message}</S.FormError>
+              )}
             </S.FormGroup>
           </div>
 
           <S.FieldRow>
             <S.FormGroup>
-              <S.FormLabel htmlFor="name">Nome<S.RequiredAsterisk>*</S.RequiredAsterisk></S.FormLabel>
+              <S.FormLabel htmlFor="name">
+                Nome<S.RequiredAsterisk>*</S.RequiredAsterisk>
+              </S.FormLabel>
               <S.FormInput
                 id="name"
                 placeholder="Digite seu nome"
-                {...register('name', { required: 'Nome é obrigatório' })}
+                {...register("name", { required: "Nome é obrigatório" })}
               />
               {errors.name && <S.FormError>{errors.name.message}</S.FormError>}
             </S.FormGroup>
@@ -116,14 +132,16 @@ export const ProposalView: React.FC = () => {
               <S.FormInput
                 id="company"
                 placeholder="Digite o nome da empresa"
-                {...register('company')}
+                {...register("company")}
               />
             </S.FormGroup>
           </S.FieldRow>
 
           <S.FieldRow>
             <S.FormGroup>
-              <S.FormLabel htmlFor="phone">Celular<S.RequiredAsterisk>*</S.RequiredAsterisk></S.FormLabel>
+              <S.FormLabel htmlFor="phone">
+                Celular<S.RequiredAsterisk>*</S.RequiredAsterisk>
+              </S.FormLabel>
               <S.FormInput
                 id="phone"
                 placeholder="Digite seu número"
@@ -131,39 +149,47 @@ export const ProposalView: React.FC = () => {
                 value={phoneValue}
                 onChange={handlePhoneChange}
               />
-              {errors.phone && <S.FormError>{errors.phone.message}</S.FormError>}
+              {errors.phone && (
+                <S.FormError>{errors.phone.message}</S.FormError>
+              )}
             </S.FormGroup>
 
             <S.FormGroup>
-              <S.FormLabel htmlFor="email">E-mail<S.RequiredAsterisk>*</S.RequiredAsterisk></S.FormLabel>
+              <S.FormLabel htmlFor="email">
+                E-mail<S.RequiredAsterisk>*</S.RequiredAsterisk>
+              </S.FormLabel>
               <S.FormInput
                 id="email"
                 type="email"
                 placeholder="Digite seu e-mail"
-                {...register('email', {
-                  required: 'E-mail é obrigatório',
+                {...register("email", {
+                  required: "E-mail é obrigatório",
                   pattern: {
                     value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-                    message: 'E-mail inválido',
+                    message: "E-mail inválido",
                   },
                 })}
               />
-              {errors.email && <S.FormError>{errors.email.message}</S.FormError>}
+              {errors.email && (
+                <S.FormError>{errors.email.message}</S.FormError>
+              )}
             </S.FormGroup>
           </S.FieldRow>
 
           <S.FormGroup>
-            <S.FormLabel htmlFor="socialProfile">Redes sociais (Opcional)</S.FormLabel>
+            <S.FormLabel htmlFor="socialProfile">
+              Redes sociais (Opcional)
+            </S.FormLabel>
             <S.FormInput
               id="socialProfile"
               placeholder="Ex.: @kamilasiqueira ou linkedin.com/in/..."
-              {...register('socialProfile')}
+              {...register("socialProfile")}
             />
           </S.FormGroup>
 
           <S.FormGroup>
             <S.BudgetDisplay>
-              Estimativa de Orçamento: {' '}
+              Estimativa de Orçamento:{" "}
               <span>{formatCurrency(budgetValue)}</span>
             </S.BudgetDisplay>
             <S.BudgetWrapper>
@@ -184,19 +210,23 @@ export const ProposalView: React.FC = () => {
 
           {/* Objetivos */}
           <S.FormGroup>
-            <S.FormLabel htmlFor="goals">Seus objetivos<S.RequiredAsterisk>*</S.RequiredAsterisk></S.FormLabel>
+            <S.FormLabel htmlFor="goals">
+              Seus objetivos<S.RequiredAsterisk>*</S.RequiredAsterisk>
+            </S.FormLabel>
             <S.FormTextarea
               id="goals"
               placeholder="Digite o texto"
-              {...register('goals', { required: 'Objetivos são obrigatórios' })}
+              {...register("goals", { required: "Objetivos são obrigatórios" })}
             />
             {errors.goals && <S.FormError>{errors.goals.message}</S.FormError>}
           </S.FormGroup>
 
           {/* Como nos encontrou */}
           <S.FormGroup>
-            <S.FormLabel htmlFor="referral">Como nos encontrou (Opcional)</S.FormLabel>
-            <S.FormSelect id="referral" {...register('referral')}>
+            <S.FormLabel htmlFor="referral">
+              Como nos encontrou (Opcional)
+            </S.FormLabel>
+            <S.FormSelect id="referral" {...register("referral")}>
               <option value="">Escolha uma opção</option>
               {referralOptions.map((opt) => (
                 <option key={opt} value={opt}>
@@ -207,7 +237,9 @@ export const ProposalView: React.FC = () => {
           </S.FormGroup>
 
           <S.SubmitRow>
-            <S.SubmitButton type="submit" disabled={!isFormValid}>Enviar</S.SubmitButton>
+            <S.SubmitButton type="submit" disabled={!isFormValid}>
+              Quero começar
+            </S.SubmitButton>
           </S.SubmitRow>
         </S.Form>
       </S.Container>
@@ -240,11 +272,25 @@ export const ProposalView: React.FC = () => {
 
               <S.ModalSection>
                 <S.ModalSectionTitle>Dados do cliente</S.ModalSectionTitle>
-                <S.ModalField><strong>Nome:</strong> {pendingData.name}</S.ModalField>
-                {pendingData.company && <S.ModalField><strong>Empresa:</strong> {pendingData.company}</S.ModalField>}
-                <S.ModalField><strong>Celular:</strong> {pendingData.phone}</S.ModalField>
-                <S.ModalField><strong>E-mail:</strong> {pendingData.email}</S.ModalField>
-                {pendingData.socialProfile && <S.ModalField><strong>Redes sociais:</strong> {pendingData.socialProfile}</S.ModalField>}
+                <S.ModalField>
+                  <strong>Nome:</strong> {pendingData.name}
+                </S.ModalField>
+                {pendingData.company && (
+                  <S.ModalField>
+                    <strong>Empresa:</strong> {pendingData.company}
+                  </S.ModalField>
+                )}
+                <S.ModalField>
+                  <strong>Celular:</strong> {pendingData.phone}
+                </S.ModalField>
+                <S.ModalField>
+                  <strong>E-mail:</strong> {pendingData.email}
+                </S.ModalField>
+                {pendingData.socialProfile && (
+                  <S.ModalField>
+                    <strong>Redes sociais:</strong> {pendingData.socialProfile}
+                  </S.ModalField>
+                )}
               </S.ModalSection>
 
               <S.ModalDivider />
@@ -288,8 +334,12 @@ export const ProposalView: React.FC = () => {
               <S.ModalDivider />
 
               <S.ModalActions>
-                <S.ModalButtonSecondary onClick={cancelSubmit}>Revisar</S.ModalButtonSecondary>
-                <S.ModalButtonPrimary onClick={confirmSubmit}>Enviar via WhatsApp</S.ModalButtonPrimary>
+                <S.ModalButtonSecondary onClick={cancelSubmit}>
+                  Revisar
+                </S.ModalButtonSecondary>
+                <S.ModalButtonPrimary onClick={confirmSubmit}>
+                  Enviar via WhatsApp
+                </S.ModalButtonPrimary>
               </S.ModalActions>
             </S.ModalCard>
           </S.ModalOverlay>
@@ -319,14 +369,16 @@ export const ProposalView: React.FC = () => {
                 </S.ThankYouIcon>
                 <S.ThankYouTitle>Proposta enviada com sucesso!</S.ThankYouTitle>
                 <S.ThankYouText>
-                  Agradecemos a sua confiança e preferência. Sua proposta já está sendo
-                  analisada pela nossa equipe. Retornaremos em até 1 dia útil com os
-                  próximos passos para o seu projeto.
+                  Agradecemos a sua confiança e preferência. Sua proposta já
+                  está sendo analisada pela nossa equipe. Retornaremos em até 1
+                  dia útil com os próximos passos para o seu projeto.
                 </S.ThankYouText>
               </S.ThankYouContent>
 
-              <S.ModalActions style={{ justifyContent: 'center' }}>
-                <S.ModalButtonPrimary onClick={closeThankYou}>Fechar</S.ModalButtonPrimary>
+              <S.ModalActions style={{ justifyContent: "center" }}>
+                <S.ModalButtonPrimary onClick={closeThankYou}>
+                  Fechar
+                </S.ModalButtonPrimary>
               </S.ModalActions>
             </S.ModalCard>
           </S.ModalOverlay>
