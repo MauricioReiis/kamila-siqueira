@@ -35,6 +35,15 @@ export const SectionTitle = styled.h2`
   font-size: clamp(2rem, 4vw, 2.75rem);
   font-weight: 700;
   color: ${({ theme }) => theme.colors.text};
+  margin-bottom: 1rem;
+`;
+
+export const SectionSubtitle = styled.p`
+  font-size: 1rem;
+  color: ${({ theme }) => theme.colors.textMuted};
+  margin: 0 auto;
+  max-width: 600px;
+  line-height: 1.6;
 `;
 
 export const StatsGrid = styled.div`

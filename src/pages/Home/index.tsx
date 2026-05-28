@@ -1,14 +1,35 @@
-import { lazy, Suspense } from 'react';
-import styled from 'styled-components';
-import { Hero } from '../../components/Hero';
-import { useThemeContext } from '../../styles/ThemeContext';
+import { lazy, Suspense } from "react";
+import styled from "styled-components";
+import { Hero } from "../../components/Hero";
+import { useThemeContext } from "../../styles/ThemeContext";
 
-const About = lazy(() => import('../../components/About').then((m) => ({ default: m.About })));
-const Services = lazy(() => import('../../components/Services').then((m) => ({ default: m.Services })));
-const Stats = lazy(() => import('../../components/Stats').then((m) => ({ default: m.Stats })));
-const Dashboard = lazy(() => import('../../components/Dashboard').then((m) => ({ default: m.Dashboard })));
-const Testimonials = lazy(() => import('../../components/Testimonials').then((m) => ({ default: m.Testimonials })));
-const ContactCTA = lazy(() => import('../../components/ContactCTA').then((m) => ({ default: m.ContactCTA })));
+const About = lazy(() =>
+  import("../../components/About").then((m) => ({ default: m.About })),
+);
+const Services = lazy(() =>
+  import("../../components/Services").then((m) => ({ default: m.Services })),
+);
+const TargetAudience = lazy(() =>
+  import("../../components/TargetAudience").then((m) => ({
+    default: m.TargetAudience,
+  })),
+);
+const Stats = lazy(() =>
+  import("../../components/Stats").then((m) => ({ default: m.Stats })),
+);
+const Dashboard = lazy(() =>
+  import("../../components/Dashboard").then((m) => ({ default: m.Dashboard })),
+);
+const Testimonials = lazy(() =>
+  import("../../components/Testimonials").then((m) => ({
+    default: m.Testimonials,
+  })),
+);
+const ContactCTA = lazy(() =>
+  import("../../components/ContactCTA").then((m) => ({
+    default: m.ContactCTA,
+  })),
+);
 
 const PageWrapper = styled.main<{ $isDark: boolean }>`
   position: relative;
@@ -16,7 +37,7 @@ const PageWrapper = styled.main<{ $isDark: boolean }>`
 
   /* Dot grid — only visible in dark theme */
   &::before {
-    content: '';
+    content: "";
     position: fixed;
     inset: -2rem;
     background-image: radial-gradient(
@@ -26,7 +47,7 @@ const PageWrapper = styled.main<{ $isDark: boolean }>`
     background-size: 3rem 3rem;
     pointer-events: none;
     z-index: 0;
-    display: ${({ $isDark }) => ($isDark ? 'block' : 'none')};
+    display: ${({ $isDark }) => ($isDark ? "block" : "none")};
     animation: bgDrift 30s ease-in-out infinite;
     will-change: transform;
 
@@ -37,21 +58,20 @@ const PageWrapper = styled.main<{ $isDark: boolean }>`
 
   /* Window light — only visible in dark theme */
   &::after {
-    content: '';
+    content: "";
     position: fixed;
     inset: -4rem;
-    background:
-      conic-gradient(
-        from 200deg at 100% -10%,
-        rgba(212, 165, 116, 0.10) 0deg,
-        rgba(196, 139, 159, 0.07) 25deg,
-        rgba(196, 139, 159, 0.03) 45deg,
-        transparent 70deg
-      );
+    background: conic-gradient(
+      from 200deg at 100% -10%,
+      rgba(212, 165, 116, 0.1) 0deg,
+      rgba(196, 139, 159, 0.07) 25deg,
+      rgba(196, 139, 159, 0.03) 45deg,
+      transparent 70deg
+    );
     filter: blur(4rem);
     pointer-events: none;
     z-index: 0;
-    display: ${({ $isDark }) => ($isDark ? 'block' : 'none')};
+    display: ${({ $isDark }) => ($isDark ? "block" : "none")};
     animation: bgDrift 25s ease-in-out infinite reverse;
     will-change: transform;
 
@@ -82,6 +102,7 @@ export const HomePage: React.FC = () => {
       <Suspense fallback={null}>
         <About />
         <Services />
+        <TargetAudience />
         <Stats />
         <Dashboard />
         <Testimonials />

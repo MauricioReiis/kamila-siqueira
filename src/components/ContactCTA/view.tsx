@@ -1,9 +1,16 @@
-import { Mail, MessageCircle, MapPin, ArrowRight, Camera, Briefcase } from 'lucide-react';
-import { useInView } from 'react-intersection-observer';
-import { useNavigate } from 'react-router-dom';
-import { socialLinks } from '../../lib/data';
-import { trackButtonClick, trackContactClick } from '../../lib/analytics';
-import * as S from './style';
+import {
+  Mail,
+  MessageCircle,
+  MapPin,
+  ArrowRight,
+  Camera,
+  Briefcase,
+} from "lucide-react";
+import { useInView } from "react-intersection-observer";
+import { useNavigate } from "react-router-dom";
+import { socialLinks } from "../../lib/data";
+import { trackButtonClick, trackContactClick } from "../../lib/analytics";
+import * as S from "./style";
 
 const socialIconMap: Record<string, React.FC<{ size?: number }>> = {
   Instagram: Camera,
@@ -24,30 +31,48 @@ export const ContactCTAView: React.FC = () => {
   return (
     <S.Section id="contact" ref={ref}>
       <S.Container>
-        <S.SectionLabel initial={initial} animate={animate} transition={transition()}>
+        <S.SectionLabel
+          initial={initial}
+          animate={animate}
+          transition={transition()}
+        >
           Contato
         </S.SectionLabel>
 
-        <S.Title initial={initial} animate={animate} transition={transition(0.1)}>
+        <S.Title
+          initial={initial}
+          animate={animate}
+          transition={transition(0.1)}
+        >
           Vamos estruturar o proximo passo do seu crescimento?
         </S.Title>
 
-        <S.Description initial={initial} animate={animate} transition={transition(0.2)}>
+        <S.Description
+          initial={initial}
+          animate={animate}
+          transition={transition(0.2)}
+        >
           Envie sua proposta e retornaremos com os próximos passos <br />
           em até 1 dia útil.
         </S.Description>
 
-        <S.InfoRow initial={initial} animate={animate} transition={transition(0.3)}>
+        <S.InfoRow
+          initial={initial}
+          animate={animate}
+          transition={transition(0.3)}
+        >
           <S.InfoItem>
             <Mail size={18} />
             <a
               href="mailto:contato@kamilasiqueira.com"
-              onClick={() => trackContactClick({
-                channel: 'email',
-                label: 'contact_email',
-                href: 'mailto:contato@kamilasiqueira.com',
-                location: 'contact',
-              })}
+              onClick={() =>
+                trackContactClick({
+                  channel: "email",
+                  label: "contact_email",
+                  href: "mailto:contato@kamilasiqueira.com",
+                  location: "contact",
+                })
+              }
             >
               contatokamilasiqueira@gmail.com
             </a>
@@ -58,12 +83,14 @@ export const ContactCTAView: React.FC = () => {
               href="https://wa.me/5532998123552"
               target="_blank"
               rel="noopener noreferrer"
-              onClick={() => trackContactClick({
-                channel: 'whatsapp',
-                label: 'contact_whatsapp',
-                href: 'https://wa.me/5532998123552',
-                location: 'contact',
-              })}
+              onClick={() =>
+                trackContactClick({
+                  channel: "whatsapp",
+                  label: "contact_whatsapp",
+                  href: "https://wa.me/5532998123552",
+                  location: "contact",
+                })
+              }
             >
               (32) 9 9812-3552
             </a>
@@ -74,7 +101,11 @@ export const ContactCTAView: React.FC = () => {
           </S.InfoItem>
         </S.InfoRow>
 
-        <S.SocialLinks initial={initial} animate={animate} transition={transition(0.35)}>
+        <S.SocialLinks
+          initial={initial}
+          animate={animate}
+          transition={transition(0.35)}
+        >
           {socialLinks.map((link) => {
             const Icon = socialIconMap[link.icon] ?? MessageCircle;
             return (
@@ -84,19 +115,21 @@ export const ContactCTAView: React.FC = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={link.name}
-                onClick={() => trackContactClick({
-                  channel:
-                    link.name.toLowerCase() === 'instagram'
-                      ? 'instagram'
-                      : link.name.toLowerCase() === 'linkedin'
-                        ? 'linkedin'
-                        : link.name.toLowerCase() === 'whatsapp'
-                          ? 'whatsapp'
-                          : 'other',
-                  label: `contact_social_${link.name.toLowerCase()}`,
-                  href: link.url,
-                  location: 'contact',
-                })}
+                onClick={() =>
+                  trackContactClick({
+                    channel:
+                      link.name.toLowerCase() === "instagram"
+                        ? "instagram"
+                        : link.name.toLowerCase() === "linkedin"
+                          ? "linkedin"
+                          : link.name.toLowerCase() === "whatsapp"
+                            ? "whatsapp"
+                            : "other",
+                    label: `contact_social_${link.name.toLowerCase()}`,
+                    href: link.url,
+                    location: "contact",
+                  })
+                }
               >
                 <Icon size={18} />
               </S.SocialLink>
@@ -104,21 +137,25 @@ export const ContactCTAView: React.FC = () => {
           })}
         </S.SocialLinks>
 
-        <S.CTAGroup initial={initial} animate={animate} transition={transition(0.4)}>
+        <S.CTAGroup
+          initial={initial}
+          animate={animate}
+          transition={transition(0.4)}
+        >
           <S.CTAButton
             onClick={(e: React.MouseEvent) => {
               e.preventDefault();
               trackButtonClick({
-                label: 'contact_cta_proposal',
-                location: 'contact',
-                text: 'Enviar proposta',
-                href: '/proposta',
+                label: "contact_cta_proposal",
+                location: "contact",
+                text: "Quero vender mais",
+                href: "/proposta",
               });
-              navigate('/proposta');
+              navigate("/proposta");
             }}
             href="/proposta"
           >
-            Enviar proposta <ArrowRight size={18} />
+            Quero vender mais <ArrowRight size={18} />
           </S.CTAButton>
         </S.CTAGroup>
       </S.Container>

@@ -9,6 +9,7 @@ export const AboutView: React.FC = () => {
     contentRef,
     contentInView,
     title,
+    subtitle,
     paragraphs,
     values,
   } = useAbout();
@@ -47,6 +48,7 @@ export const AboutView: React.FC = () => {
         >
           <S.SectionLabel>Sobre</S.SectionLabel>
           <S.SectionTitle>{title}</S.SectionTitle>
+          <S.SectionSubtitle>{subtitle}</S.SectionSubtitle>
 
           {paragraphs.map((paragraph, index) => (
             <S.AboutText key={index}>{paragraph}</S.AboutText>
