@@ -1,4 +1,4 @@
-import { Target, Megaphone, BarChart3 } from 'lucide-react';
+import { Target, Megaphone, BarChart3, Workflow, MonitorSmartphone } from 'lucide-react';
 import { useServices } from './controller';
 import type { Service } from '../../lib/types';
 import * as S from './style';
@@ -7,6 +7,8 @@ const iconMap: Record<string, React.FC<{ size?: number }>> = {
   Target,
   Megaphone,
   BarChart3,
+  Workflow,
+  MonitorSmartphone,
 };
 
 const renderIcon = (iconName: string) => {
@@ -21,7 +23,7 @@ export const ServicesView: React.FC = () => {
     <S.ServicesSection id="services">
       <S.ServicesContainer>
         <S.ServicesHeader>
-          <S.SectionTitle>Minhas Entregas</S.SectionTitle>
+          <S.SectionTitle>Meus serviços</S.SectionTitle>
         </S.ServicesHeader>
 
         <S.ServicesGrid ref={ref}>
