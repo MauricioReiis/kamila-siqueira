@@ -80,19 +80,19 @@ export const ContactCTAView: React.FC = () => {
           <S.InfoItem>
             <MessageCircle size={18} />
             <a
-              href="https://wa.me/5532998123552"
+              href="https://wa.me/5532984454129"
               target="_blank"
               rel="noopener noreferrer"
               onClick={() =>
                 trackContactClick({
                   channel: "whatsapp",
                   label: "contact_whatsapp",
-                  href: "https://wa.me/5532998123552",
+                  href: "https://wa.me/5532984454129",
                   location: "contact",
                 })
               }
             >
-              (32) 9 9812-3552
+              32 98445-4129
             </a>
           </S.InfoItem>
           <S.InfoItem>

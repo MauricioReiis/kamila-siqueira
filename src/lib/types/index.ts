@@ -14,7 +14,7 @@ export interface Service {
   icon: string;
   title: string;
   description: string;
-  details: ServiceDetail[];
+  details?: ServiceDetail[];
 }
 
 export interface Testimonial {

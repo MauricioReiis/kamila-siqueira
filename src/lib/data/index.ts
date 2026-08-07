@@ -3,7 +3,7 @@ import type { NavLink, Service, Testimonial, Stat, SocialLink, DashboardCompany 
 export const navLinks: NavLink[] = [
   { id: 'home', label: 'Início', href: '#home' },
   { id: 'about', label: 'Sobre', href: '#about' },
-  { id: 'services', label: 'Entregas', href: '#services' },
+  { id: 'services', label: 'Serviços', href: '#services' },
   { id: 'para-quem-e', label: 'Para Quem É', href: '#para-quem-e' },
   { id: 'testimonials', label: 'Comentários', href: '#testimonials' },
   { id: 'contact', label: 'Contato', href: '#contact' },
@@ -13,69 +13,37 @@ export const services: Service[] = [
   {
     id: 1,
     icon: 'Target',
-    title: 'Marketing Completo 360 Estrutura de Crescimento',
+    title: 'Marketing 360',
     description:
-      'Mais do que "fazer tudo" aqui eu integro tudo com estratégia, com um único objetivo: fazer você vender mais.',
-    details: [
-      {
-        label: 'Posicionamento & Proposta de Valor',
-        text: 'Definição clara do que diferencia sua marca no mercado.',
-      },
-      {
-        label: 'Conteúdo Estratégico',
-        text: 'Planejamento e gestão de redes sociais com foco em conversão, não só presença.',
-      },
-      {
-        label: 'Tráfego Pago (Meta Ads)',
-        text: 'Campanhas orientadas a performance e escala de resultado.',
-      },
-      {
-        label: 'Análise de Dados',
-        text: 'Otimizações constantes baseadas em comportamento real, não achismo.',
-      },
-    ],
+      'Diagnóstico, pesquisa de mercado/concorrentes, persona, posicionamento, planejamento estratégico/comercial, metas/KPIs, Criação de conteúdo (criação e edição de vídeos), tráfego, funil, CRM, automação, e-mail marketing, SEO e relatórios.',
   },
   {
     id: 2,
     icon: 'Megaphone',
-    title: 'Landing Pages & Sites de Conversão',
+    title: 'Social Media',
     description:
-      'Não é sobre ter um site bonito. É sobre ter uma estrutura que converte interesse em ação e ação em receita.',
-    details: [
-      {
-        label: 'Landing Pages Estratégicas',
-        text: 'Criação com foco em decisão de compra e geração de leads qualificados.',
-      },
-      {
-        label: 'Sites para E-commerce e Serviços',
-        text: 'Desenvolvimento orientado a experiência do usuário e venda.',
-      },
-      {
-        label: 'Copywriting de Conversão',
-        text: 'Comunicação pensada para gerar valor percebido e reduzir objeções.',
-      },
-    ],
+      'Planejamento, calendário, tendências, linha editorial, pautas, copywriting, direção criativa, agendamento, gestão de redes (Insta, Face, LinkedIn, TikTok, Pinterest), métricas e engajamento.',
   },
   {
     id: 3,
     icon: 'BarChart3',
-    title: 'Consultoria Estratégica',
+    title: 'Tráfego Pago',
     description:
-      'Para negócios que precisam ajustar direção antes de escalar. Porque escalar o errado só aumenta o prejuízo.',
-    details: [
-      {
-        label: 'Diagnóstico Completo',
-        text: 'Análise do marketing atual e identificação de gargalos de crescimento.',
-      },
-      {
-        label: 'Reposicionamento Estratégico',
-        text: 'Clareza de proposta de valor e diferenciação de mercado.',
-      },
-      {
-        label: 'Plano de Ação',
-        text: 'Entregável com foco em resultado mensurável e próximos passos claros.',
-      },
-    ],
+      'Planejamento, Pixel/API, eventos, públicos (Lookalike/Remarketing), Meta/Google/LinkedIn Ads, testes A/B, escala e análise de ROAS/CPA.',
+  },
+  {
+    id: 4,
+    icon: 'Workflow',
+    title: 'CRM e Automações',
+    description:
+      'Implantação, segmentação, funil comercial, automação WhatsApp/E-mail, nutrição, recuperação de carrinho, Lead Scoring e integrações.',
+  },
+  {
+    id: 5,
+    icon: 'MonitorSmartphone',
+    title: 'Web Design',
+    description:
+      'Landing Pages, sites, portfólios, UX/UI, responsividade, WhatsApp/CRM/Pixel/Analytics, domínio/hospedagem, SSL, SEO e manutenção.',
   },
 ];
 
