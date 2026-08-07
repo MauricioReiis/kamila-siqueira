@@ -1,6 +1,6 @@
 import type { ProposalFormData } from '../../lib/types';
 
-const WHATSAPP_NUMBER = '5532998123552';
+const WHATSAPP_NUMBER = '5532984454129';
 
 const formatCurrency = (value: number) =>
   value >= 500000
